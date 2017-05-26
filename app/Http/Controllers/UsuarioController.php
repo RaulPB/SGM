@@ -13,7 +13,7 @@ use Ifiix\Sucursal; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
 use Ifiix\User;
 use Session;
 use Redirect;
-use Illuminate\Routing\Route; 
+use Illuminate\Routing\Route;
 
 class UsuarioController extends Controller
 {
@@ -27,7 +27,7 @@ class UsuarioController extends Controller
     }
 
     public function index()  //listado de los recursos disponibles en la base de datos
-    {   
+    {
         $users = User::paginate(10);
         return view('usuario.index', compact('users'));
      }
@@ -53,15 +53,16 @@ class UsuarioController extends Controller
     public function store(UserCreateRequest $request) //variable request que "cacha", el formulario enrutado
     {
        User::create([
+            'sucursal_id'=>$request['sucursal_id'],
             'name'=>$request['name'],
             'email'=>$request['email'],
             'password'=>$request['password'],
             'perfil_id'=>$request['perfil_id'],
-            'sucursal_id'=>$request['sucursal_id'],
+
         ]);
-        return redirect('/usuario')->with('message','Usuario Creado Correctamente'); //mandamos vista con mensaje que se 
-        
-       
+       return redirect('/usuario');//->with('message','Usuario Creado Correctamente'); //mandamos vista con mensaje que se
+
+
     }
 
     /**
@@ -99,7 +100,7 @@ class UsuarioController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
-        $user->fill($request->all());//metodo para rellenar campos especificados en los modelos   
+        $user->fill($request->all());//metodo para rellenar campos especificados en los modelos
         $user->save();
          Session::flash('message','Usuario Actualizado Correctamente');
         return Redirect::to('/usuario');

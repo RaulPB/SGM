@@ -11,7 +11,7 @@
 		{!!Form::password('password',['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
 	</div>
 
-	<div class="form-group">
+	<div class="list-group">
 		{!!Form::label('Perfil','Perfil:')!!}
 		{!!Form::select('perfil_id',$perfiles)!!}
 	</div>

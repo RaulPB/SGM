@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
-    protected $fillable = ['name', 'email', 'password', 'perfil_id'];
+    protected $fillable = ['name', 'email', 'password', 'perfil_id', 'sucursal_id'];
     /**
      * The attributes that are mass assignable.
      *
@@ -39,8 +39,8 @@ class User extends Model implements AuthenticatableContract,
 
     public function setPasswordAttribute($valor){ //funcion para el encriptado de la contraseña del usuario al editar
         if(!empty($valor)){ //si el campo no esta vacio en la edicion se cambia y se encripta
-         $this->attributes['password'] = \Hash::make($valor); 
-        } 
+         $this->attributes['password'] = \Hash::make($valor);
+        }
     }
 
 
