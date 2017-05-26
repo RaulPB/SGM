@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Ifiix
+        psr4_prefix: Ifiix
+        src_path: app
