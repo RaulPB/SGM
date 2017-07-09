@@ -24,12 +24,12 @@ class Serv extends Model
         return $this->belongsTo('Ifiix\Status');
     }
 
-    public function scopeId($query, $imei){ //este es para listar el index en vistas de servicios //FALTA PAREMETRO PARA PASAR ID DE USUARIO
+    public function scopeId($query, $id){ //este es para listar el index en vistas de servicios //FALTA PAREMETRO PARA PASAR ID DE USUARIO
 
-      if(trim($imei) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
-      $query->where('imei', $imei);
+      if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+      $query->where('id', $id);
         }else{
-          $query->where('imei', $imei)->orWhere('status_id', '<>', '10')->where('status_id', '<>', '11')->where('status_id', '<>', '16')->where('status_id', '<>', '18')->where('status_id', '<>', '8')->where('status_id', '<>', '21')->get();  //esta es la consulta sin filtro
+          $query->where('id', $id)->orWhere('status_id', '<>', '10')->where('status_id', '<>', '11')->where('status_id', '<>', '16')->where('status_id', '<>', '18')->where('status_id', '<>', '8')->where('status_id', '<>', '21')->get();
         }
     }
 

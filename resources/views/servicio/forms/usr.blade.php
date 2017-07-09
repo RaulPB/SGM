@@ -315,7 +315,6 @@ $(function() {
 		{!!Form::select('tecnico_id',$user)!!}
 	</div>
 
-
     </div>
   </div>
 </div>

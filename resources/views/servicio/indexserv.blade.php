@@ -11,7 +11,7 @@
 
 {!! Form::open(['route' => 'servicio.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
   <div class="form-group">
-  	{!! Form::text('imei', null, ['class' => 'form-control', 'placeholder' => 'IMEI del equipo']) !!} 
+  	{!! Form::text('id', null, ['class' => 'form-control', 'placeholder' => 'Orden de servicio']) !!}
   </div> <!-- COLOCAMOS IMEI PORQUE ES LO QUE QUEREMOS FILTRAR-->
   <button type="submit" class="btn btn-default">Buscar</button>
 {!! Form::close() !!}
@@ -24,7 +24,8 @@
 			<th>Tecnico asignado</th>
 			<th>Status</th>
 			<th>Fecha de entrega</th>
-			<th>Imprimir</th>
+      <th>Imprimir Nota de venta</th>
+			<th>Imprimir Orden</th>
 			<th>Editar</th>
 		</thead>
 
@@ -33,7 +34,7 @@
 
 		@foreach($servicio as $servicios)
 		<tbody>
-		<?  
+		<?
 			$hola=\Carbon\Carbon::now();
 			$hola2=$servicios -> fechanotifica;
 			$hola3=$servicios -> fechaentrega;
@@ -66,17 +67,19 @@
 							<td bgcolor="#CB4335">{{$servicios -> status -> status}}</td>
 			@endif
 
-			
+
 			<td>{{$servicios -> fechaentrega}}</td>
+      <td>{!!link_to_route('constru.show', $title = 'Nota de venta', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-warning'])!!}</td>
+
 			<td>{!!link_to_route('constru.edit', $title = 'Imprimir', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-info'])!!}</td>
 
 			<td>{!!link_to_route('servicio.edit', $title = 'Revisar', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 
 		</tbody>
 		@endforeach
-		
+
 	</table>
 {!!$servicio->render()!!}
-	
-	
+
+
 @stop

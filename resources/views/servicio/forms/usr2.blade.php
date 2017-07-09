@@ -13,7 +13,7 @@ $(document).ready(function(){
        // $("#total").value("hola");
        $("#total").attr("value",clicks4);
     });
-    
+
       $("#editor2").blur(function(){
         var clicks = editor1.value//Valor total
         var clicks2 = editor2.value
@@ -31,7 +31,7 @@ $(document).ready(function(){
         var clicks4 = editor1.value-editor2.value-editor3.value
        	//alert(clicks4);
         //$(#total).value("hola");
-        
+
         $("#total").attr("value",clicks4);
     });
 
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 <script>
 $(function() {
-  
+
 
 
         var clicks = editor1.value//Valor total
@@ -49,7 +49,7 @@ $(function() {
         var clicks4 = editor1.value-editor2.value-editor3.value
        	//alert(clicks4);
         //$(#total).value("hola");
-        
+
         $("#total").attr("value",clicks4);
 
 
@@ -61,19 +61,19 @@ $(function() {
 	<div id="p1" class="form-group col-md-4" >
 	{!!Form::label('fechaingreso','fecha de recepcion:')!!}
 	{!!Form::text('fechaingreso',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
-	</div>	
+	</div>
 
 
 	<div class="form-group col-md-4">
 	{!!Form::label('fechaentrega','fecha de entrega:')!!}
-	{!!Form::text('fechaentrega',null,['class'=>'form-control','placeholder'=>''])!!}
-	</div>	
+	{!!Form::text('fechaentrega',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+	</div>
 
 	<div class="form-group col-md-4" id="c1">
 		{!!Form::label('fechanotificar','Fecha de notificaciónes a cliente:')!!}
 		{!!Form::date('fechanotifica', \Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
-		
-	</div>	
+
+	</div>
 
 	<div class="form-group"">
 	{!!Form::label('costol','Costo Publico:')!!}
@@ -89,7 +89,7 @@ $(function() {
 		<div class="form-group col-md-4">
 		{!!Form::label('fechaingreso','Fecha 1:')!!}
 		{!!Form::text('fechapago1',null,['class'=>'form-control','placeholder'=>''])!!}
-	</div>	
+	</div>
 
 
 	<div class="form-group col-md-4">
@@ -137,7 +137,7 @@ $(function() {
       </h4>
     </div>
     <div id="collapse1" class="panel-collapse collapse">
-     
+
 	<div class="form-group">
 		{!!Form::text('receptor',null,['class'=>'form-control','placeholder'=>'NOMBRE DEL RECEPTOR AUTOMATICO','readonly' => 'true'])!!}
 	</div>
@@ -292,7 +292,7 @@ $(function() {
 		{!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
 	</div>
 
-		
+
 
 <!--VAMOS A INGRESAR LOS DATOS DE USUARIO ASIGNADO, TECNICO ASIGNADO, STATUS, PRIVEEDOR -->
 	<div class="form-group">

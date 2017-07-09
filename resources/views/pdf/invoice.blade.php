@@ -5,7 +5,7 @@
             <table>
 
   <tr>
-    <td> <img src="../public/ifiix.jpg" style="width:650%; max-width:150px;"></td>
+    <td> <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=2441e075f6a44ce447bb4cd2a87b4789&oe=59A086DB" style="width:250%; max-width:250px;"></td>
     <td colspan="2"><FONT SIZE=1>Nombre del cliente: {{$nombrecliente}}</FONT></td>
     <td colspan="">Folio: {{$id}}</td>
 
@@ -14,20 +14,22 @@
     <td colspan="1"><FONT SIZE=1>Fecha de Recepción: </FONT><FONT SIZE=1> {{$fecharecepcion}}</FONT></td>
     <td colspan="2"><FONT SIZE=1>Fecha de Entrega:</FONT><FONT SIZE=1> {{$fechaentrega}}</FONT></td>
      <td colspan="" rowspan="" headers=""><FONT SIZE=1> Marca con una X el lugar del golpe </FONT></td>
+     <td colspan="" rowspan="" headers=""><FONT SIZE=1> Patrón de desbloqueo </FONT></td>
   </tr>
 
   <tr>
     <td><FONT SIZE=1>Marca: {{$marca}}</FONT></td>
     <td><FONT SIZE=1>Modelo: {{$modelo}}</FONT></td>
     <td><FONT SIZE=1>Tipo: {{$tipo}}</FONT></td>
-    <td> <img src="../public/iphone.jpg" style="width:800%; max-width:150px;"> </td>
+    <td> <img src="http://sm.pcmag.com/t/pcmag_latam/photo/i/iphone-5s/iphone-5s_twbc.640.jpg" style="width:500%; max-width:150px;"> </td>
+      <td><img src="https://img.helpforsmartphone.com/1cb4e9b69030ee4afc4dd2f668fd1f4b-w300.png" style="width:400%; max-width:100px;"></FONT></td>
 
   </tr>
   <tr>
     <td><FONT SIZE=1>N/S: {{$ns}}</FONT></td>
     <td><FONT SIZE=1>IMEI: {{$imei}}</FONT></td>
     <td><FONT SIZE=1>Color: {{$color}}</FONT></td>
-    <td><FONT SIZE=1>Patrón de bloqueo:<img src="http://www.jc-mouse.net/wp-content/uploads/2016/03/matriz3x3_demo.gif" style="width:500%; max-width:150px;"></FONT></td>
+    <td><FONT SIZE=1>Compañia: {{$compañia}}</FONT></td>
   </tr>
  </table>
 
@@ -35,9 +37,9 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <td colspan="2">Problema a reparar:
+                                    <td colspan="5">Problema a reparar:
                                     <FONT SIZE=1> {{$problemacliente}}</FONT></td>
-                                     <td colspan="8">Observaciones: <FONT SIZE=0> {{$diagnostico1}}</FONT></td>
+                                     <td colspan="5">Observaciones: <FONT SIZE=0> {{$diagnostico1}}</FONT></td>
                                 </tr>
                                 <tr>
                                   <td><FONT SIZE=0>Enciende: {{$benciende}}</FONT></td>
@@ -82,9 +84,8 @@
                                   <td colspan="2"><strong>Anticipo: {{$abonos}}</strong></td>
                                   <td colspan="8"><FONT SIZE=0>Le atendio: {{$receptor}}</FONT></td>
                                   <H6 align="center">Recibo el equipo ya reparado y quedo satisfecho con el servicio</H6>
-                                  <H6 align="center">_______________________________________________________________</H6>
+
                                   <H6 align="center">Nombre y firma aceptando las condiciones</H6>
-                                  <H6 align="center">________________________________________</H6>
                                   <H6 align="center">Declaro ser el dueño del equipo que traigo a reparar, y me comprometo a recogerlo en un plazo máximo de 5 días hábiles después de la fecha pactada de entrega, si no lo recojo, Ifiix podrá disponer del equipo sin previo aviso.</H6>
                               </tr>
 
@@ -99,7 +100,7 @@
 <thead>
   <tr>
 
-    <td> <img src="../public/ifiix.jpg" style="width:250%; max-width:150px;"></td>
+    <td> <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=2441e075f6a44ce447bb4cd2a87b4789&oe=59A086DB" style="width:250%; max-width:150px;"></td>
     <td colspan=""><FONT SIZE=0>Fecha de Recepción: </FONT><FONT SIZE=1> {{$fecharecepcion}}</FONT></td>
     <td colspan=""><FONT SIZE=0>Fecha de Entrega:</FONT><FONT SIZE=1> {{$fechaentrega}}</FONT></td>
   </tr>
@@ -126,7 +127,6 @@
                               <td colspan=""><strong>TOTAL: {{$costo}}</strong></td>
                             </tr>
                             <tr>
-                              <H6 align="center">_______________________________________________________________</H6>
                               <H6 align="center">Nombre y firma aceptando las condiciones</H6>
                                <FONT SIZE=0 align="center">Declaro ser el dueño del equipo que traigo a reparar, y me comprometo a recogerlo en un plazo máximo de 5 días hábiles después de la fecha pactada de entrega, si no lo recojo, Ifiix podrá disponer del equipo sin previo aviso, además de las condiciones expuestas en la orden de servicio de donde se extrae este comprobante relacionado por el folio de la orden.</FONT>
                                <td colspan="3"><FONT SIZE=1>CONTAMOS CON SERVICIO A DOMICILIO.</FONT> <FONT SIZE=0>Telefonos: 2299379301 / 2291169546. E-mail: ifiixver@gmail.com. WEB: www.ifiix.com. Dirección: Cuahutémoc #4254 casi esq. Alcocer / Pedro Alvarado #533-bis Fracc. Reforma C.P 91919, Veracruz, Ver.</FONT></td>

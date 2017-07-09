@@ -28,8 +28,9 @@ class UsuarioController extends Controller
 
     public function index()  //listado de los recursos disponibles en la base de datos
     {
-        $users = User::paginate(10);
+        $users = User::where('perfil_id','<>', 8)->paginate(10);
         return view('usuario.index', compact('users'));
+        //$user = User::where('perfil_id', 3)->lists('name', 'id');
      }
 
     /**

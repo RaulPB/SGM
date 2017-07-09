@@ -32,7 +32,8 @@ class ServsController extends Controller
     public function index(Request $request)
     {
     //dd($request->get('imei'));//PARA VALIDAR HASTA QUE PUNTO TODO VA FUNCIONANDO EN EL PASO DE DATOS
-      $servicio = Serv::id($request->get('imei'))->paginate(500);
+      $servicio = Serv::id($request->get('id'))->orderBy('created_at', 'asc')->paginate(1000);//->orderBy('created_at', 'asc');
+      //$correo = Serv::where('status','<>', 'Entregado al cliente')->orderBy('fecha_recep', 'asc')->get();
       return view('servicio.indexserv',compact('servicio'));
     }
     /**
@@ -51,6 +52,7 @@ class ServsController extends Controller
         $pagor = Tpago::lists('pago', 'id');
         //$employees = Employee::where('branch_id', 9)->get()->lists('full_name', 'id');
         return view('servicio.create',compact('status','user','pagor','dire'));//variables a las que asigne campos reales de la base de datos
+        //return ($user);
     }
 
     /**
@@ -192,18 +194,25 @@ return redirect('/encuesta/create')->with('message','Información almacenada');
     $nombrecliente = Input::get('nombrecliente');
 
 
-    if ($contactName == 7){//SI STATUS = CLIENTE NOTIFICADO EN ESPERA DE RECOLECCIÓN
-        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
+    if ($contactName == 6){//SI STATUS = CLIENTE NOTIFICADO EN ESPERA DE RECOLECCIÓN REPARADO
+      $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
         Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
                 $msj->subject('Ifiix: Orden de servicio lista para ser entregada'); //Motivo del correo
                 $msj->to($contactEmail);
         });
+
+                $servicio = Serv::find($id);
+                $servicio->fill($request->all());
+                $servicio->status_id = 7;
+                $servicio->save();
+                Session::flash('message','Se notifico al cliente via correo electronico');
+                return Redirect::to('/servicio');
         }
 
   if ($contactName == 21){//SI STATUS = NO SE PUDO REVISAR
             $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
             Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-                    $msj->subject('Ifiix: Orden de servicio requiere de su atención'); //Motivo del correo
+                    $msj->subject('Ifiix: Orden de servicio NO se pudo revisar'); //Motivo del correo
                     $msj->to($contactEmail);
             });
             }
@@ -226,12 +235,13 @@ return redirect('/encuesta/create')->with('message','Información almacenada');
         }
 
 
-
+  if($contactName <> 6){
         $servicio = Serv::find($id);
         $servicio->fill($request->all());
         $servicio->save();
         Session::flash('message','Orden actualizada correctamente');
         return Redirect::to('/servicio');
+      }
     }
 
     /**
