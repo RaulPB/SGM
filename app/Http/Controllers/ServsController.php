@@ -194,33 +194,153 @@ return redirect('/encuesta/create')->with('message','Información almacenada');
     $nombrecliente = Input::get('nombrecliente');
 
 
-    if ($contactName == 6){//SI STATUS = CLIENTE NOTIFICADO EN ESPERA DE RECOLECCIÓN REPARADO
+    if ($contactName == 6){//SI STATUS = REPARADO
+
+      if ($contactEmail <> ""){
       $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
         Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
                 $msj->subject('Ifiix: Orden de servicio lista para ser entregada'); //Motivo del correo
                 $msj->to($contactEmail);
         });
-
+      }
                 $servicio = Serv::find($id);
                 $servicio->fill($request->all());
                 $servicio->status_id = 7;
                 $servicio->save();
-                Session::flash('message','Se notifico al cliente via correo electronico');
+                Session::flash('message','Orden Actualizada');
                 return Redirect::to('/servicio');
         }
 
   if ($contactName == 21){//SI STATUS = NO SE PUDO REVISAR
+      if ($contactEmail <> ""){
             $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
             Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-                    $msj->subject('Ifiix: Orden de servicio NO se pudo revisar'); //Motivo del correo
+                    $msj->subject('Ifiix: Orden de servicio NO se pudo REVISAR'); //Motivo del correo
                     $msj->to($contactEmail);
             });
+          }
+            $servicio = Serv::find($id);
+            $servicio->fill($request->all());
+            $servicio->status_id = 7;
+            $servicio->telefono = "NO SE PUDO REVISAR";
+            $servicio->celular = "NO SE PUDO REVISAR";
+            //$servicio->email = "NO SE PUDO REVISAR";
+            $servicio->producto = "NO SE PUDO REVISAR";
+            $servicio->marca = "NO SE PUDO REVISAR";
+            $servicio->modelo = "NO SE PUDO REVISAR";
+            $servicio->tipo = "NO SE PUDO REVISAR";
+            $servicio->color = "NO SE PUDO REVISAR";
+            $servicio->capacidad = "NO SE PUDO REVISAR";
+            $servicio->serie = "NO SE PUDO REVISAR";
+            $servicio->imei = "NO SE PUDO REVISAR";
+            $servicio->contraseña = "NO SE PUDO REVISAR";
+            $servicio->compañia = "NO SE PUDO REVISAR";
+            $servicio->reparado = "NO SE PUDO REVISAR";
+            $servicio->agua = "NO SE PUDO REVISAR";
+            $servicio->ingresoso = "NO SE PUDO REVISAR";
+            $servicio->enciende = "NO SE PUDO REVISAR";
+            $servicio->benciende = "NO SE PUDO REVISAR";
+            $servicio->bvolumen = "NO SE PUDO REVISAR";
+            $servicio->bvibrador = "NO SE PUDO REVISAR";
+            $servicio->pantalla = "NO SE PUDO REVISAR";
+            $servicio->touch = "NO SE PUDO REVISAR";
+            $servicio->display = "NO SE PUDO REVISAR";
+            $servicio->ctrasera = "NO SE PUDO REVISAR";
+            $servicio->cfrontal = "NO SE PUDO REVISAR";
+            $servicio->ccarga = "NO SE PUDO REVISAR";
+            $servicio->altavoz = "NO SE PUDO REVISAR";
+            $servicio->microfono = "NO SE PUDO REVISAR";
+            $servicio->auricular = "NO SE PUDO REVISAR";
+            $servicio->boexterna = "NO SE PUDO REVISAR";
+            $servicio->jack = "NO SE PUDO REVISAR";
+            $servicio->wifi = "NO SE PUDO REVISAR";
+            $servicio->bluetooth = "NO SE PUDO REVISAR";
+            $servicio->datosm = "NO SE PUDO REVISAR";
+            $servicio->bateria = "NO SE PUDO REVISAR";
+            $servicio->portasim = "NO SE PUDO REVISAR";
+            $servicio->sim = "NO SE PUDO REVISAR";
+            $servicio->bhome = "NO SE PUDO REVISAR";
+            $servicio->touchid = "NO SE PUDO REVISAR";
+            $servicio->sensorp = "NO SE PUDO REVISAR";
+            $servicio->carcasa = "NO SE PUDO REVISAR";
+            $servicio->teclado = "NO SE PUDO REVISAR";
+            $servicio->señal = "NO SE PUDO REVISAR";
+            $servicio->problemacliente = "NO SE PUDO REVISAR";
+            $servicio->solucion1 = "NO SE PUDO REVISAR";
+          //  $servicio->diagnostico1 = "NO SE PUDO REVISAR";
+          //  $servicio->diagnostico2 = "NO SE PUDO REVISAR";
+
+
+            $servicio->save();
+            Session::flash('message','Se notifico al cliente via correo electronico');
+            return Redirect::to('/servicio');
             }
+
+  if ($contactName == 22){//SI STATUS = NO SE PUDO REPARAR
+        if ($contactEmail <> ""){
+                      $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
+                      Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
+                              $msj->subject('Ifiix: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
+                              $msj->to($contactEmail);
+                      });
+                    }
+                      $servicio = Serv::find($id);
+                      $servicio->fill($request->all());
+                      $servicio->status_id = 7;
+                      $servicio->telefono = "NO SE PUDO REPARAR";
+                      $servicio->celular = "NO SE PUDO REPARAR";
+                      //$servicio->email = "NO SE PUDO REPARAR";
+                      $servicio->producto = "NO SE PUDO REPARAR";
+                      $servicio->marca = "NO SE PUDO REPARAR";
+                      $servicio->modelo = "NO SE PUDO REPARAR";
+                      $servicio->tipo = "NO SE PUDO REPARAR";
+                      $servicio->color = "NO SE PUDO REPARAR";
+                      $servicio->capacidad = "NO SE PUDO REPARAR";
+                      $servicio->serie = "NO SE PUDO REPARAR";
+                      $servicio->imei = "NO SE PUDO REPARAR";
+                      $servicio->contraseña = "NO SE PUDO REPARAR";
+                      $servicio->compañia = "NO SE PUDO REPARAR";
+                      $servicio->reparado = "NO SE PUDO REPARAR";
+                      $servicio->agua = "NO SE PUDO REPARAR";
+                      $servicio->ingresoso = "NO SE PUDO REPARAR";
+                      $servicio->enciende = "NO SE PUDO REPARAR";
+                      $servicio->benciende = "NO SE PUDO REPARAR";
+                      $servicio->bvolumen = "NO SE PUDO REPARAR";
+                      $servicio->bvibrador = "NO SE PUDO REPARAR";
+                      $servicio->pantalla = "NO SE PUDO REPARAR";
+                      $servicio->touch = "NO SE PUDO REPARAR";
+                      $servicio->display = "NO SE PUDO REPARAR";
+                      $servicio->ctrasera = "NO SE PUDO REPARAR";
+                      $servicio->cfrontal = "NO SE PUDO REPARAR";
+                      $servicio->ccarga = "NO SE PUDO REPARAR";
+                      $servicio->altavoz = "NO SE PUDO REPARAR";
+                      $servicio->microfono = "NO SE PUDO REPARAR";
+                      $servicio->auricular = "NO SE PUDO REPARAR";
+                      $servicio->boexterna = "NO SE PUDO REPARAR";
+                      $servicio->jack = "NO SE PUDO REPARAR";
+                      $servicio->wifi = "NO SE PUDO REPARAR";
+                      $servicio->bluetooth = "NO SE PUDO REPARAR";
+                      $servicio->datosm = "NO SE PUDO REPARAR";
+                      $servicio->bateria = "NO SE PUDO REPARAR";
+                      $servicio->portasim = "NO SE PUDO REPARAR";
+                      $servicio->sim = "NO SE PUDO REPARAR";
+                      $servicio->bhome = "NO SE PUDO REPARAR";
+                      $servicio->touchid = "NO SE PUDO REPARAR";
+                      $servicio->sensorp = "NO SE PUDO REPARAR";
+                      $servicio->carcasa = "NO SE PUDO REPARAR";
+                      $servicio->teclado = "NO SE PUDO REPARAR";
+                      $servicio->señal = "NO SE PUDO REPARAR";
+                      $servicio->problemacliente = "NO SE PUDO REPARAR";
+                      $servicio->solucion1 = "NO SE PUDO REPARAR";
+                      $servicio->save();
+                      Session::flash('message','Se notifico al cliente via correo electronico');
+                      return Redirect::to('/servicio');
+                      }
 
         $resta = Input::get('resta');//PARA SABER SI EL CAMPO ESTA EN BLANCO
         $status = Input::get('status_id');//$status == 10 o ENTREGADO A CLIENTE
 
-        if($contactName == '10' and $resta != '0'){
+  if($contactName == '10' and $resta != '0'){  //STATUS: ENTREGADO A CLIENTE EN SUCURSAL
             //if($status == 10){
             Session::flash('message','AUN RESTA SALDO POR LIQUIDAR');
             return Redirect::to('/servicio');
