@@ -50,7 +50,7 @@ class ReparaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //nota de venta
     {  //NECESITAMOS CREAR AL FINAL JUSTO ANTES DE GUARDAR EL NUMERO DE LA NOTA CON EL QUE VAMOS A GUARDARLA
       $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
       $servicio = Serv::find($id); //encontramos el registro
@@ -72,6 +72,9 @@ class ReparaController extends Controller
       $costo = $servicio->costo;
       $pago1 = $servicio->abono1;
       $pago2 = $servicio->abono2;
+      $pago3 = $servicio->abono3;
+      $pago4 = $servicio->abono4;
+      $pago5 = $servicio->abono5;
       $abonos = $pago1 + $pago2;
       $enciende = $servicio->enciende;//////////////
       $benciende = $servicio->benciende;
@@ -82,6 +85,7 @@ class ReparaController extends Controller
       $display = $servicio->display;
       $ctrasera = $servicio->ctrasera;
       $cfrontal = $servicio->cfrontal;
+      $diagnostico2 = $servicio->diagnostico2;
       $ccarga = $servicio->ccarga;
       $altavoz = $servicio->altavoz;
       $microfono = $servicio->microfono;
@@ -100,24 +104,34 @@ class ReparaController extends Controller
       $carcasa = $servicio->carcasa;
       $teclado = $servicio->teclado;
       $señal = $servicio->señal;
+
+      $letras = \NumeroALetras::convertir($costo);
+
       //$garantia = $servicio->garantia->garantia;
-      $garantia = $servicio -> garantia;
-      $gar = Garantia::find($garantia);
-      $gar2 = $gar->garantia;
+      //$garantia = $servicio -> garantia;
+      //$gar = Garantia::find($garantia);
+      //$gar2 = $gar->garantia; //AQUI LO COMENTAMOS PARA VER QUE HACE !!!!!!!!!!!!!!!
       //CREAREMOS UN NUMERO CONSECUTIVO PARA CADA NOTA NUEVA QUE SE IMPRIMA-> AUNQUE SE GUARDA LA VENTA EL NUMERO
       //SE INCREMENTA SIEMPRE POR CUESTIONES CONTABLES.
       Notas::create([
         'venta'=>$servicio->id, // guardamos el id de la ventas
         //LA FECHA DE LA EMISION DE LA NOTA SE GUARDA EN created_at
+        'abono1'=>$servicio->abono1,
+        'abono2'=>$servicio->abono2,
+        'abono3'=>$servicio->abono3,
+        'abono4'=>$servicio->abono4,
+        'abono5'=>$servicio->abono5,
+        'detalle'=>$servicio->diagnostico2
+        //'entrega'=>$servicio->created_at
         ]);
         $idN  = Notas::where('venta',$id)->get()->last();
         $idN2 = $idN->id;
 
       $telefono = $servicio->telefono;
-      $view =  \View::make('pdf.invoice0', compact('idN2','id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
+      $view =  \View::make('pdf.invoice0', compact('idN2','id','nombrecliente','diagnostico2','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
       'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
       'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-      'touchid','sensorp','carcasa','teclado','señal','compañia','date','garantia','pago1','pago2','telefono','gar2'))->render();
+      'touchid','sensorp','carcasa','teclado','señal','compañia','date','letras','garantia','pago1','pago2','pago3','pago4','pago5','telefono','gar2'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->setPaper('A3', 'portrait');
 
@@ -132,7 +146,7 @@ class ReparaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) //para imprimir orden de servicio
     {
         $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
         $servicio = Serv::find($id); //encontramos el registro
@@ -150,6 +164,7 @@ class ReparaController extends Controller
         $color = $servicio->color;
         $problemacliente = $servicio->problemacliente;
         $diagnostico1 = $servicio->diagnostico1;
+        $diagnostico2 = $servicio->diagnostico2;
         $receptor = $servicio->receptor;
         $costo = $servicio->costo;
         $pago1 = $servicio->abono1;
@@ -185,7 +200,7 @@ class ReparaController extends Controller
         $view =  \View::make('pdf.invoice', compact('id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
         'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
         'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-        'touchid','sensorp','carcasa','teclado','señal','compañia'))->render();
+        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('Legal', 'portrait');
 

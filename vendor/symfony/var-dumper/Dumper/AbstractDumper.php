@@ -39,8 +39,8 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     public function __construct($output = null, $charset = null)
     {
         $this->setCharset($charset ?: ini_get('php.output_encoding') ?: ini_get('default_charset') ?: 'UTF-8');
-        $this->decimalPoint = (string) 0.5;
-        $this->decimalPoint = $this->decimalPoint[1];
+        $this->decimalPoint = localeconv();
+        $this->decimalPoint = $this->decimalPoint['decimal_point'];
         $this->setOutput($output ?: static::$defaultOutput);
         if (!$output && is_string(static::$defaultOutput)) {
             static::$defaultOutput = $this->outputStream;
@@ -90,7 +90,7 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
         }
         $this->charsetConverter = 'fallback';
         $supported = true;
-        set_error_handler(function () use (&$supported) {$supported = false;});
+        set_error_handler(function () use (&$supported) { $supported = false; });
 
         if (function_exists('mb_encoding_aliases') && mb_encoding_aliases($charset)) {
             $this->charset = $charset;
@@ -134,6 +134,9 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
      */
     public function dump(Data $data, $output = null)
     {
+        $this->decimalPoint = localeconv();
+        $this->decimalPoint = $this->decimalPoint['decimal_point'];
+
         $exception = null;
         if ($output) {
             $prevOutput = $this->setOutput($output);
@@ -193,7 +196,7 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
         }
         if ('iconv' === $this->charsetConverter) {
             $valid = true;
-            set_error_handler(function () use (&$valid) {$valid = false;});
+            set_error_handler(function () use (&$valid) { $valid = false; });
             $c = iconv($this->charset, 'UTF-8', $s);
             restore_error_handler();
             if ($valid) {

@@ -42,38 +42,41 @@
             <td colspan="">Modelo: {{$marca}} {{$modelo}}</td>
             <td colspan="3">Telefono/whatsapp:{{$telefono}}</td>
           </tr>
+
           <tr>
-            <td colspan="5" align="center">Reparación [ ]   Liberación [ ]   Cambio [ ]   Otro [ ]</td>
+            <td colspan="3" align="center">Detalles:</td>
+            <td colspan="2" align="center">Anticipos</td>
+          <!--  <td colspan="1" align="center">Anticipo 2</td> -->
           </tr>
           <tr>
-            <td colspan="3" align="center">Detalle:</td>
-            <td colspan="1" align="center">Anticipo 1</td>
-            <td colspan="1" align="center">Anticipo 2</td>
+            <td  height="3" colspan="3">{{$diagnostico2}}</td>
+            <td colspan="2" align="center">$ {{$pago1}}</td>
           </tr>
           <tr>
-            <td  height="30" colspan="3"></td>
-            <td colspan="1" align="center">{{$pago1}}</td>
-            <td colspan="1" align="center">{{$pago2}}</td>
+            <td  height="3" colspan="3"></td>
+            <td colspan="2" align="center">$ {{$pago2}}</td>
+          </tr>
+          <tr>
+            <td  height="3" colspan="3"></td>
+            <td colspan="2" align="center">$ {{$pago3}}</td>
+          </tr>
+          <tr>
+            <td  height="3" colspan="3"></td>
+            <td colspan="2" align="center">${{$pago4}}</td>
+          </tr>
+          <tr>
+            <td  height="3" colspan="3"></td>
+            <td colspan="2" align="center">$ {{$pago5}}</td>
           </tr>
 
           <tr>
-            <td colspan="3">Dia y hora de entrega: {{$fechaentrega}}</td>
-            <td colspan="1"></td>
-            <td colspan="1"></td>
+            <td colspan="3">Dia y hora de entrega: {{\Carbon\Carbon::now()}}</td>
+            <td colspan="2"></td>
           </tr>
+
           <tr>
-            <td colspan="3">Tiempo de garantia: {{$gar2}}</td>
-            <td colspan="1"></td>
-            <td colspan="1"></td>
-          </tr>
-          <tr>
-            <td height="30"colspan="3">Observaciones:</td>
-            <td colspan="1"></td>
-            <td colspan="1"></td>
-          </tr>
-          <tr>
-            <td colspan="3" align="left"> Cantidad con letra:</td>
-            <FONT SIZE=1><td colspan="2" align="left">Total:{{$pago1+$pago2}}</td></FONT>
+            <td colspan="3" align="left"> Cantidad con letra: {{$letras}}</td>
+            <FONT SIZE=1><td colspan="2" align="left">Total:$ {{$costo}} M.N.</td></FONT>
           </tr>
 
           <tr><FONT SIZE=0>

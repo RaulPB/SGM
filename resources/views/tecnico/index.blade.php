@@ -16,7 +16,7 @@
 {!! Form::open(['route' => 'tecnico.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
 
   <div class="form-group">
-  	{!! Form::text('imei', null, ['class' => 'form-control', 'placeholder' => 'IMEI']) !!} 
+  	{!! Form::text('id', null, ['class' => 'form-control', 'placeholder' => 'Orden de servicio']) !!} 
   </div> <!-- COLOCAMOS ID PORQUE ES LO QUE QUEREMOS FILTRAR-->
   <button type="submit" class="btn btn-default">Buscar</button>
 {!! Form::close() !!}
@@ -34,7 +34,7 @@
 
 		@foreach($servicio as $servicios)
 		<tbody>
-			<?  
+			<?
 			$hola=\Carbon\Carbon::now();
 			$hola2=$servicios -> fechanotifica;
 			$hola3=$servicios -> fechaentrega;
@@ -67,14 +67,14 @@
 							<td bgcolor="#CB4335">{{$servicios -> status -> status}}</td>
 			@endif
 
-			
+
 			<td>{{$servicios -> fechaentrega}}</td>
 			<td>{!!link_to_route('tecnico.edit', $title = 'Revisar', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 		</tbody>
 		@endforeach
-		
+
 	</table>
 {!!$servicio->render()!!}
-	
-	
+
+
 @stop
