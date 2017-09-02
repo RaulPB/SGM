@@ -28,7 +28,7 @@
 @foreach($notas as $nota)
 		<tbody>
 			<td>{{$nota -> venta}}</td>
-			<td>{{$nota -> id}}</td>
+			<td>{{$nota -> nota}}</td>
   		<td>{{$nota -> created_at}}</td>
 			<td>{!!link_to_route('reimpn.show', $title = 'Imprimir', $parameters = $nota->id, $attributes = ['class'=>'btn btn-info'])!!}</td>
 			</tbody>

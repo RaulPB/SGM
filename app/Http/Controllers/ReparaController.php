@@ -8,7 +8,9 @@ use Ifiix\Http\Requests;
 use Ifiix\Http\Controllers\Controller;
 use Redirect;
 use DB;
+use Auth;
 use Ifiix\Garantia;
+use Ifiix\Sucursal;
 use Ifiix\Notas;
 
 class ReparaController extends Controller
@@ -68,7 +70,6 @@ class ReparaController extends Controller
       $color = $servicio->color;
       $problemacliente = $servicio->problemacliente;
       $diagnostico1 = $servicio->diagnostico1;
-      $receptor = $servicio->receptor;
       $costo = $servicio->costo;
       $pago1 = $servicio->abono1;
       $pago2 = $servicio->abono2;
@@ -104,14 +105,18 @@ class ReparaController extends Controller
       $carcasa = $servicio->carcasa;
       $teclado = $servicio->teclado;
       $señal = $servicio->señal;
-
       $letras = \NumeroALetras::convertir($costo);
-
-      //$garantia = $servicio->garantia->garantia;
-      //$garantia = $servicio -> garantia;
-      //$gar = Garantia::find($garantia);
-      //$gar2 = $gar->garantia; //AQUI LO COMENTAMOS PARA VER QUE HACE !!!!!!!!!!!!!!!
-      //CREAREMOS UN NUMERO CONSECUTIVO PARA CADA NOTA NUEVA QUE SE IMPRIMA-> AUNQUE SE GUARDA LA VENTA EL NUMERO
+      $receptor = $servicio->receptor; //recuperamos el nombre del receptor
+      //EXTRAEREMOS LA SUCURSAL DEL RECEPTOR PARA PODER AGREGAR LAS SIGLAS A LA NOTA
+       $idsucur = DB::table('users')->where('name', '=', $receptor)->pluck('sucursal_id');// sacamos el id de la sucursal
+       $claven = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('clavenota');
+       $cont = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('contador');
+       $cont = $cont + 1; //sumamos 1 al contador
+       $suci = Sucursal::find($idsucur);//ubicamos la sucursal
+       $suci->contador=$cont;//sumamos al contador correpondiente
+       $nombre = $claven . $cont;
+       $suci->save();//guardamos el nuevo contador en la sucursal
+       //CREAREMOS UN NUMERO CONSECUTIVO PARA CADA NOTA NUEVA QUE SE IMPRIMA-> AUNQUE SE GUARDA LA VENTA EL NUMERO
       //SE INCREMENTA SIEMPRE POR CUESTIONES CONTABLES.
       Notas::create([
         'venta'=>$servicio->id, // guardamos el id de la ventas
@@ -121,23 +126,24 @@ class ReparaController extends Controller
         'abono3'=>$servicio->abono3,
         'abono4'=>$servicio->abono4,
         'abono5'=>$servicio->abono5,
-        'detalle'=>$servicio->diagnostico2
+        'detalle'=>$servicio->diagnostico2,
+        'nota'=>$nombre
         //'entrega'=>$servicio->created_at
         ]);
-        $idN  = Notas::where('venta',$id)->get()->last();
-        $idN2 = $idN->id;
-
+        //$idN  = Notas::where('venta',$id)->get()->last();
+        //$idN2 = $idN->id;
+        //return($idsucur);
       $telefono = $servicio->telefono;
-      $view =  \View::make('pdf.invoice0', compact('idN2','id','nombrecliente','diagnostico2','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
+      $view =  \View::make('pdf.invoice0', compact('cont','claven','id','nombrecliente','diagnostico2','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
       'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
       'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
       'touchid','sensorp','carcasa','teclado','señal','compañia','date','letras','garantia','pago1','pago2','pago3','pago4','pago5','telefono','gar2'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->setPaper('A3', 'portrait');
-
-      //return $idN2;
       $pdf->loadHTML($view);
       return $pdf->stream("Orden ".$id."__".$date);
+
+
     }
 
     /**

@@ -30,16 +30,16 @@ class Serv extends Model
       if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
       $query->where('id', $id);
         }else{
-          $query->where('id', $id)->orWhere('status_id', '<>', '10')->where('status_id', '<>', '11')->where('status_id', '<>', '16')->where('status_id', '<>', '18')->where('status_id', '<>', '8')->where('status_id', '<>', '21')->get();
+          $query->where('id', $id)->orWhere('status_id', '<>', '10')->where('status_id', '<>', '11')->where('status_id', '<>', '16')->where('status_id', '<>', '18')->where('status_id', '<>', '8')->get();
         }
     }
 
-      public function scopeIds($query, $imei){//este es para listar en index de receptor los entregados
+      public function scopeIds($query, $id){//este es para listar en index de receptor los entregados
 
-      if(trim($imei) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
-      $query->where('imei', $imei);
+      if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+      $query->where('id', $id);
         }else{
-          $query->where('imei', $imei)->orWhere('status_id', '=', '10')->orWhere('status_id', '=', '11')->orWhere('status_id', '=', '8')->orWhere('status_id', '=', '21')->get(); //para separar las ordenes que ya se entregaron y mpstrar todo en el index aunque no se ingrese busqueda.
+          $query->where('id', $id)->orWhere('status_id', '=', '10')->orWhere('status_id', '=', '11')->orWhere('status_id', '=', '8')->orWhere('status_id', '=', '21')->get(); //para separar las ordenes que ya se entregaron y mpstrar todo en el index aunque no se ingrese busqueda.
         }
     }
 

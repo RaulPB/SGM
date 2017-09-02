@@ -61,9 +61,7 @@ class ImNoController extends Controller
       $notas = Notas::find($id); //encontramos la nota
       $venta = $notas->venta; //extraemos el numero de la venta
       $servicio = Serv::find($venta);//buscamos la venta con el id recuperado
-
-
-      $nota = $notas->id;
+      $nota = $notas->nota;
       $cliente = $servicio->nombrecliente;
       $modelo = $servicio->modelo;
       $diagnostico2 = $servicio->diagnostico2;

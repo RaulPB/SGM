@@ -10,7 +10,7 @@
 
 {!! Form::open(['route' => 'servicio.show', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
   <div class="form-group">
-  	{!! Form::text('imei', null, ['class' => 'form-control', 'placeholder' => 'IMEI']) !!} 
+  	{!! Form::text('id', null, ['class' => 'form-control', 'placeholder' => 'Orden se servicio']) !!} 
   </div> <!-- COLOCAMOS ID PORQUE ES LO QUE QUEREMOS FILTRAR-->
   <button type="submit" class="btn btn-default">Buscar</button>
 {!! Form::close() !!}
@@ -25,7 +25,7 @@
 			<th>Fecha de entrega compromiso</th>
 			<th>Fecha de entrega real</th>
 			<th>Operaciones</th>
-			
+
 		</thead>
 
 		@foreach($servicio as $servicios)
@@ -39,9 +39,9 @@
 			<td>{!!link_to_route('servicio.edit', $title = 'Revisar', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 			</tbody>
 		@endforeach
-		
+
 	</table>
 {!!$servicio->render()!!}
-	
-	
+
+
 @stop

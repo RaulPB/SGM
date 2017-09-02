@@ -8,10 +8,6 @@
 </div>
 @endif
 
-
-
-
-
 @include('alerts.request') <!-- ESTA VISTA ES LA QUE MUESTRA EL METODO QUE LANZA LAS ALERTAS-->
 <?
 $message = $dire;

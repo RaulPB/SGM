@@ -183,8 +183,9 @@ class ServsController extends Controller
       $detalle->save();
       $cont = $cont+1;
     }
-    //return Redirect::to('/servicio');
-    return redirect('/encuesta/create')->with('message','Información almacenada');
+    $ordens = $venta->id;
+    return redirect('/servicio')->with('message','Orden '.$ordens.' ingresada correctamente');
+    //return redirect('/encuesta/create')->with('message','Orden '.$ordens.' ingresada correctamente');
 
   }
 
@@ -197,7 +198,7 @@ class ServsController extends Controller
   public function show(Request $request) //METODO PARA PODER MOSTRAR LOS SERVICIOS QUE SE TERMINARON
   {
     //$servicio = Serv::where('status_id', '=', 10)->paginate(10);
-    $servicio = Serv::ids($request->get('imei'))->paginate(10);
+    $servicio = Serv::ids($request->get('id'))->paginate(10);
     return view('servicio.indexservt',compact('servicio'));
   }
 
@@ -243,6 +244,33 @@ class ServsController extends Controller
     $contactId = $id;//Input::get('id');
     $nombrecliente = Input::get('nombrecliente');
 
+    if ($contactName == 7){//SI SE LOCALIZA CLIENTE IGUAL SE REGISTRA
+      $servicio = Serv::find($id);
+      $servicio->fill($request->all());
+      $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
+      $hoy = \Carbon\Carbon::now();
+      //$hoy = $hoy->format('Y-m-d');
+      $notificame = $servicio->bitacoracontacto;
+      $servicio->bitacoracontacto = $notificame." Notificado por e-mail/llamada: ".$hoy."; ";
+      $servicio->save();
+      $ordens = $servicio->id;
+      Session::flash('message','Contacto con cliente registrado en bitacora para orden: '.$ordens.'');
+      return Redirect::to('/servicio');
+    }
+
+    if ($contactName == 19){//SI NO SE ENCONTRO AL CLIENTE AGREGA BITACORA Y DEJA STATUS COMO NOTIFICADO
+      $servicio = Serv::find($id);
+      $servicio->fill($request->all());
+      $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
+      $hoy = \Carbon\Carbon::now();
+      //$hoy = $hoy->format('Y-m-d');
+      $notificame = $servicio->bitacoracontacto;
+      $servicio->bitacoracontacto = $notificame." cliente NO localizado:".$hoy."; ";
+      $servicio->save();
+      $ordens = $servicio->id;
+      Session::flash('message','Cliente NO localizado se registro en bitacora para orden: '.$ordens.'');
+      return Redirect::to('/servicio');
+    }
 
     if ($contactName == 6){//SI STATUS = REPARADO
       if ($contactEmail <> ""){
@@ -254,9 +282,9 @@ class ServsController extends Controller
       }
       $servicio = Serv::find($id);
       $servicio->fill($request->all());
-      $servicio->status_id = 7;
+      $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
       $hoy = \Carbon\Carbon::now();
-      $hoy = $hoy->format('Y-m-d');
+      //$hoy = $hoy->format('Y-m-d');
       $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
       $notificame = $servicio->bitacoracontacto;
       $servicio->bitacoracontacto = $notificame."Reparación:".$hoy."; ";
@@ -277,38 +305,21 @@ class ServsController extends Controller
         $detalle->save();
         $cont = $cont+1;
       }
-
-      Session::flash('message','Orden Actualizada');
+      $ordens = $servicio->id;
+      Session::flash('message','Orden '.$ordens.'notifico a cliente de REPARACIÓN via email');
       return Redirect::to('/servicio');
     }
 
     if ($contactName == 21){//SI STATUS = NO SE PUDO REVISAR
-      if ($contactEmail <> ""){
-        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
-        Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-          $msj->subject('Ifiix: Orden de servicio NO se pudo REVISAR'); //Motivo del correo
-          $msj->to($contactEmail);
-        });
-      }
       $servicio = Serv::find($id);
       $servicio->fill($request->all());
-      $servicio->status_id = 7;
+      //$servicio->status_id = 7;
       $hoy = \Carbon\Carbon::now();
-      $hoy = $hoy->format('Y-m-d');
+      //$hoy = $hoy->format('Y-m-d');
       $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
       $notificame = $servicio->bitacoracontacto;
-      $servicio->bitacoracontacto = $notificame."No se pudo revisar:".$hoy."; ";
-      $servicio->producto = "NO SE PUDO REVISAR";
-      $servicio->marca = "NO SE PUDO REVISAR";
-      $servicio->modelo = "NO SE PUDO REVISAR";
-      $servicio->tipo = "NO SE PUDO REVISAR";
-      $servicio->color = "NO SE PUDO REVISAR";
-      $servicio->capacidad = "NO SE PUDO REVISAR";
-      $servicio->serie = "NO SE PUDO REVISAR";
-      $servicio->imei = "NO SE PUDO REVISAR";
-      $servicio->contraseña = "NO SE PUDO REVISAR";
-      $servicio->compañia = "NO SE PUDO REVISAR";
-      $servicio->reparado = "NO SE PUDO REVISAR";
+      //$servicio->bitacoracontacto = $notificame."No se pudo revisar:".$hoy."; ";//CAMPO DE BITACORA
+
       $servicio->agua = "NO SE PUDO REVISAR";
       $servicio->ingresoso = "NO SE PUDO REVISAR";
       $servicio->enciende = "NO SE PUDO REVISAR";
@@ -338,8 +349,8 @@ class ServsController extends Controller
       $servicio->carcasa = "NO SE PUDO REVISAR";
       $servicio->teclado = "NO SE PUDO REVISAR";
       $servicio->señal = "NO SE PUDO REVISAR";
-      $servicio->problemacliente = "NO SE PUDO REVISAR";
-      $servicio->solucion1 = "NO SE PUDO REVISAR";
+      //$servicio->problemacliente = "NO SE PUDO REVISAR";
+      //$servicio->solucion1 = "NO SE PUDO REVISAR";
       $servicio->costo=$request->get('total_venta2');
       $servicio->save();
       $idarticulo = $request->get('idarticulo');
@@ -356,9 +367,9 @@ class ServsController extends Controller
         $detalle->save();
         $cont = $cont+1;
       }
+      $ordens = $servicio->id;
 
-
-      Session::flash('message','Se notifico al cliente via correo electronico');
+      Session::flash('message','Se registro orden '.$ordens.' sin revisar');
       return Redirect::to('/servicio');
     }
 
@@ -374,7 +385,7 @@ class ServsController extends Controller
       $servicio->fill($request->all());
       $servicio->status_id = 7;
       $hoy = \Carbon\Carbon::now();
-      $hoy = $hoy->format('Y-m-d');
+    //  $hoy = $hoy->format('Y-m-d');
       $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
       $notificame = $servicio->bitacoracontacto;
       $servicio->bitacoracontacto = $notificame."No se pudo reparar:".$hoy."; ";
@@ -436,7 +447,7 @@ class ServsController extends Controller
         $detalle->save();
         $cont = $cont+1;
       }
-      Session::flash('message','Se notifico al cliente via correo electronico');
+      Session::flash('message','Orden'.$ordens.'notifico a cliente via email NO reparación');
       return Redirect::to('/servicio');
     }
 
@@ -445,7 +456,7 @@ class ServsController extends Controller
 
     if($contactName == '10' and $resta != '0'){  //STATUS: ENTREGADO A CLIENTE EN SUCURSAL
       //if($status == 10){
-      Session::flash('message','AUN RESTA SALDO POR LIQUIDAR');
+      Session::flash('message','AUN RESTA SALDO POR LIQUIDAR, No se puede colocar como entregada');
       return Redirect::to('/servicio');
       //}
     }else{
@@ -468,9 +479,9 @@ class ServsController extends Controller
         $detalle->save();
         $cont = $cont+1;
       }
+      $ordens = $servicio->id;
 
-
-      Session::flash('message','Orden actualizada correctamente');
+      Session::flash('message','Orden '.$ordens.' actualizada correctamente');
       return Redirect::to('/servicio');
     }
 
@@ -496,8 +507,8 @@ class ServsController extends Controller
         $cont = $cont+1;
       }
 
-
-      Session::flash('message','Orden actualizada correctamente');
+      $ordens = $servicio->id;
+      Session::flash('message','Orden'.$ordens.'actualizada correctamente');
       return Redirect::to('/servicio');
     }
   }

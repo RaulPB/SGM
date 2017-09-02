@@ -168,13 +168,13 @@ class TecnicoController extends Controller
         }
 
         if ($contactName == 21){//SI STATUS = NO SE PUDO REVISAR
-          if ($contactEmail <> ""){
+          /*if ($contactEmail <> ""){
             $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
             Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
               $msj->subject('Ifiix: Orden de servicio NO se pudo REVISAR'); //Motivo del correo
               $msj->to($contactEmail);
             });
-          }
+          }*/
           $servicio = Serv::find($id);
           $servicio->fill($request->all());
           $servicio->status_id = 7;
@@ -183,7 +183,7 @@ class TecnicoController extends Controller
           $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
           $notificame = $servicio->bitacoracontacto;
           $servicio->bitacoracontacto = $notificame."No se pudo revisar:".$hoy."; ";
-          $servicio->producto = "NO SE PUDO REVISAR";
+          /*$servicio->producto = "NO SE PUDO REVISAR";
           $servicio->marca = "NO SE PUDO REVISAR";
           $servicio->modelo = "NO SE PUDO REVISAR";
           $servicio->tipo = "NO SE PUDO REVISAR";
@@ -193,7 +193,7 @@ class TecnicoController extends Controller
           $servicio->imei = "NO SE PUDO REVISAR";
           $servicio->contraseña = "NO SE PUDO REVISAR";
           $servicio->compañia = "NO SE PUDO REVISAR";
-          $servicio->reparado = "NO SE PUDO REVISAR";
+          $servicio->reparado = "NO SE PUDO REVISAR";*/
           $servicio->agua = "NO SE PUDO REVISAR";
           $servicio->ingresoso = "NO SE PUDO REVISAR";
           $servicio->enciende = "NO SE PUDO REVISAR";
@@ -223,8 +223,8 @@ class TecnicoController extends Controller
           $servicio->carcasa = "NO SE PUDO REVISAR";
           $servicio->teclado = "NO SE PUDO REVISAR";
           $servicio->señal = "NO SE PUDO REVISAR";
-          $servicio->problemacliente = "NO SE PUDO REVISAR";
-          $servicio->solucion1 = "NO SE PUDO REVISAR";
+          //$servicio->problemacliente = "NO SE PUDO REVISAR";
+          //$servicio->solucion1 = "NO SE PUDO REVISAR";
           $servicio->costo=$request->get('total_venta2');
           $servicio->save();
           $idarticulo = $request->get('idarticulo');

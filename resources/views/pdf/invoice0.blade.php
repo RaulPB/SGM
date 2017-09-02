@@ -34,7 +34,7 @@
     <table width="80%"  border="1" align="center" cellspacing="0" cellpadding="5">
       <tbody>
         <tr>
-          <td colspan="2" align="left"> Nota de venta: {{$idN2}} </th>
+          <td colspan="2" align="left"> Nota de venta: {{$claven}}{{$cont}} </th>
             <td colspan="3" align="center"> Fecha: {{\Carbon\Carbon::now()}} </td>
           </tr>
           <tr>

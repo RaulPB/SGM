@@ -149,12 +149,12 @@ $(document).ready(function(){
 
             <div class="form-group col-md-12">
               <h4>Bitacora de contacto con el cliente:</h4>
-              {!!Form::text('bitacoracontacto',null,['class'=>'form-control','placeholder'=>'Registra las fechas de contacto con el cliente','readonly'=> 'true'])!!}
+              {!!Form::textarea('bitacoracontacto',null,['class'=>'form-control','placeholder'=>'Registra las fechas de contacto con el cliente','readonly'=> 'true'])!!}
             </div>
 
             <div class="form-group col-md-12">
               <h4>Recibio:</h4>
-              {!!Form::text('receptor',Auth::user()->name,['class'=>'form-control','placeholder'=>'NOMBRE DEL RECEPTOR AUTOMATICO','readonly' => 'true'])!!}
+              {!!Form::text('receptor',null,['class'=>'form-control','placeholder'=>'NOMBRE DEL RECEPTOR AUTOMATICO','readonly' => 'true'])!!}
             </div>
 
             <div class="form-group col-md-12">

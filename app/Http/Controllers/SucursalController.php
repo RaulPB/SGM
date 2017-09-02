@@ -49,8 +49,11 @@ class SucursalController extends Controller
         //return "lo guarde";
         Sucursal::create([
             'nameS'=>$request['nameS'],
+            'direccion'=>$request['direccion'],
+            'clavenota'=>$request['clavenota'],
+            'contador'=>0,
         ]);
-        return redirect('/sucursal')->with('message','Sucursal Creada Correctamente'); //mandamos vista con mensaje que se 
+        return redirect('/sucursal')->with('message','Sucursal Creada Correctamente'); //mandamos vista con mensaje que se
     }
 
     /**
