@@ -24,7 +24,7 @@ class SucursalUpdate extends Request
     public function rules()
     {
         return [
-             'nameS' => 'required|unique:sucursals', //es el nombre que le damos y que aparece en el mensaje de requerido y ademas
+             //'nameS' => 'required|unique:sucursals', //es el nombre que le damos y que aparece en el mensaje de requerido y ademas
         ];
     }
 }
