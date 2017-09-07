@@ -21,7 +21,7 @@
 			<th>Orden Servicio</th>
       <th>Nota de venta</th>
 			<th>Fecha de emisión</th>
-			<th>Opciones</th>
+			<th>Reimprimir</th>
 
 		</thead>
 

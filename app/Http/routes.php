@@ -49,4 +49,9 @@ Route::resource('precio', 'PreciosController');//Para visualizar precios a publi
 Route::resource('encuesta', 'EncuestaController');//Para lanzar la encuesta de como se entero de nosotros
 Route::get('pdfd', 'PdfController@diaria');
 Route::resource('archivo', 'DiarioController');//Para subir archivos
-Route::resource('reimpn', 'ImNoController');//Para subir archivos
+Route::resource('reimpn', 'ImNoController');//reimprimir notas de venta
+Route::resource('blanco', 'BlancoController');//imprimir nota de venta vacia
+
+Route::get('encuestas', function () {
+    return redirect('encuesta/create');
+});

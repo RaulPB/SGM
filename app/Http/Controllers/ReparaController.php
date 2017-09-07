@@ -203,10 +203,16 @@ class ReparaController extends Controller
         $carcasa = $servicio->carcasa;
         $teclado = $servicio->teclado;
         $señal = $servicio->señal;
+
+        //$receptor = $venta->receptor; //recuperamos el nombre del receptor
+        //EXTRAEREMOS LA SUCURSAL DEL RECEPTOR PARA PODER AGREGAR LAS SIGLAS A LA NOTA
+        $idsucur = DB::table('users')->where('name', '=', $receptor)->pluck('sucursal_id');// sacamos el id de la sucursal
+        $claven = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('nameS');
+
         $view =  \View::make('pdf.invoice', compact('id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
         'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
         'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2'))->render();
+        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('Legal', 'portrait');
 

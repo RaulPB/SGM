@@ -158,7 +158,10 @@
                     <li>
                       <a href="#"> <i class='fa fa-file-text-o'></i> Notas de venta</a>
                       <ul class="nav nav-fourth-level">
-                        <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-file-text'></i> Reimprimir nota de venta </a>
+                        <a href="{!!URL::to('/blanco/create')!!}"><i class='fa fa-file-text'></i> Nota de venta vacia</a>
+                      </ul>
+                      <ul class="nav nav-fourth-level">
+                        <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-print'></i> Reimprimir nota de venta </a>
                       </ul>
                     </li>
                   </ul>
@@ -310,7 +313,10 @@
                         <li>
                           <a href="#"> <i class='fa fa-file-text-o'></i> Notas de venta</a>
                           <ul class="nav nav-fourth-level">
-                            <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-file-text'></i> Reimprimir nota de venta </a>
+                            <a href="{!!URL::to('/blanco/create')!!}"><i class='fa fa-file-text'></i> Nota de venta vacia</a>
+                          </ul>
+                          <ul class="nav nav-fourth-level">
+                            <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-print'></i> Reimprimir nota de venta </a>
                           </ul>
                         </li>
                       </ul>

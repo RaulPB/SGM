@@ -5,9 +5,10 @@
             <table>
 
   <tr>
-    <td> <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=2441e075f6a44ce447bb4cd2a87b4789&oe=59A086DB" style="width:250%; max-width:250px;"></td>
+    <td> <img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=968b51f2dd93c12b4f41350afb9d240a&oe=5A172DDB" style="width:400%; max-width:550px;"></td>
     <td colspan="2"><FONT SIZE=1>Nombre del cliente: {{$nombrecliente}}</FONT></td>
     <td colspan="">Folio: {{$id}}</td>
+    <td colspan="">Sucursal: {{$claven}}</td>
 
   </tr>
   <tr>
@@ -92,7 +93,7 @@
 
 
                             </thead>
-                  <FONT SIZE=0>AVISO IMPORTANTE: El plazo para recoger su equipo es de 5 días hábiles a partir de la fecha de la entrega programada, transcurrido este tiempo, Ifiix podrá disponer de su equipo. Si el equipo no es recogido, inmediatamente se enviará a planta donde se destinara al "programa de reciclaje" sin previo aviso y sin que esto represente alguna obligación de nuestra parte con el cliente.*Acepto una vez que Ifiix abra mi equipo pierdo mi garantía de fábrica con la marca.*Pasados los 5 días, usted puede recuperar su equipo cubriendo los costos de envío y reenvío por un total de $800.00 extras a la reparación según sea su caso.*Pasados los 5 días Ifiix no se hace responsable de los equipos.* Se cobrará el 10% del monto total de la reparación por cancelación.*En NINGÚN caso Ifiix se hace responsable de la pérdida parcial o total de la información del equipo, ya que el respaldo de dicha información es responsabilidad del usuario.*En equipos mojados NO HAY GARANTIA; Los equipos que hayan tenido contacto con algún liquido una vez ingresados aunque ingresen encendidos existe la posibilidad que se dañe a la hora de abrirse por lo tanto Ifiix no se hace responsable de esto.*los equipos doblados aunque ingresen encendidos existe la posibilidad que se dañe a la hora de abrirse por lo tanto Ifiix no se hace responsable de esto. La garantía solo aplica en la refacción reemplazada o utilizada. POLITICAS DE GARANTIA:*La garantía solo es válida por defectos de fábricas*La garantía no es válida cuando haya sufrido un golpe o enmendadura; Estado en contacto con cualquier tipo de líquido; Tenido corto circuito debido a cambio de voltaje; Sido abierto por una persona ajena a Ifiix.
+                  <FONT SIZE=0>AVISO IMPORTANTE: El plazo para recoger su equipo es de 5 días hábiles a partir de la fecha de la entrega programada, transcurrido este tiempo, Ifiix podrá disponer de su equipo. Si el equipo no es recogido, inmediatamente se enviará a planta donde se destinara al "programa de reciclaje" sin previo aviso y sin que esto represente alguna obligación de nuestra parte con el cliente.*Acepto una vez que Ifiix abra mi equipo pierdo mi garantía de fábrica con la marca.*Pasados los 5 días, usted puede recuperar su equipo cubriendo los costos de envío y reenvío por un total de $800.00 extras a la reparación según sea su caso.*Pasados los 5 días Ifiix no se hace responsable de los equipos.* Se cobrará el 10% del monto total de la reparación por cancelación.*En NINGÚN caso Ifiix se hace responsable de la pérdida parcial o total de la información del equipo, ya que el respaldo de dicha información es responsabilidad del usuario.*En equipos mojados NO HAY GARANTIA; Los equipos que hayan tenido contacto con algún liquido una vez ingresados aunque ingresen encendidos existe la posibilidad que se dañe a la hora de abrirse por lo tanto Ifiix no se hace responsable de esto.*los equipos doblados aunque ingresen encendidos existe la posibilidad que se dañe a la hora de abrirse por lo tanto Ifiix no se hace responsable de esto. La garantía solo aplica en la refacción reemplazada o utilizada. POLITICAS DE GARANTIA:*La garantía solo es válida por defectos de fábricas*La garantía no es válida cuando haya sufrido un golpe o enmendadura; Estado en contacto con cualquier tipo de líquido; Tenido corto circuito debido a cambio de voltaje; Sido abierto por una persona ajena a Ifiix.*SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.*Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.*En ningún caso Ifiix se hace responsable de los gastos extraordinarios que le ocacionen aplicar su garantia.
 </FONT>
                         </table>
 
@@ -100,7 +101,7 @@
 <thead>
   <tr>
 
-    <td> <img src="https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=2441e075f6a44ce447bb4cd2a87b4789&oe=59A086DB" style="width:250%; max-width:150px;"></td>
+    <td><img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=968b51f2dd93c12b4f41350afb9d240a&oe=5A172DDB" style="width:250%; max-width:550px;"> Sucursal: {{$claven}}</td>
     <td colspan=""><FONT SIZE=0>Fecha de Recepción: </FONT><FONT SIZE=1> {{$fecharecepcion}}</FONT></td>
     <td colspan=""><FONT SIZE=0>Fecha de Entrega:</FONT><FONT SIZE=1> {{$fechaentrega}}</FONT></td>
   </tr>

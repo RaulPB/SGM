@@ -11,7 +11,7 @@
     <table class="col-lg-12" align="center">
       <thead>
         <tr>
-          <th><img src="https://scontent-dft4-1.xx.fbcdn.net/v/t1.0-9/13906759_1072074689494467_437567419571137602_n.jpg?oh=4e5aa4a342bc0520fedeadf922204819&oe=59ADBCD5" style="width:800%; max-width:200px;"></th>
+          <th><img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=968b51f2dd93c12b4f41350afb9d240a&oe=5A172DDB" style="width:800%; max-width:200px;"></th>
           <th></th>
           <th style="text-align: center">
             <FONT SIZE=0>
@@ -79,7 +79,7 @@
             <FONT SIZE=1><td colspan="2" align="left">Total:$ {{$total}} M.N.</td></FONT>
           </tr>
 
-          <tr><FONT SIZE=0>
+          <tr><FONT SIZE=1>
             <td height="50"colspan="2">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada
             , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
           al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez
@@ -92,6 +92,10 @@
       <pre>-Tenido corto circuito debido a cambio de voltaje.</pre>
     <pre>-Sido abierto por una persona ajena a Ifiix.</pre>
   <pre>*En equipos reparados por estar mojados NO HAY GARANTIA.</pre>
+  <pre>*SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.</pre>
+  <pre>*Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.</pre>
+  <pre>*En ningún caso Ifiix se hace responsable de los gastos extraordinarios </pre>
+    <pre>que le ocacionen aplicar su garantia.</pre>
   </td>
 </FONT>
           </tr>

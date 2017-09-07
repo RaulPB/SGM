@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notas extends Model
 {
   protected $table = "notas";
-  protected $fillable = ['nota','fecha','venta','abono1','abono2','abono3','abono4','abono5','detalle','entrega'];
+  protected $fillable = ['nota','fecha','venta','abono1','abono2','abono3','abono4','abono5','detalle','entrega','tipo'];
 
   public function scopeIds($query, $venta){ //este es para listar el index en vistas de servicios //
 

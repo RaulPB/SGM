@@ -184,9 +184,7 @@ class ServsController extends Controller
       $cont = $cont+1;
     }
     $ordens = $venta->id;
-    return redirect('/servicio')->with('message','Orden '.$ordens.' ingresada correctamente');
-    //return redirect('/encuesta/create')->with('message','Orden '.$ordens.' ingresada correctamente');
-
+  return redirect('encuesta/create')->with('status', 'Orden '.$ordens.' ingresada correctamente');
   }
 
   /**
