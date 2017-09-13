@@ -214,6 +214,14 @@ $(document).ready(function(){
                  </table>
                </div>
 
+               <div class="form-group col-md-6">
+                 <label>Garantia</label>
+                 <select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
+                   @foreach($garantias as $articulo)
+                     <option value="{{$articulo->id}}">{{$articulo->garantia}} </option>
+                   @endforeach
+                 </select>
+               </div>
                <div class="form-group col-md-10">
                  <button type="button"  id="bt_iva" class="btn btn-primary">Agregar IVA</button>
                </div>

@@ -170,7 +170,7 @@ $(document).ready(function(){
                  Celular del cliente:{!!Form::text('celular',null,['class'=>'form-control','placeholder'=>'3.-Celular Cliente', 'id'=>'celular'])!!}
                </div>
                <div class="form-group col-md-4">
-                 Email:{!!Form::text('email',null,['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
+                 Email:{!!Form::text('email','ifiixver@gmail.com',['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -348,7 +348,7 @@ $(document).ready(function(){
                  <label>Articulos</label>
                  <select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
                    @foreach($articulos as $articulo)
-                     <option value="{{$articulo->id}}_{{$articulo->cantidad}}_{{$articulo->preciop}}"> {{$articulo->modelo}} </option>
+                     <option value="{{$articulo->id}}_{{$articulo->cantidad}}_{{$articulo->preciop}}">{{$articulo->modelo}} </option>
                    @endforeach
                  </select>
                </div>
@@ -403,7 +403,7 @@ $(document).ready(function(){
                  <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                    <thead style="background-color:#A9D0F5">
                      <tr>
-                       <th>TOTAL= <input name="total_venta2" id="total_venta2" type= "number" value=0 readonly></th>
+                       <th>TOTAL= <input name="total_venta2" id="total_venta2" type= "number" value=0></th>
                      </tr>
                    </thead>
                    <tfoot>
@@ -428,7 +428,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('abonos1','Cantidad 1:')!!}
-                 {!!Form::text('abono1',null,['class'=>'form-control','placeholder'=>'','id'=>'editor2'])!!}
+                 {!!Form::text('abono1',0,['class'=>'form-control','placeholder'=>'','id'=>'editor2'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -443,7 +443,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('abonos1','Cantidad 2:')!!}
-                 {!!Form::text('abono2',null,['class'=>'form-control','placeholder'=>'','id'=>'editor3'])!!}
+                 {!!Form::text('abono2',0,['class'=>'form-control','placeholder'=>'','id'=>'editor3'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -458,7 +458,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('abonos3','Cantidad 3:')!!}
-                 {!!Form::text('abono3',null,['class'=>'form-control','placeholder'=>'','id'=>'editor4'])!!}
+                 {!!Form::text('abono3',0,['class'=>'form-control','placeholder'=>'','id'=>'editor4'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -473,7 +473,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('abonos4','Cantidad 4:')!!}
-                 {!!Form::text('abono4',null,['class'=>'form-control','placeholder'=>'','id'=>'editor5'])!!}
+                 {!!Form::text('abono4',0,['class'=>'form-control','placeholder'=>'','id'=>'editor5'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -488,7 +488,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('abonos5','Cantidad 5:')!!}
-                 {!!Form::text('abono5',null,['class'=>'form-control','placeholder'=>'','id'=>'editor6'])!!}
+                 {!!Form::text('abono5',0,['class'=>'form-control','placeholder'=>'','id'=>'editor6'])!!}
                </div>
 
                <div class="form-group col-md-12">

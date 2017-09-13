@@ -77,9 +77,11 @@ class ImNoController extends Controller
       $fecha=$notas->created_at;
       $letras = \NumeroALetras::convertir($total);
 
-      //return($cliente);
+      //zacaremos la garantia
+      $gar=$servicio->garantia;
+      $garantia = DB::table('garantias')->where('id', '=', $gar)->pluck('garantia');
 
-      $view =  \View::make('pdf.invoice00', compact('nota','cliente','letras','diagnostico2','modelo','marca','telefono','celular','anticipo1','anticipo2','anticipo3','anticipo4','anticipo5','total','fecha'))->render();
+      $view =  \View::make('pdf.invoice00', compact('nota','garantia','cliente','letras','diagnostico2','modelo','marca','telefono','celular','anticipo1','anticipo2','anticipo3','anticipo4','anticipo5','total','fecha'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->setPaper('A3', 'portrait');
       $pdf->loadHTML($view);

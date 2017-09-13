@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'raul.180786@gmail.com', 'name' => 'Prueba de Servidor'],
+    'from' => ['address' => 'ifiixver@gmail.com', 'name' => 'IFIIX: Reparamos tu movil'],
 
     /*
     |--------------------------------------------------------------------------

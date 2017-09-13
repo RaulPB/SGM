@@ -105,6 +105,10 @@ class ReparaController extends Controller
       $carcasa = $servicio->carcasa;
       $teclado = $servicio->teclado;
       $señal = $servicio->señal;
+
+      $gar = $servicio->garantia;
+      $garantia = DB::table('garantias')->where('id', '=', $gar)->pluck('garantia');
+
       $letras = \NumeroALetras::convertir($costo);
       $receptor = $servicio->receptor; //recuperamos el nombre del receptor
       //EXTRAEREMOS LA SUCURSAL DEL RECEPTOR PARA PODER AGREGAR LAS SIGLAS A LA NOTA
@@ -114,7 +118,7 @@ class ReparaController extends Controller
        $cont = $cont + 1; //sumamos 1 al contador
        $suci = Sucursal::find($idsucur);//ubicamos la sucursal
        $suci->contador=$cont;//sumamos al contador correpondiente
-       $nombre = $claven . $cont;
+       $nombre = $claven.$cont;
        $suci->save();//guardamos el nuevo contador en la sucursal
        //CREAREMOS UN NUMERO CONSECUTIVO PARA CADA NOTA NUEVA QUE SE IMPRIMA-> AUNQUE SE GUARDA LA VENTA EL NUMERO
       //SE INCREMENTA SIEMPRE POR CUESTIONES CONTABLES.
@@ -127,9 +131,10 @@ class ReparaController extends Controller
         'abono4'=>$servicio->abono4,
         'abono5'=>$servicio->abono5,
         'detalle'=>$servicio->diagnostico2,
-        'nota'=>$nombre
+        'nota'=>$claven.$cont
         //'entrega'=>$servicio->created_at
         ]);
+
         //$idN  = Notas::where('venta',$id)->get()->last();
         //$idN2 = $idN->id;
         //return($idsucur);
@@ -203,6 +208,8 @@ class ReparaController extends Controller
         $carcasa = $servicio->carcasa;
         $teclado = $servicio->teclado;
         $señal = $servicio->señal;
+        $gar = $servicio->garantia;
+        $garantia = DB::table('garantias')->where('id', '=', $gar)->pluck('garantia');
 
         //$receptor = $venta->receptor; //recuperamos el nombre del receptor
         //EXTRAEREMOS LA SUCURSAL DEL RECEPTOR PARA PODER AGREGAR LAS SIGLAS A LA NOTA
@@ -212,7 +219,7 @@ class ReparaController extends Controller
         $view =  \View::make('pdf.invoice', compact('id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
         'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
         'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven'))->render();
+        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven','garantia'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('Legal', 'portrait');
 

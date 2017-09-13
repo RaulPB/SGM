@@ -200,12 +200,12 @@ $(document).ready(function(){
             </div>
 
             <div class="form-group col-md-12">
-              <h4>Comunicación Interna (Observaciones y comentarios del equipo(s)):</h4>
+              <h4>Comunicación Interna (Diagnostico, observaciones y comentarios del equipo(s)):</h4>
               {!!Form::textarea('comunicacion',null,['class'=>'form-control','placeholder'=>''])!!}
             </div>
             <!--DATOS DE DIAGNOSTICO POR PARTE DE LOS TECNICOS-->
             <div class="form-group col-md-12">
-              <h4>Diagnostico Tecnico:</h4>
+              <h4>Concepto y precio de la reparación:</h4>
               {!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE TECNICO','readonly' => 'true'])!!}
             </div>
 
@@ -305,13 +305,17 @@ $(document).ready(function(){
                 <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                   <thead style="background-color:#A9D0F5">
                     <tr>
-                      <th>TOTAL= <input name="total_venta2" id="total_venta2" type= "number" value={{$servicio->costo}} readonly></th>
+                      <th>TOTAL= <input name="total_venta2" id="total_venta2" type= "number" value={{$servicio->costo}}></th>
                     </tr>
                   </thead>
                   <tfoot>
                     <th><input name="total_venta" id="total_venta" type="hidden"></th>
                   </tfoot>
                 </table>
+              </div>
+
+              <div class="form-group col-md-10">
+                <button type="button"  id="bt_iva" class="btn btn-primary">Agregar IVA</button>
               </div>
 
               <div class="form-group col-md-4">
@@ -427,7 +431,20 @@ $(document).ready(function(){
         $('#bt_add').click(function(){
           agregar();
         });
+
+        $('#bt_iva').click(function(){
+          //agregar();
+          agregariva();
+        });
       });
+
+      function agregariva(){
+        tt = $("#total_venta2").val();
+        tt2 = tt * 1.16;
+        tt3 = tt2.toFixed(2)
+        $("#total_venta2").val(tt3);
+        console.log(tt2);
+      }
 
       var cont=0;
       total = $("#total_venta2").val();

@@ -8,9 +8,10 @@ class Categoria extends Model
 {
      protected $table = "categorias";
    protected $fillable = ['categoria'];
-  	
+
   	public function producto()
     {
-        return $this->hasOne('Ifiix\Producto');
+        //return $this->hasOne('Ifiix\Producto');
+          return $this->belongsTo('Ifiix\Producto', 'id');
     }
 }

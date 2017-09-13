@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <title>Ifiix: Reparamos tu móvil</title>
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -15,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="keywords" content="IFIIX" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Ifiix</title>
+
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.5 -->

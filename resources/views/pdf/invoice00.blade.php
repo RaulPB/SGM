@@ -1,14 +1,10 @@
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Nota de venta</title>
-
-</head>
 
 <body>
   <br><br>
   <div class="col-lg-12">
-    <table class="col-lg-12" align="center">
+
+    <table class="" align="center">
       <thead>
         <tr>
           <th><img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=968b51f2dd93c12b4f41350afb9d240a&oe=5A172DDB" style="width:800%; max-width:200px;"></th>
@@ -30,78 +26,232 @@
         </tr>
       </thead>
     </table>
-
-    <table width="80%"  border="1" align="center" cellspacing="0" cellpadding="5">
-      <tbody>
-        <tr>
-          <td colspan="2" align="left"> Nota de venta: {{$nota}} </th>
-            <td colspan="3" align="center"> Fecha: {{$fecha}} </td>
-          </tr>
+    <div class="col-lg-10 col-md-10 col-sm-10"></div>
+    <h4 class="">Nota de venta: {{$nota}}  ____________________________________________________________________ Fecha de venta: {{\Carbon\Carbon::now()}}</h4>
+    <div style="background-color: #3867b7; height: 16px"></div>
+    <br>
+    <div class="presupuestos">
+      <table  BORDER=0 WIDTH=775 class="display" style="text-align:center;"   border-collapse: separate;>
+        <thead >
           <tr>
-            <td colspan="">Nombre: {{$cliente}}</td>
-            <td colspan="">Modelo: {{$marca}} {{$modelo}}</td>
-            <td colspan="3">Telefono/whatsapp:{{$telefono}}</td>
+            <th ALIGN="center">Nombre cliente</th>
+            <th ALIGN="center">Modelo del equipo</th>
+            <th colspan="2" ALIGN="center">Telefono/celular</th>
           </tr>
-
+        </thead>
+        <tbody>
           <tr>
-            <td colspan="3" align="center">Detalles:</td>
-            <td colspan="2" align="center">Anticipos</td>
-          <!--  <td colspan="1" align="center">Anticipo 2</td> -->
-          </tr>
-          <tr>
-            <td  height="3" colspan="3">{{$diagnostico2}}</td>
-            <td colspan="2" align="center">$ {{$anticipo1}}</td>
-          </tr>
-          <tr>
-            <td  height="3" colspan="3"></td>
-            <td colspan="2" align="center">$ {{$anticipo2}}</td>
-          </tr>
-          <tr>
-            <td  height="3" colspan="3"></td>
-            <td colspan="2" align="center">$ {{$anticipo3}}</td>
-          </tr>
-          <tr>
-            <td  height="3" colspan="3"></td>
-            <td colspan="2" align="center">${{$anticipo4}}</td>
-          </tr>
-          <tr>
-            <td  height="3" colspan="3"></td>
-            <td colspan="2" align="center">$ {{$anticipo5}}</td>
-          </tr>
+            <td align="center"> {{$cliente}}</th>
+              <td align="center">{{$marca}} {{$modelo}}</td>
+              <td colspan="2" align="center">{{$telefono}}</td>
+            </tr>
+          </tbody>
+        </table>
 
-          <tr>
-            <td colspan="3">Dia y hora de entrega: {{$fecha}}</td>
-            <td colspan="2"></td>
-          </tr>
+        <TABLE BORDER=1 WIDTH=775>
+          <thead >
+            <tr>
+              <th ALIGN="center">Detalles</th>
+              <th ALIGN="center">Anticipos</th>
+            </tr>
+            <tr>
+              <th rowspan="5" ALIGN="justify">{{$diagnostico2}}</th>
+              @if ($anticipo1 <> 0)
+                <th ALIGN="center">$ {{number_format($anticipo1,2)}}</th>
+              @endif
+              @if ($anticipo1 == 0)
+                <th ALIGN="center">--</th>
+              @endif
+            </tr>
+            <tr>
+              @if ($anticipo2 <> 0)
+                <th ALIGN="center">$ {{number_format($anticipo2,2)}}</th>
+              @endif
+              @if ($anticipo2 == 0)
+                <th ALIGN="center">--</th>
+              @endif
+            </tr>
+            <tr>
+              @if ($anticipo3 <> 0)
+                <th ALIGN="center">$ {{number_format($anticipo3,2)}}</th>
+              @endif
+              @if ($anticipo3 == 0)
+                <th ALIGN="center">--</th>
+              @endif
+            </tr>
+            <tr>
+              @if ($anticipo4 <> 0)
+                <th ALIGN="center">$ {{number_format($anticipo4,2)}}</th>
+              @endif
+              @if ($anticipo4 == 0)
+                <th ALIGN="center">--</th>
+              @endif
+            </tr>
+            <tr>
+              @if ($anticipo5 <> 0)
+                <th ALIGN="center">$ {{number_format($anticipo5,2)}}</th>
+              @endif
+              @if ($anticipo5 == 0)
+                <th ALIGN="center">--</th>
+              @endif
+            </tr>
+            <tr>
 
-          <tr>
-            <td colspan="3" align="left"> Cantidad con letra: {{$letras}}</td>
-            <FONT SIZE=1><td colspan="2" align="left">Total:$ {{$total}} M.N.</td></FONT>
-          </tr>
+              @if ($total <> 0)
+                <td ALIGN="center"> Cantidad con letra: {{$letras}}</td>
+                <FONT SIZE=1><td ALIGN="center">Total:$ {{$total}} M.N.</td></FONT>
+              @endif
+              @if ($total == 0)
+                <td ALIGN="center"> Cantidad con letra: </td>
+                <FONT SIZE=1><td ALIGN="center">Total: --</td></FONT>
+              @endif
 
-          <tr><FONT SIZE=1>
-            <td height="50"colspan="2">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada
-            , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
-          al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez
-        que Ifiix abra el equipo pierde la garantia de fabrica con la marca.</td>
-            <td colspan="3">Politicas de garantia:
-            <pre>*La garantia solo es valida por defectos de fabrica.</pre>
-          <pre>*La garantia NO es valida cuando haya:</pre>
-          <pre>-Sufrido un golpe o enmendadura.</pre>
-        <pre>-Estado en contacto con cualquier tipo de liquido.</pre>
-      <pre>-Tenido corto circuito debido a cambio de voltaje.</pre>
-    <pre>-Sido abierto por una persona ajena a Ifiix.</pre>
-  <pre>*En equipos reparados por estar mojados NO HAY GARANTIA.</pre>
-  <pre>*SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.</pre>
-  <pre>*Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.</pre>
-  <pre>*En ningún caso Ifiix se hace responsable de los gastos extraordinarios </pre>
-    <pre>que le ocacionen aplicar su garantia.</pre>
-  </td>
-</FONT>
-          </tr>
+            </tr>
 
-        </tbody>
-      </table>
+            <tr>
+              <td ALIGN="center" colspan="2">Dia y hora de entrega: {{\Carbon\Carbon::now()}}</td>
+            </tr>
+            <tr>
+              <td ALIGN="center" colspan="2">Tiempo de garantia: {{$garantia}}</td>
+            </tr>
+
+            <tr>
+              <th colspan="2" rowspan="5" ALIGN="justify">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
+                al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez que Ifiix abra el equipo pierde la garantia de fabrica con la marca.</th>
+              </tr>
+
+              <tr>
+                Politicas de garantia:
+                *La garantia solo es valida por defectos de fabrica.
+                *La garantia NO es valida cuando haya:
+                -Sufrido un golpe o enmendadura.
+                -Estado en contacto con cualquier tipo de liquido.
+                -Tenido corto circuito debido a cambio de voltaje.
+                -Sido abierto por una persona ajena a Ifiix.
+                *En equipos reparados por estar mojados NO HAY GARANTIA.
+                *SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.
+                *Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.
+                *En ningún caso Ifiix se hace responsable de los gastos extraordinarios
+                que le ocacionen aplicar su garantia.
+              </tr>
+            </thead>
+          </TABLE>
+
+          <br> </br>
+  <div style="background-color: #3867b7; height: 16px"></div>
+          <h4 class="">Nota de venta: {{$nota}}  ____________________________________________________________________ Fecha de venta: {{\Carbon\Carbon::now()}}</h4>
+          <br>
+          <div class="presupuestos">
+            <table  BORDER=0 WIDTH=775 class="display" style="text-align:center;"   border-collapse: separate;>
+              <thead >
+                <tr>
+                  <th ALIGN="center">Nombre cliente</th>
+                  <th ALIGN="center">Modelo del equipo</th>
+                  <th colspan="2" ALIGN="center">Telefono/celular</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td align="center"> {{$cliente}}</th>
+                    <td align="center">{{$marca}} {{$modelo}}</td>
+                    <td colspan="2" align="center">{{$telefono}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+
+
+            <TABLE BORDER=1 WIDTH=775>
+              <thead >
+                <tr>
+                  <th ALIGN="center">Detalles</th>
+                  <th ALIGN="center">Anticipos</th>
+                </tr>
+                <tr>
+                  <th rowspan="5" ALIGN="justify">{{$diagnostico2}}</th>
+                  @if ($anticipo1 <> 0)
+                    <th ALIGN="center">$ {{number_format($anticipo1,2)}}</th>
+                  @endif
+                  @if ($anticipo1 == 0)
+                    <th ALIGN="center">--</th>
+                  @endif
+                </tr>
+                <tr>
+                  @if ($anticipo2 <> 0)
+                    <th ALIGN="center">$ {{number_format($anticipo2,2)}}</th>
+                  @endif
+                  @if ($anticipo2 == 0)
+                    <th ALIGN="center">--</th>
+                  @endif
+                </tr>
+                <tr>
+                  @if ($anticipo3 <> 0)
+                    <th ALIGN="center">$ {{number_format($anticipo3,2)}}</th>
+                  @endif
+                  @if ($anticipo3 == 0)
+                    <th ALIGN="center">--</th>
+                  @endif
+                </tr>
+                <tr>
+                  @if ($anticipo4 <> 0)
+                    <th ALIGN="center">$ {{number_format($anticipo4,2)}}</th>
+                  @endif
+                  @if ($anticipo4 == 0)
+                    <th ALIGN="center">--</th>
+                  @endif
+                </tr>
+                <tr>
+                  @if ($anticipo5 <> 0)
+                    <th ALIGN="center">$ {{number_format($anticipo5,2)}}</th>
+                  @endif
+                  @if ($anticipo5 == 0)
+                    <th ALIGN="center">--</th>
+                  @endif
+                </tr>
+                <tr>
+
+                  @if ($total <> 0)
+                    <td ALIGN="center"> Cantidad con letra: {{$letras}}</td>
+                    <FONT SIZE=1><td ALIGN="center">Total:$ {{$total}} M.N.</td></FONT>
+                  @endif
+                  @if ($total == 0)
+                    <td ALIGN="center"> Cantidad con letra: </td>
+                    <FONT SIZE=1><td ALIGN="center">Total: --</td></FONT>
+                  @endif
+
+                </tr>
+
+                <tr>
+                  <td ALIGN="center" colspan="2">Dia y hora de entrega: {{\Carbon\Carbon::now()}}</td>
+                </tr>
+                <tr>
+                  <td ALIGN="center" colspan="2">Tiempo de garantia: {{$garantia}}</td>
+                </tr>
+
+                <tr>
+                  <th colspan="2" rowspan="5" ALIGN="justify">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
+                    al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez que Ifiix abra el equipo pierde la garantia de fabrica con la marca.</th>
+                  </tr>
+
+                  <tr>
+                    Politicas de garantia:
+                    *La garantia solo es valida por defectos de fabrica.
+                    *La garantia NO es valida cuando haya:
+                    -Sufrido un golpe o enmendadura.
+                    -Estado en contacto con cualquier tipo de liquido.
+                    -Tenido corto circuito debido a cambio de voltaje.
+                    -Sido abierto por una persona ajena a Ifiix.
+                    *En equipos reparados por estar mojados NO HAY GARANTIA.
+                    *SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.
+                    *Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.
+                    *En ningún caso Ifiix se hace responsable de los gastos extraordinarios
+                    que le ocacionen aplicar su garantia.
+                  </tr>
+                </thead>
+              </TABLE>
+
+        </div>
 
 
 
@@ -109,6 +259,7 @@
 
 
 
-    </div>
-  </body>
-  </html>
+
+      </div>
+    </body>
+    </html>

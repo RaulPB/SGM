@@ -13,6 +13,7 @@ use Ifiix\Sucursal;
 use Ifiix\Notas;
 use Ifiix\Tpago;
 use Ifiix\Clientes;
+use Ifiix\Garantia;
 
 class BlancoController extends Controller
 {
@@ -34,9 +35,10 @@ class BlancoController extends Controller
   public function create()
   {
     $cli = DB::table('clientes')->get();
+    $garantias = DB::table('garantias')->get();
     $pagor = Tpago::lists('pago', 'id');
     //$employees = Employee::where('branch_id', 9)->get()->lists('full_name', 'id');
-    return view('notas.create',compact('pagor','cli'));//variables a las que asigne campos reales de la base de datos
+    return view('notas.create',compact('pagor','cli','garantias'));//variables a las que asigne campos reales de la base de datos
   }
 
   /**
@@ -63,6 +65,7 @@ class BlancoController extends Controller
     $venta->fechapago4=$request->get('fechapago4');
     $venta->fechapago5=$request->get('fechapago5');
     $venta->status_id='10';
+    $venta->garantia=$request->get('pidarticulo');/////
     $venta->receptor=$request->get('receptor');
     $venta->costo = $request->get('total_venta2');
     $venta->fechaentrega=$request->get('fechaentrega');

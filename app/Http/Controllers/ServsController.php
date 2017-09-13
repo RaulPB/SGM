@@ -53,6 +53,7 @@ class ServsController extends Controller
     $dire=$idprov->mensaje;
     //vamos a mandar el listado de articulos del inventario para la busqueda
     $articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+  
     $cli = DB::table('clientes')->get();
     $garantia = DB::table('garantias')->lists('garantia', 'id');
     $status = Status::lists('status', 'id');

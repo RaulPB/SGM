@@ -16,11 +16,11 @@ use Ifiix\User;
 use Ifiix\Serv;
 use Ifiix\Producto;
 use Ifiix\Categoria;
-use Input; 
-use Select; 
+use Input;
+use Select;
 use Session;
 use Redirect;
-use Illuminate\Routing\Route; 
+use Illuminate\Routing\Route;
 
 
 class ProductoController extends Controller
@@ -33,7 +33,7 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         //$prod = Producto::paginate(10);
-         $prod = Producto::id($request->get('categoria'))->paginate(10);
+         $prod = Producto::id($request->get('categoria'))->paginate(1000);
         return view('producto.index', compact('prod'));
     }
 
@@ -44,9 +44,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $prov = Proveedor::lists('proveedor', 'id'); 
-        $cat = Categoria::lists('categoria', 'id'); 
-        
+        $prov = Proveedor::lists('proveedor', 'id');
+        $cat = Categoria::lists('categoria', 'id');
+
          return view('producto.create',compact('prov','cat'));//variables a las que asigne campos reales de la base de datos
     }
 
@@ -61,11 +61,11 @@ class ProductoController extends Controller
          //$proveedor_id = Input::get('proveedor_id');
           $proveedor = $request['proveedor_id'];
           $catego = $request['categoria_id'];
-          
+
 
          if ($proveedor == NULL || $catego == NULL){
             return redirect('/producto')->with('message','NO SE GUARDO POR FAVOR REVISE PROVEEDOR Ó CATEGORIA');
-         
+
             }else{
             //'proveedor_id'=>$request['proveedor_id'],
 
@@ -73,15 +73,15 @@ class ProductoController extends Controller
             'marca'=>$request['marca'],
             'modelo'=>$request['modelo'],
             'precio'=>$request['precio'],
-            'cantidad'=>$request['cantidad'], 
+            'cantidad'=>$request['cantidad'],
             'proveedor_id'=>$request['proveedor_id'],
             'categoria_id'=>$request['categoria_id'],
             'preciop'=>$request['preciop'],
         ]);
-            return redirect('/producto')->with('message','Producto agregado correctamente a inventario'); 
+            return redirect('/producto')->with('message','Producto agregado correctamente a inventario');
             }
 
-        
+
 
 
     }
@@ -106,10 +106,10 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $prod = Producto::find($id);
-        $prov = Proveedor::lists('proveedor', 'id'); 
-        $cat = Categoria::lists('categoria', 'id'); 
+        $prov = Proveedor::lists('proveedor', 'id');
+        $cat = Categoria::lists('categoria', 'id');
         return view('producto.edit',['prod'=>$prod],compact('prov','cat'));
-         
+
     }
 
     /**
@@ -139,7 +139,7 @@ class ProductoController extends Controller
        /* $prod->fill($request->all());
          Session::flash('message','Producto Actualizado Correctamente');
         return Redirect::to('/producto');*/
-       
+
     }
 
     /**
