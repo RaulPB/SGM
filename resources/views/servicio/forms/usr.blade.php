@@ -310,11 +310,11 @@ $(document).ready(function(){
                  <h4>Comunicación Interna (Observaciones y comentarios del equipo(s)):</h4>
                  {!!Form::textarea('comunicacion',null,['class'=>'form-control','placeholder'=>'¿Que deseas que sepa tu compañero?'])!!}
                </div>
-
-               <!--DATOS DE DIAGNOSTICO POR PARTE DE LOS TECNICOS-->
-               <div class="form-group">
-                 {!!Form::hidden('diagnostico2','Escribe tu diagnostico por favor',['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE TECNICO'])!!}
+               <div class="form-group col-md-12">
+                 <h4>Concepto y precio de la reparación:</h4>
+                 {!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>''])!!}
                </div>
+
                <!--VAMOS A INGRESAR LOS DATOS DE USUARIO ASIGNADO, TECNICO ASIGNADO, STATUS, PRIVEEDOR -->
                <div class="form-group col-md-12">
                  {!!Form::label('Status','Status:')!!}

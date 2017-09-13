@@ -206,7 +206,7 @@ $(document).ready(function(){
             <!--DATOS DE DIAGNOSTICO POR PARTE DE LOS TECNICOS-->
             <div class="form-group col-md-12">
               <h4>Concepto y precio de la reparación:</h4>
-              {!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE TECNICO','readonly' => 'true'])!!}
+              {!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE TECNICO'])!!}
             </div>
 
             <!--VAMOS A INGRESAR LOS DATOS DE USUARIO ASIGNADO, TECNICO ASIGNADO, STATUS, PRIVEEDOR -->
