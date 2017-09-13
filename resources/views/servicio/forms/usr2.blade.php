@@ -250,7 +250,7 @@ $(document).ready(function(){
                 <label>Articulos</label>
                 <select name="pidarticulo" id="pidarticulo" class="form-control selectpicker" data-live-search="true">
                   @foreach($articulos as $articulo)
-                    <option value="{{$articulo->id}}_{{$articulo->cantidad}}_{{$articulo->preciop}}"> {{$articulo->modelo}} </option>
+                    <option value="{{$articulo->id}}_{{$articulo->cantidad}}_{{$articulo->preciop}}"> {{$articulo-> categoria -> categoria}}_{{$articulo->modelo}} </option>
                   @endforeach
                 </select>
               </div>

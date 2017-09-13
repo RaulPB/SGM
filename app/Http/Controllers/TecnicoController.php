@@ -11,6 +11,7 @@ use Ifiix\Serv;
 use Ifiix\Status;
 use Ifiix\User;
 use Ifiix\Tpago;
+use Ifiix\Producto;
 use DB;
 use Carbon\Carbon;
 use Ifiix\Http\Requests\ServicioCreate;
@@ -93,7 +94,8 @@ class TecnicoController extends Controller
      */
     public function edit($id)
     {
-         $articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+         //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+         $articulos = Producto::all();
          $servicio = Serv::find($id);
          $status = Status::lists('status', 'id');
          $user = User::where('perfil_id', 3)->lists('name', 'id');

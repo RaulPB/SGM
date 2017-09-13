@@ -12,7 +12,7 @@
 
 {!! Form::open(['route' => 'producto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
   <div class="form-group">
-  	{!! Form::text('categoria', null, ['class' => 'form-control', 'placeholder' => 'Buscar por modelo']) !!} 
+  	{!! Form::text('categoria', null, ['class' => 'form-control', 'placeholder' => 'Buscar por modelo']) !!}
   </div> <!-- COLOCAMOS ID PORQUE ES LO QUE QUEREMOS FILTRAR-->
   <button type="submit" class="btn btn-default">Buscar</button>
 
@@ -41,6 +41,6 @@
 			@endforeach
 	</table>
 {!!$prod->render()!!}
-	
-	
+
+
 @stop

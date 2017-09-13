@@ -16,6 +16,7 @@ use Ifiix\Sucursal;
 use Ifiix\Tpago;
 use Ifiix\Mensaje;
 use Ifiix\DetalleVenta;
+use Ifiix\Producto;
 use DB;
 use Carbon\Carbon;
 use Ifiix\Http\Requests\ServicioCreate;
@@ -52,8 +53,9 @@ class ServsController extends Controller
     $idprov= Mensaje::find(1);
     $dire=$idprov->mensaje;
     //vamos a mandar el listado de articulos del inventario para la busqueda
-    $articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
-  
+    //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+    $articulos = Producto::all();
+
     $cli = DB::table('clientes')->get();
     $garantia = DB::table('garantias')->lists('garantia', 'id');
     $status = Status::lists('status', 'id');
@@ -209,7 +211,8 @@ class ServsController extends Controller
   */
   public function edit($id)
   {
-    $articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+    //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
+    $articulos = Producto::all();
     $cli = DB::table('clientes')->get();
     $servicio = Serv::find($id);
     $status = Status::where('status','<>',15)->where('status','<>',1)->lists('status', 'id');
