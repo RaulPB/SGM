@@ -1,103 +1,35 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
 
-  <table>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <tr>
-    <td> <img src="" style="width:800%; max-width:80px;"></td>
-    <td colspan="2"><FONT SIZE=2>Reporte de ventas Diarias</FONT></td>
-    <td colspan="3"><FONT SIZE=1>Fecha: {{$hoy}} </FONT></td>
-    <td colspan="3"><FONT SIZE=1>Solicita: {!!Auth::user()->name!!}</FONT></td>
-    <td colspan="1"></td>
-    <td colspan="1"></td>
+               
+@extends('layouts.admin')
+    @section('content')
 
-  </tr>
-  <tr>
-    <td colspan="1"><FONT SIZE=2>Efectivo (Servicios Finalizados) </FONT><FONT SIZE=1></FONT></td>
-    <td colspan="2"><FONT SIZE=2>Depositos (Servicios Finalizados)</FONT><FONT SIZE=1></FONT></td>
-    <td colspan="2"><FONT SIZE=2>Efectivo (Anticipos)</FONT><FONT SIZE=1></FONT></td>
-     <td colspan="2"><FONT SIZE=2>Depositos (Anticipos)</FONT><FONT SIZE=1></FONT></td>
-     <td colspan="2"><FONT SIZE=2>Efectivo (Cancelaciones)</FONT><FONT SIZE=1></FONT></td>
-      <td colspan="2"><FONT SIZE=2>Depositos (Cancelaciones)</FONT><FONT SIZE=1></FONT></td>
-  </tr>
+    @include('alerts.request') <!-- ESTA VISTA ES LA QUE MUESTRA EL METODO QUE LANZA LAS ALERTAS-->
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    {!!Form::open(['route'=>'reporte.store', 'method'=>'POST'])!!} <!--CAMBIAR LA RUTA DE ECUESTA.STORE-->
 
-  <tr>
-    <td colspan="1"><FONT SIZE=2></FONT>$ {{$efectivoT}}</td>
-    <td colspan="2"><FONT SIZE=2></FONT>$ {{$tarjetaT}}</td>
-    <td colspan="2"><FONT SIZE=2></FONT>$ {{$efectivoA}}</td>
-    <td colspan="2"><FONT SIZE=2></FONT>$ {{$tarejtaA}}</td>
-    <td colspan="2"><FONT SIZE=2></FONT>$ {{$efectivoC}}</td>
-    <td colspan="2"><FONT SIZE=2></FONT>$ {{$tarjetaC}}</td>
-  </tr>
+    <div class="form-group col-md-6">
+                 {!!Form::label('fechaingreso','Fecha inicial:')!!}
+                 {!!Form::date('fechainicial', \Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>''])!!}
+               </div>
+                <div class="form-group col-md-6">
+                 {!!Form::label('fechaingreso','Fecha final:')!!}
+                 {!!Form::date('fechafinal', \Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>''])!!}
+               </div>
 
-  <tr>
-    <td colspan="1"><FONT SIZE=2>Total Efectivo:$ {{$efectivo}}</FONT><FONT SIZE=1></FONT></td>
-    <td colspan="2"><FONT SIZE=2>Total Depositos:$ {{$tarjeta}}</FONT><FONT SIZE=1></FONT></td>
-  </tr>
-
-    <tr>
-    <td colspan="1"><FONT SIZE=2>Utilidad al dia de hoy de todas las ordenes FINALIZADAS: $ {{$uti}}</FONT><FONT SIZE=1></FONT></td>
-  </tr>
- </table>
-
-
-
-
-
-
-
-
-<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-</head>
-
-
-
-
-
-
-
-
-<style>
-.height {
-    min-height: 200px;
-}
-
-.icon {
-    font-size: 47px;
-    color: #5CB85C;
-}
-
-.iconbig {
-    font-size: 77px;
-    color: #5CB85C;
-}
-
-.table > tbody > tr > .emptyrow {
-    border-top: none;
-}
-
-.table > thead > tr > .emptyrow {
-    border-bottom: none;
-}
-
-.table > tbody > tr > .highrow {
-    border-top: 3px solid;
-}
-</style>
+    {!!Form::submit('GENERAR REPORTE DE VENTAS',['class'=>'btn btn-primary btn-lg btn-block'])!!}
+    {!!Form::close()!!}
+    @endsection

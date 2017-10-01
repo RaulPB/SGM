@@ -51,6 +51,9 @@ Route::get('pdfd', 'PdfController@diaria');
 Route::resource('archivo', 'DiarioController');//Para subir archivos
 Route::resource('reimpn', 'ImNoController');//reimprimir notas de venta
 Route::resource('blanco', 'BlancoController');//imprimir nota de venta vacia
+Route::resource('cliente', 'ClienteController');//dar acceso al cliente a sus ordenes de servicio
+Route::resource('clientes', 'ClientesController');//dar acceso al cliente a sus ordenes de servicio
+Route::resource('reporte', 'PDFController');//dar acceso al cliente a sus ordenes de servicio
 
 Route::get('encuestas', function () {
     return redirect('encuesta/create');

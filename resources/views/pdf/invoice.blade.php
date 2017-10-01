@@ -130,7 +130,7 @@
                             <tr>
                               <H6 align="center">Nombre y firma aceptando las condiciones</H6>
                                <FONT SIZE=0 align="center">Declaro ser el dueño del equipo que traigo a reparar, y me comprometo a recogerlo en un plazo máximo de 5 días hábiles después de la fecha pactada de entrega, si no lo recojo, Ifiix podrá disponer del equipo sin previo aviso, además de las condiciones expuestas en la orden de servicio de donde se extrae este comprobante relacionado por el folio de la orden.</FONT>
-                               <td colspan="3"><FONT SIZE=1>CONTAMOS CON SERVICIO A DOMICILIO.</FONT> <FONT SIZE=0>Telefonos: 2299379301 / 2291169546. E-mail: ifiixver@gmail.com. WEB: www.ifiix.com. Dirección: Cuahutémoc #4254 casi esq. Alcocer / Pedro Alvarado #533-bis Fracc. Reforma C.P 91919, Veracruz, Ver.</FONT></td>
+                               <td colspan="3"><FONT SIZE=1>CONTAMOS CON SERVICIO A DOMICILIO.</FONT> <FONT SIZE=0>Telefonos:2299379301/2291169546. E-mail: ifiixver@gmail.com. WEB: www.ifiix.com. Dirección:Cuahutémoc #4254 casi esq. Alcocer/Pedro Alvarado #533-bis Fracc. Reforma C.P 91919;Veracruz,Ver. Consulta tu orden de servicio en:http://www.xiifi.com/ usuario:cli@ifiix.com pass:123</FONT></td>
                             </tr>
 
                           </tbody>

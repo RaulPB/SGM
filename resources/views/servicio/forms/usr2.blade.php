@@ -157,47 +157,151 @@ $(document).ready(function(){
               {!!Form::text('receptor',null,['class'=>'form-control','placeholder'=>'NOMBRE DEL RECEPTOR AUTOMATICO','readonly' => 'true'])!!}
             </div>
 
-            <div class="form-group col-md-12">
-              <h4>Información del cliente:</h4>
-              {!!Form::text('nombrecliente',null,['class'=>'form-control','placeholder'=>'Si no encuentras el cliente ingresa sus datos',  'id'=>'names'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('telefono',null,['class'=>'form-control','placeholder'=>'2.-Telefono Cliente', 'id'=>'telefono'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('celular',null,['class'=>'form-control','placeholder'=>'3.-Celular Cliente', 'id'=>'celular'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
-            </div>
+               <div class="form-group col-md-12">
+                 {!!Form::text('nombrecliente',null,['class'=>'form-control','placeholder'=>'Si no encuentras el cliente ingresa sus datos',  'id'=>'names'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Telefono del cliente:{!!Form::text('telefono',null,['class'=>'form-control','placeholder'=>'2.-Telefono Cliente', 'id'=>'telefono'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Celular del cliente:{!!Form::text('celular',null,['class'=>'form-control','placeholder'=>'3.-Celular Cliente', 'id'=>'celular'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Email:{!!Form::text('email','ifiixver@gmail.com',['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
+               </div>
 
-            <div class="form-group col-md-4">
-              {!!Form::text('producto',null,['class'=>'form-control','placeholder'=>'5.-Producto del cliente'])!!}
-            </div>
+               <div class="form-group col-md-4">
+                 Producto del cliente:{!!Form::text('producto',null,['class'=>'form-control','placeholder'=>'5.-Producto del cliente'])!!}
+               </div>
 
+               <div class="form-group col-md-4">
+                 Marca del producto:{!!Form::text('marca',null,['class'=>'form-control','placeholder'=>'6.-Marca del Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Modelo del Producto:{!!Form::text('modelo',null,['class'=>'form-control','placeholder'=>'7.-Modelo del Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Tipo Producto:{!!Form::text('tipo',null,['class'=>'form-control','placeholder'=>'8.-Tipo Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Color Producto:{!!Form::text('color',null,['class'=>'form-control','placeholder'=>'9.-Color Producto'])!!}
+               </div>
             <div class="form-group col-md-4">
-              {!!Form::text('marca',null,['class'=>'form-control','placeholder'=>'6.-Marca del Producto'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('modelo',null,['class'=>'form-control','placeholder'=>'7.-Modelo del Producto'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('tipo',null,['class'=>'form-control','placeholder'=>'8.-Tipo Producto'])!!}
-            </div>
-            <div class="form-group col-md-4">
-              {!!Form::text('color',null,['class'=>'form-control','placeholder'=>'9.-Color Producto'])!!}
-            </div>
+                 Capacidad Producto:{!!Form::text('capacidad',null,['class'=>'form-control','placeholder'=>'10.-Capacidad Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Serie Producto:{!!Form::text('serie',null,['class'=>'form-control','placeholder'=>'11.-Serie Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 IMEI Producto:{!!Form::text('imei',null,['class'=>'form-control','placeholder'=>'12.-IMEI Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Contraseña Producto:{!!Form::text('contraseña',null,['class'=>'form-control','placeholder'=>'13.-Contraseña Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 Compañia Producto:{!!Form::text('compañia',null,['class'=>'form-control','placeholder'=>'14.-Compañia Producto'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Alguien intento reparar el equipo antes?{!!Form::text('reparado',null,['class'=>'form-control','placeholder'=>'15.-¿Alguien intento reparar el equipo antes?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Estuvo en contacto con agua?,¿tipo?{!!Form::text('agua',null,['class'=>'form-control','placeholder'=>'16.-¿Estuvo en contacto con agua?,¿tipo?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Ingresa correctamente al sistema?{!!Form::text('ingresoso',null,['class'=>'form-control','placeholder'=>'17.-¿Ingresa correctamente al sistema?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Enciende?{!!Form::text('enciende',null,['class'=>'form-control','placeholder'=>'18.-¿Enciende?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona botón de encendido?{!!Form::text('benciende',null,['class'=>'form-control','placeholder'=>'19.-¿Funciona botón de encendido?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona botón de volumen?{!!Form::text('bvolumen',null,['class'=>'form-control','placeholder'=>'20.-¿Funciona botón de volumen?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona botón vibrador?{!!Form::text('bvibrador',null,['class'=>'form-control','placeholder'=>'21.-¿Funciona botón vibrador?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona pantalla?{!!Form::text('pantalla',null,['class'=>'form-control','placeholder'=>'22.-¿Funciona pantalla'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona touch?{!!Form::text('touch',null,['class'=>'form-control','placeholder'=>'23.-¿Funciona touch'])!!}
+               </div>
 
-            <div class="form-group col-md-12">
-              {!!Form::text('problemacliente',null,['class'=>'form-control','placeholder'=>'45.- ¿Que problema presenta el equipo?'])!!}
-            </div>
-            <div class="form-group col-md-12">
-              {!!Form::text('solucion1',null,['class'=>'form-control','placeholder'=>'46.- ¿Que solución desea?'])!!}
-            </div>
-            <div class="form-group col-md-12">
-              <h4>Diagnostico de Recepción:</h4>
-              {!!Form::textarea('diagnostico1',null,['class'=>'form-control','placeholder'=>'47.-DIAGNOSTICO DE RECEPCIÓN'])!!}
-            </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona display?{!!Form::text('display',null,['class'=>'form-control','placeholder'=>'24.-¿Funciona display'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona camara trasera?{!!Form::text('ctrasera',null,['class'=>'form-control','placeholder'=>'25.-¿Funciona camara trasera'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona camara frontal?{!!Form::text('cfrontal',null,['class'=>'form-control','placeholder'=>'26.-¿Funciona camara frontal'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona centro de carga?{!!Form::text('ccarga',null,['class'=>'form-control','placeholder'=>'27.-¿Funciona centro de carga'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona altavoz?{!!Form::text('altavoz',null,['class'=>'form-control','placeholder'=>'28.-¿Funciona altavoz'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona microfono?{!!Form::text('microfono',null,['class'=>'form-control','placeholder'=>'29.-¿Funciona microfono'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona auricular?{!!Form::text('auricular',null,['class'=>'form-control','placeholder'=>'30.-¿Funciona auricular'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona bocina externa?{!!Form::text('boexterna',null,['class'=>'form-control','placeholder'=>'31.-¿Funciona bocina externa'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona jack de audio?{!!Form::text('jack',null,['class'=>'form-control','placeholder'=>'32.-¿Funciona jack de audio'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona wifi?{!!Form::text('wifi',null,['class'=>'form-control','placeholder'=>'33.-¿Funciona wifi'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona bluetooth?{!!Form::text('bluetooth',null,['class'=>'form-control','placeholder'=>'34.-¿Funciona bluetooth'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Datos móviles?{!!Form::text('datosm',null,['class'=>'form-control','placeholder'=>'35.-¿Datos móviles?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona bateria?{!!Form::text('bateria',null,['class'=>'form-control','placeholder'=>'36.-¿Funciona bateria?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona porta Sim?{!!Form::text('portasim',null,['class'=>'form-control','placeholder'=>'37.-¿Funciona porta Sim?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona SIM?{!!Form::text('sim',null,['class'=>'form-control','placeholder'=>'38.- ¿Funciona SIM?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona boton home?{!!Form::text('bhome',null,['class'=>'form-control','placeholder'=>'39.- ¿Funciona boton home?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona Touch ID?{!!Form::text('touchid',null,['class'=>'form-control','placeholder'=>'40.- ¿Funciona Touch ID?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona sensor de proximidad?{!!Form::text('sensorp',null,['class'=>'form-control','placeholder'=>'41.- ¿Funciona sensor de proximidad?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Golpes en carcasa?{!!Form::text('carcasa',null,['class'=>'form-control','placeholder'=>'42.- ¿Golpes en carcasa?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Funciona Teclado?{!!Form::text('teclado',null,['class'=>'form-control','placeholder'=>'43.- ¿Funciona Teclado?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Tiene Señal?{!!Form::text('señal',null,['class'=>'form-control','placeholder'=>'44.- ¿Tiene Señal?'])!!}
+               </div>
+ <div class="form-group col-md-4">
+                 ¿Que problema presenta el equipo?{!!Form::text('problemacliente',null,['class'=>'form-control','placeholder'=>'45.- ¿Que problema presenta el equipo?'])!!}
+               </div>
+               <div class="form-group col-md-4">
+                 ¿Que solución desea?{!!Form::text('solucion1',null,['class'=>'form-control','placeholder'=>'46.- ¿Que solución desea?'])!!}
+               </div>
+               <div class="form-group col-md-12">
+                 <h4>Diagnostico de Recepción:</h4>
+                 {!!Form::textarea('diagnostico1',null,['class'=>'form-control','placeholder'=>'47.-DIAGNOSTICO DE RECEPCIÓN'])!!}
+               </div>
 
             <div class="form-group col-md-12">
               <h4>Comunicación Interna (Diagnostico, observaciones y comentarios del equipo(s)):</h4>

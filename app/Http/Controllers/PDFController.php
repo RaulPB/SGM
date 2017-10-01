@@ -5,11 +5,13 @@ namespace Ifiix\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 use Ifiix\Http\Requests;
 use Ifiix\Http\Controllers\Controller;
 use Ifiix\Servicio;
 use Ifiix\User;
 use Ifiix\Serv;
+
 
 
 
@@ -122,8 +124,8 @@ class PdfController extends Controller
  compact('hoy','efectivoA','tarejtaA','efectivoT','tarjetaT','tarjeta','efectivo','uti','efectivoC','tarjetaC'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
-        return $pdf->stream('Reporte_Diario'.'_'.$hoy);
-        //return redirect('/servicio')->with('message','Servicio guardado correctamente');
+        //return $pdf->stream('Reporte_Diario'.'_'.$hoy);
+        return view("pdf/diario");
     }
 
     public function semana(){ //ventas semanales
@@ -241,9 +243,9 @@ class PdfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
-
+       
     }
 
     /**
@@ -252,9 +254,98 @@ class PdfController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)//EN ESTE CONTROLADOR VAMOS A LANZAR LAS CONSULTAS PARA EL REPORTE DE VENTAS 
     {
-        //
+      //RECIBIMOS LAS FECHAS DE LA INTERFAZ
+        $fechauno = $request['fechainicial'];
+        $fechados = $request['fechafinal'];
+        $hoy = \Carbon\Carbon::now();
+        $hoy = $hoy->format('Y-m-d');
+        //EXTRAEREMOS LOS TOTALES DE LOS 5 CAMPOS EN SUS 5 TIPOS DE PAGO...DESPUES PASAREMOS A SACAR LAS ORDENES
+
+       // EXTRAEMOS LOS 5 POSIBLES PAGOS DEL CAMPO DE PAGO1//////////
+         $pago1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',1)->sum('abono1');//efectivo
+         $pago2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',2)->sum('abono1');//tarjeta
+         $pago3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',3)->sum('abono1');//transferencia
+         $pago4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',4)->sum('abono1');//deposito
+         $pago5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',5)->sum('abono1');//paypal
+         $efectivo = $pago1+$pago2+$pago3+$pago4+$pago5;
+
+         //EXTRAEMOS LOS 5 POSIBLES PAGOS DEL CAMPO DE PAGO2//////////
+        $pagos1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',1)->sum('abono2');//efectivo
+         $pagos2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',2)->sum('abono2');//tarjeta
+         $pagos3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',3)->sum('abono2');//transferencia
+         $pagos4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',4)->sum('abono2');//deposito
+         $pagos5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',5)->sum('abono2');//paypal
+         $efectivo1 = $pagos1+$pagos2+$pagos3+$pagos4+$pagos5;
+
+          //EXTRAEMOS LOS 5 POSIBLES PAGOS DEL CAMPO DE PAGO3//////////
+          $pagoss1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',1)->sum('abono3');//efectivo
+         $pagoss2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',2)->sum('abono3');//tarjeta
+         $pagoss3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',3)->sum('abono3');//transferencia
+         $pagoss4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',4)->sum('abono3');//deposito
+         $pagoss5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',5)->sum('abono3');//paypal
+         $efectivo2 = $pagoss1+$pagoss2+$pagoss3+$pagoss4+$pagoss5;
+
+          //EXTRAEMOS LOS 5 POSIBLES PAGOS DEL CAMPO DE PAGO4//////////
+          $pagosss1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',1)->sum('abono4');//efectivo
+         $pagosss2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',2)->sum('abono4');//tarjeta
+         $pagosss3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',3)->sum('abono4');//transferencia
+         $pagosss4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',4)->sum('abono4');//deposito
+         $pagosss5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',5)->sum('abono4');//paypal
+         $efectivo3 = $pagosss1+$pagosss2+$pagosss3+$pagosss4+$pagosss5;
+
+          //EXTRAEMOS LOS 5 POSIBLES PAGOS DEL CAMPO DE PAGO5//////////
+          $pagossss1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',1)->sum('abono5');//efectivo
+         $pagossss2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',2)->sum('abono5');//tarjeta
+         $pagossss3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',3)->sum('abono5');//transferencia
+         $pagossss4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',4)->sum('abono5');//deposito
+         $pagossss5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',5)->sum('abono5');//paypal
+         $efectivo4 = $pagossss1+$pagossss2+$pagossss3+$pagossss4+$pagossss5;
+     /*   
+         //SACAREMOS LAS ORDENES DE EFECTIVO DE LAS ORDENES POR TODAS LOS CAMPOS DE ABONOS
+         $servs = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',1)->get();
+         $servss = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',1)->get();
+         $servsss = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',1)->get();
+         $servssss = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',1)->get();
+         $servsssss = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',1)->get();
+
+         //SACAREMOS LAS ORDENES DE TARJETAS DE LAS ORDENES POR TODAS LOS CAMPOS DE ABONOS
+         $t1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',2)->get();
+         $t2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',2)->get();
+         $t3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',2)->get();
+         $t4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',2)->get();
+         $t5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',2)->get();
+
+         //SACAREMOS LAS ORDENES DE TRANSFERENCIA DE LAS ORDENES POR TODAS LOS CAMPOS DE ABONOS
+         $tr1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',3)->get();
+         $tr2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',3)->get();
+         $tr3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',3)->get();
+         $tr4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',3)->get();
+         $tr5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',3)->get();
+
+         //SACAREMOS LAS ORDENES DE DEPOSITO DE LAS ORDENES POR TODAS LOS CAMPOS DE ABONOS
+         $de1 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago1','=',4)->get();
+         $de2 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago2','=',4)->get();
+         $de3 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago3','=',4)->get();
+         $de4 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago4','=',4)->get();
+         $de5 = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->where('tipopago5','=',4)->get();
+*/
+
+         $gr = DB::table('servs')->where('fechaingreso','>=',$fechauno)->where('fechaingreso','<=',$fechados)->get();
+      
+        $vaiable ="hola";
+
+
+        $view =  \View::make('pdf.reporte', compact('vaiable','fechauno','fechados','gr','efectivo','efectivo1','efectivo2','efectivo3','efectivo4'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream('Ventas'.'_'.$hoy."pdf");
+        //return view('pdf.reporte');
+
+
+
 
     }
 

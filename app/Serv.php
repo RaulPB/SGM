@@ -54,6 +54,17 @@ class Serv extends Model
         }
     }
 
+     public function scopeIdsss($query, $id){ //funcion para ayudar a buscar al cliente
+      
+      if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+      $query->where('id', $id);
+        }else{
+          $query->where('id', 50000000000)->get();
+        }
+    }
+
+
+
         public function garantia()
     {
         return $this->belongsTo('Ifiix\Garantia');

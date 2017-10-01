@@ -1,19 +1,16 @@
-<?php 
+<?php
+
 namespace Ifiix\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;//utilizado para la validacion de acceso
-use Session;
-use Redirect;
+
 use Ifiix\Http\Requests;
 use Ifiix\Http\Controllers\Controller;
-use Ifiix\Http\Requests\LoginRequest;//utilizado para la validacion de acceso
-use Ifiix\User;
-use Ifiix\Serv;
-use Ifiix\Mensaje;
-use DB;
+use Ifiix\Clientes;
+use Session;
+use Redirect;
 
-class LogController extends Controller
+class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +19,9 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+        $cliente = Clientes::paginate(10);
+        return view('cliente.index', compact('cliente'));
+
     }
 
     /**
@@ -32,7 +31,8 @@ class LogController extends Controller
      */
     public function create()
     {
-        //
+        //return("hola");
+        return view('cliente.create');
     }
 
     /**
@@ -41,28 +41,19 @@ class LogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LoginRequest $request) //LoginRequest $request aqui tenemos que poner un request que valide el correcto funcionamiento de acceso al sistema.
+    public function store(Request $request)
     {
-        if(Auth::attempt(['email'=> $request['email'],'password'=>$request['password']])){ //si coinciden
-            //return Redirect::to('admin');//ESTA REDIRECCION ES PARA CUANDO NO RECUPERAMOS DATOS DEL MENSAJE
-           // $mensaje = Mensaje::where('id', '=', 1)->get()->first();
-        //$x=$mensaje ->mensaje;
+           Clientes::create([
+            'cliente'=>$request['cliente'],
+            'telefono'=>$request['telefono'],
+            'celular'=>$request['celular'],
+            'correo'=>$request['correo'],
+            'facturacion'=>$request['facturacion'],
+            'detalles'=>$request['detalles'],
 
-            //return redirect('/admin');//->with('success', $x);
-            return view('layouts/admin');
-        }
-        Session::flash('message-error', 'Datos Incorrectos');
-        return Redirect::to('/');
-  
- 
-       /* $mensaje = Mensaje::where('id', '=', 1)->get()->first();
-        $x=$mensaje ->mensaje;
-        return redirect('/admin')->with('success', $x);*/
-    }
-
-    public function logout(){
-        Auth::logout();
-        return Redirect::to('/');
+        ]);
+           Session::flash('message','Cliente registrado correctamente');
+       return redirect('/clientes');
     }
 
     /**
@@ -84,7 +75,11 @@ class LogController extends Controller
      */
     public function edit($id)
     {
-       //return redirect('/pdf');
+         //$cliente = Clientes::find($id);
+         $cliente = Clientes::find($id);
+         return view('cliente.edit',['cliente'=>$cliente]);
+
+    
     }
 
     /**
@@ -96,7 +91,11 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Clientes::find($id);
+        $user->fill($request->all());//metodo para rellenar campos especificados en los modelos
+        $user->save();
+        Session::flash('message','Cliente Actualizado Correctamente');
+        return Redirect::to('/clientes');
     }
 
     /**

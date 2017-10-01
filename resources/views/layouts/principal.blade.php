@@ -34,20 +34,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body class="hold-transition login-page">
-    <div class="login-box">
-      <div class="login-logo">
-        <a href=""><b>Ifiix</b></a>
-		<div align="left"></div>
-      </div><!-- /.login-logo -->
-      <div class="login-box-body">
-        <p class="login-box-msg">Ingrese al sistema</p>
-        @yield('content')
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title"></h1>
+            <div class="account-wall">
+              <div align="center">
+                <img class="profile-img" src="http://es.fordesigner.com/imguploads/Image/cjbc/zcool/png20080526/1211767181.png"
+                    alt="">
 
-
-
-
-      </div><!-- /.login-box-body -->
-    </div><!-- /.login-box -->
+                </div>
+                @yield('content')
+      
+            </div>
+           
+        </div>
+    </div>
+</div>
 
     <!-- jQuery 2.1.4 -->
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
