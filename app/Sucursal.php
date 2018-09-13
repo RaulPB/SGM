@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Sucursal extends Model
 
    public function user()
     {
-        return $this->hasOne('Ifiix\User');
+        return $this->hasOne('SGM\User');
     }
 }

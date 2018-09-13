@@ -1,0 +1,26 @@
+<?php if(Session::has('message')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+
+
+<?php $__env->startSection('content'); ?>
+
+	<?php $__env->startSection('content'); ?>
+
+	<?php echo $__env->make('alerts.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> <!-- ESTA VISTA ES LA QUE MUESTRA EL METODO QUE LANZA LAS ALERTAS-->
+	
+	<?php echo Form::model($servicio,['route'=> ['tecnico.update',$servicio->id],'method'=>'PUT']); ?>
+
+	<?php echo $__env->make('tecnico.forms.usr2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> <!-- APUNTA A LA VISTA DEL FORMULARIO-->
+	<?php echo Form::submit('Actualizar',['class'=>'btn btn-primary btn-lg btn-block']); ?>
+
+	<?php echo Form::close(); ?>
+
+
+	<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

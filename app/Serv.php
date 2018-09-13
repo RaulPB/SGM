@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,12 +17,12 @@ class Serv extends Model
 
     public function tecnico()//el tecnico es un usuario con este perfil, pero queremos el nombre del usuario no el status
     {
-        return $this->belongsTo('Ifiix\User');
+        return $this->belongsTo('SGM\User');
     }
 
       public function status()
     {
-        return $this->belongsTo('Ifiix\Status');
+        return $this->belongsTo('SGM\Status');
     }
 
     public function scopeId($query, $id){ //este es para listar el index en vistas de servicios //FALTA PAREMETRO PARA PASAR ID DE USUARIO
@@ -50,7 +50,7 @@ class Serv extends Model
 
         }else{
          $ids=$_GET['ids']; //FILTRO PARA IDENTIFICAR EL ID DEL TECNICO Y DARLE SOLO SUS ORDENES
-          $query->where('status_id', '<>', 10)->Where('tecnico_id', '=', $ids)->get();
+          $query->where('status_id', '<>', 10)->where('status_id', '<>', 8)->where('status_id', '<>', 11)->Where('tecnico_id', '=', $ids)->get();
         }
     }
 
@@ -63,11 +63,20 @@ class Serv extends Model
         }
     }
 
+     public function scopeIdssss($query, $nombrecliente){ //funcion para ayudar a buscar al cliente
+      
+      if(trim($nombrecliente) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+      $query->where('nombrecliente','LIKE', "%$nombrecliente%");
+        }else{
+          $query->where('nombrecliente', 50000000000)->get();
+        }
+    }
+
 
 
         public function garantia()
     {
-        return $this->belongsTo('Ifiix\Garantia');
+        return $this->belongsTo('SGM\Garantia');
     }
 
 }

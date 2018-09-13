@@ -14,7 +14,7 @@
 /*Route::get('/', function () {//metodo usado solo para apuntar a vista home de laravel; deshabilitada al fijar una nueva raiz
     return view('welcome');
 });*/
-
+//Hola Git
  //ROUTES DEFINIDOS EN ORDEN DE CREACION
 Route::get('/','FrontController@index');  //AQUI INICIA EL PROYECTO IFIIX
 Route::resource('log','LogController'); //para iniciar sesion (validaciones)
@@ -41,7 +41,8 @@ Route::resource('envre2','Envio2Controller');//para agregar envio del recepcioni
 Route::get('logout','LogController@logout');//Para salir de la sesion iniciada
 Route::resource('acerca','AcercaController');//Para ver acerca de
 Route::get('saber', 'PdfController@encuesta');//Para descargar documentos pdf reporte ENCUESTA!!!!!!!!!!!!
-Route::get('pdf', 'PdfController@invoice');//Para descargar reporte de ventas diarias
+Route::get('horas', 'PdfController@horas');//Para visualizar el reporte de afluencia de clientes por sucursal, fechas y horas
+Route::get('pdf', 'PdfController@create');//Para descargar reporte de ventas diarias
 Route::get('semana', 'PdfController@semana');//Para descargar reporte de ventas semanales
 Route::get('mes', 'PdfController@mes');//Para descargar reporte de ventas semanales
 Route::resource('carga', 'PdfController');//Para visualizar carga de tecnicos
@@ -54,6 +55,9 @@ Route::resource('blanco', 'BlancoController');//imprimir nota de venta vacia
 Route::resource('cliente', 'ClienteController');//dar acceso al cliente a sus ordenes de servicio
 Route::resource('clientes', 'ClientesController');//dar acceso al cliente a sus ordenes de servicio
 Route::resource('reporte', 'PDFController');//dar acceso al cliente a sus ordenes de servicio
+Route::resource('asistencia', 'AsistenciaController');//validamos el historico de ordenes por cliente especifico
+Route::resource('politica', 'PoliticaController');//validamos el historico de ordenes por cliente especifico
+Route::resource('gasto', 'GastoController');//validamos el historico de ordenes por cliente especifico
 
 Route::get('encuestas', function () {
     return redirect('encuesta/create');

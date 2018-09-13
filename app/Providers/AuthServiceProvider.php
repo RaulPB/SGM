@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix\Providers;
+namespace SGM\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Ifiix\Model' => 'Ifiix\Policies\ModelPolicy',
+        'SGM\Model' => 'SGM\Policies\ModelPolicy',
     ];
 
     /**

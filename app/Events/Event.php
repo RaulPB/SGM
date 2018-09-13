@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix\Events;
+namespace SGM\Events;
 
 abstract class Event
 {

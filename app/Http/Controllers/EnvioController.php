@@ -1,22 +1,22 @@
 <?php
 //ESTE CONTROLLER ES PARA LAS CREACIONES, EDICIONES Y CONTROL DE PERSONAL DE RECEPCIÓN
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
-use Ifiix\Serv;
-use Ifiix\Status2;
-use Ifiix\Status;
-use Ifiix\User;
-use Ifiix\Compras;
-use Ifiix\EnRe;
-use Ifiix\Proveedor;
+use SGM\Serv;
+use SGM\Status2;
+use SGM\Status;
+use SGM\User;
+use SGM\Compras;
+use SGM\EnRe;
+use SGM\Proveedor;
 use DB;
-use Ifiix\Http\Requests\CompraCreate;
-use Ifiix\Http\Requests\CompraUpdate;
+use SGM\Http\Requests\CompraCreate;
+use SGM\Http\Requests\CompraUpdate;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route; 

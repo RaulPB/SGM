@@ -1,16 +1,16 @@
 <?php 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;//utilizado para la validacion de acceso
 use Session;
 use Redirect;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\Http\Requests\LoginRequest;//utilizado para la validacion de acceso
-use Ifiix\User;
-use Ifiix\Serv;
-use Ifiix\Mensaje;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\Http\Requests\LoginRequest;//utilizado para la validacion de acceso
+use SGM\User;
+use SGM\Serv;
+use SGM\Mensaje;
 use DB;
 
 class LogController extends Controller

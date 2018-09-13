@@ -1,15 +1,15 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 //necesarios para mi validación.
-use Ifiix\Http\Requests\SucursalCreate;//PARA VALIDACIONES DE CAMPOS REQUERIDOS
-use Ifiix\Http\Requests\SucursalUpdate;//PARA VALIDACIONES DE CAMPOS REQUERIDOS  nameS
-use Ifiix\Sucursal;
-use Ifiix\User;
+use SGM\Http\Requests\SucursalCreate;//PARA VALIDACIONES DE CAMPOS REQUERIDOS
+use SGM\Http\Requests\SucursalUpdate;//PARA VALIDACIONES DE CAMPOS REQUERIDOS  nameS
+use SGM\Sucursal;
+use SGM\User;
 use Redirect;
 use Session;
 use Illuminate\Routing\Route;

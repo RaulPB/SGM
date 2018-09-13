@@ -1,0 +1,59 @@
+
+	<div class="form-group">
+		<?php echo Form::label('marc','Marca:'); ?>
+
+		<?php echo Form::text('marca',null,['class'=>'form-control','placeholder'=>'Ingresa marca del producto']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('mod','Modelo:'); ?>
+
+		<?php echo Form::text('modelo',null,['class'=>'form-control','placeholder'=>'Ingresa modelo del producto']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('pre','Costo de compra:'); ?>
+
+		<?php echo Form::text('precio',null,['class'=>'form-control','placeholder'=>'Ingresa costo de compra del producto']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('pre','Precio a publico:'); ?>
+
+		<?php echo Form::text('preciop',null,['class'=>'form-control','placeholder'=>'Ingresa costo de venta al publico']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('cant','Cantidad:'); ?>
+
+		<?php echo Form::text('cantidad',null,['class'=>'form-control','placeholder'=>'Ingresa cantidad de producto a guardar en inventario']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('Prov','Proveedor:'); ?>
+
+		<?php echo Form::select('proveedor_id',$prov); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('Cat','Categoria:'); ?>
+
+		<?php echo Form::select('categoria_id',$cat); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('Cati','Status:'); ?>
+
+		<?php echo Form::select('status',$st); ?>
+
+	</div>
+
+
+

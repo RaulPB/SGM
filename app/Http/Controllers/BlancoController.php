@@ -1,19 +1,19 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\Serv;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\Serv;
 use DB;
 use Auth;
-use Ifiix\Sucursal;
-use Ifiix\Notas;
-use Ifiix\Tpago;
-use Ifiix\Clientes;
-use Ifiix\Garantia;
+use SGM\Sucursal;
+use SGM\Notas;
+use SGM\Tpago;
+use SGM\Clientes;
+use SGM\Garantia;
 
 class BlancoController extends Controller
 {
@@ -96,7 +96,7 @@ class BlancoController extends Controller
     $venta->tecnico_id = $tecid;
     //PROCESO PARA SACAR EL NOMBRE DE LA SUCURSAL PARA LA NOTA
     $sucis = Sucursal::find($idsucur);//ubicamos la sucursal por el id
-    $venta->sucursal=$sucis->nameS;//sacamos el nombre de la sucursal
+    $venta->sucursal=$sucis->id;//sacamos el nombre de la sucursal
     $venta->save(); //GUARDAMOS LA ORDEN DE SERVICIO
     //VAMOS A CREAR EL LISTADO DE CLIENTES DIRECTAMENTE DESDE LA ORDEN DE SERVICIO SI ES QUE NO LO ENCUENTRA EN LA TABLA DE CLIENTES. ESO ESPERO xD
     $clie=$request->get('nombrecliente');

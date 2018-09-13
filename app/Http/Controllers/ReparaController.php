@@ -1,17 +1,18 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Serv;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Serv;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 use Redirect;
 use DB;
 use Auth;
-use Ifiix\Garantia;
-use Ifiix\Sucursal;
-use Ifiix\Notas;
+use SGM\Garantia;
+use SGM\Sucursal;
+use SGM\Notas;
+use SGM\Politica;
 
 class ReparaController extends Controller
 {
@@ -54,6 +55,17 @@ class ReparaController extends Controller
      */
     public function show($id) //nota de venta
     {  //NECESITAMOS CREAR AL FINAL JUSTO ANTES DE GUARDAR EL NUMERO DE LA NOTA CON EL QUE VAMOS A GUARDARLA
+      $idpoli = 1;
+      $idavi = 2;
+      $idtres = 3;
+      $idcuatro = 4;
+      $idseis = 6; //para la imagen 
+      $poli = Politica::find($idpoli); //recuperamos la politica
+      $avi = Politica::find($idavi); //recuperamos la politica
+      $dire = Politica::find($idtres);
+      $cabe = Politica::find($idcuatro);
+      $imagen = Politica::find($idseis);
+
       $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
       $servicio = Serv::find($id); //encontramos el registro
       $compañia = $servicio->compañia;
@@ -76,6 +88,8 @@ class ReparaController extends Controller
       $pago3 = $servicio->abono3;
       $pago4 = $servicio->abono4;
       $pago5 = $servicio->abono5;
+      $resta = $servicio->costo;
+      $resta = $resta - $pago1 - $pago2 - $pago3 - $pago4 - $pago5;
       $abonos = $pago1 + $pago2;
       $enciende = $servicio->enciende;//////////////
       $benciende = $servicio->benciende;
@@ -142,7 +156,7 @@ class ReparaController extends Controller
       $view =  \View::make('pdf.invoice0', compact('cont','claven','id','nombrecliente','diagnostico2','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
       'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
       'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-      'touchid','sensorp','carcasa','teclado','señal','compañia','date','letras','garantia','pago1','pago2','pago3','pago4','pago5','telefono','gar2'))->render();
+      'touchid','sensorp','carcasa','teclado','señal','compañia','date','letras','garantia','pago1','pago2','pago3','pago4','pago5','telefono','gar2','poli','avi','dire','cabe','imagen','resta'))->render();
       $pdf = \App::make('dompdf.wrapper');
       $pdf->setPaper('A3', 'portrait');
       $pdf->loadHTML($view);
@@ -159,6 +173,21 @@ class ReparaController extends Controller
      */
     public function edit($id) //para imprimir orden de servicio
     {
+
+
+        $idpoli = 1;
+      $idavi = 2;
+      $idtres = 3;
+      $idcuatro = 4;
+      $idcinco = 5; //pie de pagina de orden de servicio 
+      $idseis = 6; //para la imagen de los formatos
+      $poli = Politica::find($idpoli); //recuperamos la politica
+      $avi = Politica::find($idavi); //recuperamos la politica
+      $dire = Politica::find($idtres);
+      $imagen = Politica::find($idseis);
+      $pie = Politica::find($idcinco);
+
+
         $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
         $servicio = Serv::find($id); //encontramos el registro
         $compañia = $servicio->compañia;
@@ -173,6 +202,8 @@ class ReparaController extends Controller
         $ns = $servicio->serie;
         $imei = $servicio->imei;
         $color = $servicio->color;
+        $celular = $servicio->celular;
+        $contraseña = $servicio->contraseña;
         $problemacliente = $servicio->problemacliente;
         $diagnostico1 = $servicio->diagnostico1;
         $diagnostico2 = $servicio->diagnostico2;
@@ -216,16 +247,16 @@ class ReparaController extends Controller
         $idsucur = DB::table('users')->where('name', '=', $receptor)->pluck('sucursal_id');// sacamos el id de la sucursal
         $claven = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('nameS');
 
-        $view =  \View::make('pdf.invoice', compact('id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
+        $view =  \View::make('pdf.nota', compact('id','nombrecliente','fechaentrega','fecharecepcion','marca','modelo','tipo','ns','imei','color','problemacliente','diagnostico1','receptor','costo','receptor','abonos',
         'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
         'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
-        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven','garantia'))->render();
+        'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven','garantia','avi','poli','dire','imagen','pie','celular','contraseña'))->render();
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('Legal', 'portrait');
 
 
         $pdf->loadHTML($view);
-        return $pdf->download("Orden ".$id."__".$date);
+        return $pdf->stream("Orden ".$id."__".$date);
         /*
      public function invoice()
     {

@@ -7,18 +7,11 @@
     <table class="" align="center">
       <thead>
         <tr>
-          <th><img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/11403237_877024122332859_5771792069315024696_n.jpg?oh=968b51f2dd93c12b4f41350afb9d240a&oe=5A172DDB" style="width:800%; max-width:200px;"></th>
+          <th><img src={{$imagen->politicas}} style="width:600%; max-width:150px;"></th>
           <th></th>
-          <th style="text-align: center">
-            <FONT SIZE=0>
-              <pre>Dahab García Ávila</pre>
-              <pre>R.F.C GAAD8703172M6</pre>
-              <pre>CURP. GAAD870317HVZRVH03</pre>
-              <pre>Pedro de Alvarado #533-bis Fracc. Reforma C.P. 91919 Veracruz, Ver-</pre>
-              <pre>Cuauhtémoc #4254 casi esq. Alcocer. Col. Centro C.P 91700 Veracruz, Ver.</pre>
-              <pre>facturasifiix@gmail.com</pre>
-              <pre>Tel: 2299379301 & 3345634</pre>
-              <pre>Whatsapp: 2291169546 & 2293567746</pre>
+         <th style="text-align: center;">
+            <FONT SIZE=2>
+             {{$cabe->politicas}}
             </FONT>
           </th>
 
@@ -34,6 +27,7 @@
       <table  BORDER=0 WIDTH=775 class="display" style="text-align:center;"   border-collapse: separate;>
         <thead >
           <tr>
+            <th colspan="2" ALIGN="center">Orden de servicio</th>
             <th ALIGN="center">Nombre cliente</th>
             <th ALIGN="center">Modelo del equipo</th>
             <th colspan="2" ALIGN="center">Telefono/celular</th>
@@ -41,6 +35,7 @@
         </thead>
         <tbody>
           <tr>
+            <td colspan="2" align="center"> {{$venta}}</th>
             <td align="center"> {{$cliente}}</th>
               <td align="center">{{$marca}} {{$modelo}}</td>
               <td colspan="2" align="center">{{$telefono}}</td>
@@ -116,23 +111,11 @@
             </tr>
 
             <tr>
-              <th colspan="2" rowspan="5" ALIGN="justify">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
-                al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez que Ifiix abra el equipo pierde la garantia de fabrica con la marca.</th>
+              <th colspan="2" rowspan="5" ALIGN="justify"><FONT SIZE=1>{{$avi->politicas}}</FONT></th>
               </tr>
 
               <tr>
-                Politicas de garantia:
-                *La garantia solo es valida por defectos de fabrica.
-                *La garantia NO es valida cuando haya:
-                -Sufrido un golpe o enmendadura.
-                -Estado en contacto con cualquier tipo de liquido.
-                -Tenido corto circuito debido a cambio de voltaje.
-                -Sido abierto por una persona ajena a Ifiix.
-                *En equipos reparados por estar mojados NO HAY GARANTIA.
-                *SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.
-                *Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.
-                *En ningún caso Ifiix se hace responsable de los gastos extraordinarios
-                que le ocacionen aplicar su garantia.
+                <FONT SIZE=2>{{$poli->politicas}}</FONT>
               </tr>
             </thead>
           </TABLE>
@@ -230,23 +213,11 @@
                 </tr>
 
                 <tr>
-                  <th colspan="2" rowspan="5" ALIGN="justify">Aviso importante: El plazo para recoger su equipo es de 5 dias habiles a partir de la fecha de la entrega programada , transcurrido este tiempo. Ifiix podra disponer de su equipo. Si el equipo no es recogido inmediatamente se enviara a planta donde se destinara
-                    al "Programa de reciclaje" sin previo aviso y sin que esto represente una obligación de nuestra parte con el cliente. *El cliente acepta una vez que Ifiix abra el equipo pierde la garantia de fabrica con la marca.</th>
+                  <th colspan="2" rowspan="5" ALIGN="justify"><FONT SIZE=1>{{$avi->politicas}}</FONT></th>
                   </tr>
 
-                  <tr>
-                    Politicas de garantia:
-                    *La garantia solo es valida por defectos de fabrica.
-                    *La garantia NO es valida cuando haya:
-                    -Sufrido un golpe o enmendadura.
-                    -Estado en contacto con cualquier tipo de liquido.
-                    -Tenido corto circuito debido a cambio de voltaje.
-                    -Sido abierto por una persona ajena a Ifiix.
-                    *En equipos reparados por estar mojados NO HAY GARANTIA.
-                    *SIN EXCEPCION es necesario presentar su nota de venta para aplicación de garantía.
-                    *Tiempo de respuesta de su garantia es de 2 a 7 días hábiles.
-                    *En ningún caso Ifiix se hace responsable de los gastos extraordinarios
-                    que le ocacionen aplicar su garantia.
+                 <tr>
+                    <FONT SIZE=2>{{$poli->politicas}}</FONT>
                   </tr>
                 </thead>
               </TABLE>

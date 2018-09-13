@@ -1,3 +1,4 @@
+
 	<div class="form-group">
 		{!!Form::label('marc','Marca:')!!}
 		{!!Form::text('marca',null,['class'=>'form-control','placeholder'=>'Ingresa marca del producto'])!!}
@@ -31,6 +32,11 @@
 	<div class="form-group">
 		{!!Form::label('Cat','Categoria:')!!}
 		{!!Form::select('categoria_id',$cat)!!}
+	</div>
+
+	<div class="form-group">
+		{!!Form::label('Cati','Status:')!!}
+		{!!Form::select('status',$st)!!}
 	</div>
 
 

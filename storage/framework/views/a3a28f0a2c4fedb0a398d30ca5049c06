@@ -1,0 +1,31 @@
+	
+	<div class="form-group">
+		<?php echo Form::label('serv','Servicio:'); ?>
+
+		<?php echo Form::select('servicio_id',$serv); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('Prov','Producto:'); ?>
+
+		<?php echo Form::select('producto_id',$prod); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('cant','Cantidad:'); ?>
+
+		<?php echo Form::text('cantidad',null,['class'=>'form-control','placeholder'=>'Ingresa cantidad a dar salida']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('com','Comentarios:'); ?>
+
+		<?php echo Form::textarea('comentarios',null,['class'=>'form-control','placeholder'=>'Comentarios complementarios']); ?>
+
+	</div>
+
+
+

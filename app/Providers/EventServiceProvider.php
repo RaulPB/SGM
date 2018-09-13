@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix\Providers;
+namespace SGM\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Ifiix\Events\SomeEvent' => [
-            'Ifiix\Listeners\EventListener',
+        'SGM\Events\SomeEvent' => [
+            'SGM\Listeners\EventListener',
         ],
     ];
 

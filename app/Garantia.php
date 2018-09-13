@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class Garantia extends Model
 
    public function serv() 
     {
-        return $this->hasOne('Ifiix\Serv');
+        return $this->hasOne('SGM\Serv');
     }
 
 }

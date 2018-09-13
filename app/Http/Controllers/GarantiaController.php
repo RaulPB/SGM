@@ -1,12 +1,12 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\Garantia;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\Garantia;
 use Redirect;
 use Session;
 use Illuminate\Routing\Route;

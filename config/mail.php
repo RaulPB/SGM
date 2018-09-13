@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'), //Direccion del correo de nosotros IFIIX
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'), //Direccion del correo de la empresa
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'ifiixver@gmail.com', 'name' => 'IFIIX: Reparamos tu movil'],
+    'from' => ['address' => 'raul.180786@gmail.com', 'name' => 'SGM: Aviso Importante'],
 
     /*
     |--------------------------------------------------------------------------

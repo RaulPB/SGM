@@ -1,10 +1,10 @@
 <?php
 
-namespace Ifiix\Http\Controllers\Auth;
+namespace SGM\Http\Controllers\Auth;
 
-use Ifiix\User;
+use SGM\User;
 use Validator;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

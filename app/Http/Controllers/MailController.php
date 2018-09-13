@@ -1,13 +1,13 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
 use Session;
 use Redirect;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
 class MailController extends Controller
 {

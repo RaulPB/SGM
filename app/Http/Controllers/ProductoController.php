@@ -1,25 +1,27 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\Http\Requests\UserCreateRequest;
-use Ifiix\Http\Requests\UserUpdateRequest;
-use Ifiix\Http\Requests\productoCreate;
-use Ifiix\Http\Requests\productoEdit;
-use Ifiix\Perfil;//IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
-use Ifiix\Proveedor; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
-use Ifiix\User;
-use Ifiix\Serv;
-use Ifiix\Producto;
-use Ifiix\Categoria;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\Http\Requests\UserCreateRequest;
+use SGM\Http\Requests\UserUpdateRequest;
+use SGM\Http\Requests\productoCreate;
+use SGM\Http\Requests\productoEdit;
+use SGM\Perfil;//IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
+use SGM\Proveedor; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
+use SGM\User;
+use SGM\Serv;
+use SGM\Producto;
+use SGM\Categoria;
 use Input;
 use Select;
 use Session;
 use Redirect;
+use Auth;
+use DB;
 use Illuminate\Routing\Route;
 
 
@@ -33,8 +35,10 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         //$prod = Producto::paginate(10);
-         $prod = Producto::id($request->get('categoria'))->paginate(1000);
+        
+        $prod = Producto::ids($request->get('categoria'))->paginate(1000);
         return view('producto.index', compact('prod'));
+       
     }
 
     /**
@@ -46,8 +50,11 @@ class ProductoController extends Controller
     {
         $prov = Proveedor::lists('proveedor', 'id');
         $cat = Categoria::lists('categoria', 'id');
+        //ANEXAMOS LOS STATUS PARA LOS PRODUCTOS
+         $st["Activo"]="Activo";
+         $st["Baja"]="Baja";
 
-         return view('producto.create',compact('prov','cat'));//variables a las que asigne campos reales de la base de datos
+         return view('producto.create',compact('prov','cat','st'));//variables a las que asigne campos reales de la base de datos
     }
 
     /**
@@ -68,6 +75,8 @@ class ProductoController extends Controller
 
             }else{
             //'proveedor_id'=>$request['proveedor_id'],
+        //RECUPERAMOS EL ID DEL USUARIO QUE REGISTRA LA SUCURSAL PARA DARLE ALMACENAMIENTO EN SU INVENTARIO.
+                $user = Auth::user()->sucursal_id;
 
             Producto::create([
             'marca'=>$request['marca'],
@@ -77,6 +86,8 @@ class ProductoController extends Controller
             'proveedor_id'=>$request['proveedor_id'],
             'categoria_id'=>$request['categoria_id'],
             'preciop'=>$request['preciop'],
+            'status'=>$request['status'],
+            'sucursal_id'=>$user,
         ]);
             return redirect('/producto')->with('message','Producto agregado correctamente a inventario');
             }
@@ -108,8 +119,12 @@ class ProductoController extends Controller
         $prod = Producto::find($id);
         $prov = Proveedor::lists('proveedor', 'id');
         $cat = Categoria::lists('categoria', 'id');
-        return view('producto.edit',['prod'=>$prod],compact('prov','cat'));
-
+        $st["Activo"]="Activo";
+        $st["Baja"]="Baja";
+        $sucursal_id = Auth::user()->sucursal_id;
+        $idsucur = DB::table('sucursals')->where('id', '=', $sucursal_id)->pluck('nameS');
+        return view('producto.edit',['prod'=>$prod],compact('prov','cat','st','idsucur'));
+        //return($idsucur);
     }
 
     /**

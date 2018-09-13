@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,12 +20,12 @@ class EnRe extends Model
 
        public function mensajero()
     {
-        return $this->belongsTo('Ifiix\User');
+        return $this->belongsTo('SGM\User');
     }
 
            public function status()
     {
-        return $this->belongsTo('Ifiix\Status');
+        return $this->belongsTo('SGM\Status');
     }
 
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use Ifiix\Serv;
-use Ifiix\Arch;
+use SGM\Serv;
+use SGM\Arch;
 use Session;
 use Redirect;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
 class DiarioController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Proveedor extends Model
 
     	public function proveedor()
     {
-        return $this->hasOne('Ifiix\Producto');
+        return $this->hasOne('SGM\Producto');
     }
 }

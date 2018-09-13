@@ -2,7 +2,7 @@
   <html lang="en">
 
   <head>
-    <title>Ifiix: Reparamos tu móvil</title>
+    <title>SGM: Sistema de gestión multiplataforma</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +35,7 @@
     </div>
     @endif
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: ">
       <div class="navbar-header">
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,7 +45,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="/admin">Ifiix Administración</a>
+        <a class="navbar-brand" href="/admin">SGM: Sistema de gestión multiplataforma</a>
       </div>
 
       <ul class="nav navbar-top-links navbar-right">
@@ -55,7 +55,9 @@
           </a>
           <ul class="dropdown-menu dropdown-user">
             <li class="divider"></li>
-            <li><a href="/acerca"><i class="fa fa-apple"></i> Acerca de:</a>
+            <li><a href="/acerca/show"><i class="fa fa-book"></i> Politicas</a>
+            </li>
+            <li><a href="/acerca"><i class="fa fa-apple"></i> Acerca de</a>
             </li>
             <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
             </li>
@@ -63,204 +65,230 @@
         </li>
       </ul>
 
- <?
- use Ifiix\Serv;
- $usuario_id = DB::table('users')->where('name', '=', Auth::user()->name)->pluck('id');
- $servicios = Serv::where('status_id', '=', 1)->Where('tecnico_id','=',$usuario_id)->get();
+      <?
+      use SGM\Serv;
+      $usuario_id = DB::table('users')->where('name', '=', Auth::user()->name)->pluck('id');
+      $servicios = DB::table('servs')
+                    ->whereIn('status_id', [1, 16])
+                    ->where('tecnico_id',$usuario_id)
+                    ->get();
  $y = 0;//ECHO $servicios;
  $x = 0;//ECHO $servicios;
  ?>  
 
-  @foreach($servicios as $cli)
-    <? $y = $y+1; ?>
-  @endforeach
+ @foreach($servicios as $cli)
+ <? $y = $y+1; ?>
+ @endforeach
 
-@if ($y <> 0)
-      <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-bell"></i>
-            <span class="badge"><? echo $y ?></span></i>
-            <i class="fa fa-exclamation"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-user">
-            @foreach($servicios as $clis)
-            <li>
-              <? $x = $x+1; ?>
-              <a href="#"><i class=""></i>{!!link_to_route('tecnico.edit', $title = $x.".-Orden por atender: ". $clis->id. ' / Vence: '. $clis->fechaentrega, $parameters = $clis->id, $attributes = ['class'=>'btn btn-link'])!!}
-              </a>
-            </li>
-            @endforeach
-          </ul>
-        </li>
-      </ul>
-    @endif
+ @if ($y <> 0)
+ <ul class="nav navbar-top-links navbar-right">
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-bell"></i>
+      <span class="badge"><? echo $y ?></span></i>
+      <i class="fa fa-exclamation"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+      @foreach($servicios as $clis)
+      <li>
+        <? $x = $x+1; ?>
+        <i class=""> {!!link_to_route('tecnico.edit', $title = $x.".-Orden por atender: ". $clis->id. ' / Vence: '. $clis->fechaentrega, $parameters = $clis->id, $attributes = ['class'=>'btn'])!!}</i>
+      </li>
+      @endforeach
+    </ul>
+  </li>
+</ul>
+@endif
 
-    @if ($y == 0)
-      <ul class="nav navbar-top-links navbar-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="fa fa-bell-o"></i>
-            <span class="badge"></span></i>
-          </a>
-          <ul class="dropdown-menu dropdown-user">
-          
-            <li>
-              <a href="#"><i class="fa fa-smile-o"> SIN NOTIFICACIONES </i></a>
-            </li>
-          
-          </ul>
-        </li>
-      </ul>
-    @endif
+@if ($y == 0)
+<ul class="nav navbar-top-links navbar-right">
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="fa fa-bell-o"></i>
+      <span class="badge"></span></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user">
+      
+      <li>
+        <a href="#"><i class="fa fa-exclamation-circle"> SIN NOTIFICACIONES </i></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+@endif
 
 
 
 
 
-      @if(Auth::user()->perfil_id == '1')
-      <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-          <ul class="nav" id="side-menu">
-            <li>
-              <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="{!!URL::to('/usuario/create')!!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
-                </li>
-                <li>
-                  <a href="/usuario"><i class='fa fa-list-ol fa-fw'></i> Usuarios</a>
-                </li>
-              </ul>
-            </li>
+@if(Auth::user()->perfil_id == '1')
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
+      <li>
+        <a href="#"><i class="fa fa-users fa-fw"></i> Usuarios<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="{!!URL::to('/usuario/create')!!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+          </li>
+          <li>
+            <a href="/usuario"><i class='fa fa-list-ol fa-fw'></i> Usuarios</a>
+          </li>
+        </ul>
+      </li>
 
-            <li>
-              <a href="#"><i class="fa fa-building fa-fw"></i> Sucursal<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="/sucursal/create"><i class='fa fa-plus fa-fw'></i> Agregar</a>
-                </li>
-                <li>
-                  <a href="/sucursal/"><i class='fa fa-list-ol fa-fw'></i> Sucursales</a>
-                </li>
-              </ul>
-            </li>
+      <li>
+        <a href="#"><i class="fa fa-building fa-fw"></i> Sucursal<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/sucursal/create"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+          </li>
+          <li>
+            <a href="/sucursal/"><i class='fa fa-list-ol fa-fw'></i> Sucursales</a>
+          </li>
+        </ul>
+      </li>
 
-            <li>
-              <a href="#"><i class="fa fa-certificate"></i> Administración de Garantias<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="/garantia/create"><i class='fa fa-plus fa-fw'></i> Agregar garantia</a>
-                </li>
-                <li>
-                  <a href="/garantia/"><i class='fa fa-list-ol fa-fw'></i> Garantias</a>
-                </li>
-              </ul>
-            </li>
+      <li>
+        <a href="#"><i class="fa fa-certificate"></i> Administración de Garantias<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/garantia/create"><i class='fa fa-plus fa-fw'></i> Agregar garantia</a>
+          </li>
+          <li>
+            <a href="/garantia/"><i class='fa fa-list-ol fa-fw'></i> Garantias</a>
+          </li>
+        </ul>
+      </li>
 
-            <li>
-              <a href="#"><i class="fa fa-dashboard fa-fw"></i> Status<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="/status/"><i class='fa fa-list-ol fa-fw'></i> Status</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="/constru"><i class="fa fa-bullhorn fa-fw"></i> Mensajes/Promociones<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="/mensajes"><i class='fa fa-plus fa-fw'></i> Crear</a>
-                </li>
-              </ul>
-            </li>
+      <li>
+        <a href="#"><i class="fa fa-dashboard fa-fw"></i> Status<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/status/"><i class='fa fa-list-ol fa-fw'></i> Status</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="/constru"><i class="fa fa-bullhorn fa-fw"></i> Mensajes/Promociones<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/mensajes"><i class='fa fa-plus fa-fw'></i> Crear</a>
+          </li>
+        </ul>
+      </li>
 
-
-            <li>
-              <a href="#"><i class="fa fa-pie-chart"></i> Reportes & Estadisticas<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-                <li>
-                  <a href="/pdf"><i class='fa fa-bar-chart'></i>Reporte de ventas</a>
-                </li>
-                <li>
-                  <a href="/saber"><i class='fa fa-bar-chart'></i> Reporte: ¿Como se entero de nosotros?</a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="#"><i class="fa fa-ambulance"></i> Servicios<span class="fa arrow"></span></a>
-              <ul class="nav nav-second-level">
-
-                <li>
-                  <a href="#">+ <i class='fa fa-cogs'></i> Ordenes de servicio</a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="{!!URL::to('/servicio/create')!!}"><i class='fa fa-plus fa-fw'></i> Agregar Orden de servicio</a>
-                    </li>
-                    <li>
-                      <a href="{!!URL::to('/servicio')!!}"><i class='fa fa-pencil-square fa-fw'></i> Ordenes de servicio no entregadas</a>
-                    </li>
-                    <li>
-                      <a href="{!!URL::to('servicio/show')!!}"><i class='fa fa-thumbs-o-up'></i> Ordenes de servicio entregadas y/o canceladas</a>
-                    </li>
-                    <li>
-                      <a href="#"> <i class='fa fa-file-text-o'></i> Notas de venta</a>
-                      <ul class="nav nav-fourth-level">
-                        <a href="{!!URL::to('/blanco/create')!!}"><i class='fa fa-file-text'></i> Nota de venta vacia</a>
-                      </ul>
-                      <ul class="nav nav-fourth-level">
-                        <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-print'></i> Reimprimir nota de venta </a>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="#">+ <i class='fa fa-camera'></i>Evidencias Fotograficas</a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="{!!URL::to('/archivo/create')!!}"><i class='fa fa-file-picture-o'></i> Agregar Evidencias Fotograficas</a>
-                    </li>
-                    <li>
-                      <a href="{!!URL::to('/archivo')!!}"><i class='fa fa-folder-open-o'></i> Buscar Evidencias Fotograficas</a>
-                    </li>
-                  </ul>
-                </li>
+     <li>
+        <a href="#"><i class="fa fa-bank"></i> Politicas de servicio en formatos<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/politica"><i class='fa fa-bar-chart'></i>Editar formatos</a>
+          </li>
+        </ul>
+      </li> 
 
 
-                <li>
-                  <a href="{!!URL::to('/precio')!!}">+ <i class='fa fa-money'></i> Lista de precios al público</a>
-                </li>
+      <li>
+        <a href="#"><i class="fa fa-pie-chart"></i> Reportes & Estadisticas<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li>
+            <a href="/pdf"><i class='fa fa-bar-chart'></i>Reporte de ventas</a>
+          </li>
+          <li>
+            <a href="/saber"><i class='fa fa-bar-chart'></i> Reporte: ¿Como se entero de nosotros?</a>
+          </li>
+          <li>
+            <a href="/horas"><i class='fa fa-bar-chart'></i> Reporte: Mayor afluencia de clientes en el dia</a>
+          </li>
+          <li>
+            <a href="/asistencia"><i class='fa fa-stack-overflow'></i> Reporte: historico de servicios por  nombre cliente </a>
+          </li>
+        </ul>
+      </li>
 
-                <li>
-                  <a href="#">+ <i class='fa fa-bicycle'></i> Solicitar recolección de equipo</a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="/envre/create"><i class='fa fa-star-o'></i> Nueva Recolección</a>
-                    </li>
-                    <li>
-                      <a href="/envre/"><i class='fa fa-sort-amount-desc'></i> Recolecciones</a>
-                    </li>
-                  </ul>
-                </li>
+      <li>
+        <a href="#"><i class="fa fa-ambulance"></i> Servicios<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+
+          <li>
+            <a href="#">+ <i class='fa fa-cogs'></i> Ordenes de servicio</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a href="{!!URL::to('/servicio/create')!!}"><i class='fa fa-plus fa-fw'></i> Agregar Orden de servicio</a>
+              </li>
+              <li>
+                <a href="{!!URL::to('/servicio')!!}"><i class='fa fa-pencil-square fa-fw'></i> Ordenes de servicio no entregadas</a>
+              </li>
+              <li>
+                <a href="{!!URL::to('servicio/show')!!}"><i class='fa fa-thumbs-o-up'></i> Ordenes de servicio entregadas y/o canceladas</a>
+              </li>
+              <li>
+                <a href="#"> <i class='fa fa-file-text-o'></i> Notas de venta</a>
+                <ul class="nav nav-fourth-level">
+                  <a href="{!!URL::to('/blanco/create')!!}"><i class='fa fa-file-text'></i> Nota de venta vacia</a>
+                </ul>
+                <ul class="nav nav-fourth-level">
+                  <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-print'></i> Reimprimir nota de venta </a>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">+ <i class='fa fa-camera'></i>Evidencias Fotograficas</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a href="{!!URL::to('/archivo/create')!!}"><i class='fa fa-file-picture-o'></i> Agregar Evidencias Fotograficas</a>
+              </li>
+              <li>
+                <a href="{!!URL::to('/archivo')!!}"><i class='fa fa-folder-open-o'></i> Buscar Evidencias Fotograficas</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="{!!URL::to('/precio')!!}">+ <i class='fa fa-money'></i> Lista de precios al público</a>
+          </li>
+
+          <li>
+            <a href="#">+ <i class='fa fa-bicycle'></i> Solicitar recolección de equipo</a>
+            <ul class="nav nav-third-level">
+              <li>
+                <a href="/envre/create"><i class='fa fa-star-o'></i> Nueva Recolección</a>
+              </li>
+              <li>
+                <a href="/envre/"><i class='fa fa-sort-amount-desc'></i> Recolecciones</a>
+              </li>
+            </ul>
+          </li>
                   <!--     <li>
                   <a href="{!!URL::to('servicio/destroy')!!}"><i class='fa fa-ban'></i> Ordenes de servicio canceladas</a>
                 </li>-->
               </ul>
             </li>
 
+
+           <li>
+              <a href="#"><i class="fa fa-sign-out"></i> Gastos<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="/gasto/create"><i class='fa fa-plus fa-fw'></i>Ingresar Gasto</a>
+                </li>
+              </ul>
+            </li>
+
             <li>
-                <a href="#"> <i class='fa fa-cc-amex'></i> Clientes</a>
-                  <ul class="nav nav-third-level">
-                    <li>
-                      <a href="/clientes"><i class='fa fa-bars'></i> Listado de Clientes</a>
-                    </li>
-                    <li>
-                      <a href="/clientes/create">+<i class='fa fa-address-card-o'></i> Nuevo Cliente</a>
-                    </li>
-                  </ul>
-              </li>
+              <a href="#"> <i class='fa fa-cc-amex'></i> Clientes</a>
+              <ul class="nav nav-third-level">
+                <li>
+                  <a href="/clientes"><i class='fa fa-bars'></i> Listado de Clientes</a>
+                </li>
+                <li>
+                  <a href="/clientes/create">+<i class='fa fa-address-card-o'></i> Nuevo Cliente</a>
+                </li>
+              </ul>
+            </li>
 
             <li>
               <a href="#"><i class="fa fa-ambulance"></i> Tecnico<span class="fa arrow"></span></a>
@@ -368,6 +396,7 @@
                             <li>
                               <a href="{!!URL::to('/servicio')!!}"><i class='fa fa-pencil-square fa-fw'></i> Ordenes de servicio no entregadas</a>
                             </li>
+
                             <li>
                               <a href="{!!URL::to('servicio/show')!!}"><i class='fa fa-thumbs-o-up'></i> Ordenes de servicio entregadas y/o canceladas</a>
                             </li>
@@ -416,6 +445,14 @@
                     </li>-->
                   </ul>
                 </li>
+          <li>
+              <a href="#"><i class="fa fa-sign-out"></i> Gastos<span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li>
+                  <a href="/gasto/create"><i class='fa fa-plus fa-fw'></i>Ingresar Gasto</a>
+                </li>
+              </ul>
+            </li> 
 
                 <!--     <li>
                 <a href="{!!URL::to('servicio/destroy')!!}"><i class='fa fa-ban'></i> Ordenes de servicio canceladas</a>
@@ -503,6 +540,15 @@
                               </ul>
                             </li>
 
+                           <li>
+                              <a href="#"><i class="fa fa-sign-out"></i> Gastos<span class="fa arrow"></span></a>
+                              <ul class="nav nav-second-level">
+                                <li>
+                                  <a href="/gasto/create"><i class='fa fa-plus fa-fw'></i>Ingresar Gasto</a>
+                                </li>
+                              </ul>
+                            </li>  
+
                             <li>
                               <a href="#"><i class="fa fa-archive"></i> Inventario<span class="fa arrow"></span></a>
                               <ul class="nav nav-second-level">
@@ -538,20 +584,56 @@
                               <div class="sidebar-nav navbar-collapse">
                                 <ul class="nav" id="side-menu">
 
-                                  <li>
-                                    <a href="#"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
+                                 <li>
+                                  <a href="#"><i class="fa fa-pie-chart"></i> Reportes & Estadisticas<span class="fa arrow"></span></a>
+                                  <ul class="nav nav-second-level">
+                                    <li>
+                                      <a href="/pdf"><i class='fa fa-bar-chart'></i>Reporte de ventas</a>
+                                    </li>
+                                    <li>
+                                      <a href="/saber"><i class='fa fa-bar-chart'></i> Reporte: ¿Como se entero de nosotros?</a>
+                                    </li>
+                                    <li>
+                                      <a href="/horas"><i class='fa fa-bar-chart'></i> Reporte: Mayor afluencia de clientes en el dia</a>
+                                    </li>
+                                    <li>
+                                      <a href="/asistencia"><i class='fa fa-stack-overflow'></i> Reporte: historico de servicios por  nombre cliente </a>
+                                    </li>
+                                  </ul>
+                                </li>
+
+                                <li>
+                                  <a href="#"><i class="fa fa-credit-card"></i> Compras<span class="fa arrow"></span></a>
+                                  <ul class="nav nav-second-level">
+                                    <li>
+                                      <a href="/compras"><i class='fa fa-archive'></i> Ordenes de compra de refacción</a>
+                                    </li>
+                                    <li>
+                                      <a href="/proveedor/create"><i class='fa fa-group'></i> Alta de proveedores</a>
+                                    </li>
+                                    <li>
+                                      <a href="/proveedor"><i class='fa fa-bars'></i> Lista de proveedores</a>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <a href="#"> <i class='fa fa-file-text-o'></i> Notas de venta</a>
+                                  <ul class="nav nav-fourth-level">
+                                    <a href="{!!URL::to('/blanco/create')!!}"><i class='fa fa-file-text'></i> Nota de venta vacia</a>
+                                  </ul>
+                                  <ul class="nav nav-fourth-level">
+                                    <a href="{!!URL::to('/reimpn')!!}"><i class='fa fa-print'></i> Reimprimir nota de venta </a>
+                                  </ul>
+                                </li>
+
+                                 <li>
+                                    <a href="#"><i class="fa fa-sign-out"></i> Gastos<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                       <li>
-                                        <a href="/compras"><i class='fa fa-archive'></i> Ordenes de compra de refacción</a>
-                                      </li>
-                                      <li>
-                                        <a href="/proveedor/create"><i class='fa fa-group'></i> Alta de proveedores</a>
-                                      </li>
-                                      <li>
-                                        <a href="/proveedor"><i class='fa fa-bars'></i> Lista de proveedores</a>
+                                        <a href="/gasto/create"><i class='fa fa-plus fa-fw'></i>Ingresar Gasto</a>
                                       </li>
                                     </ul>
-                                  </li>
+                                  </li> 
 
                                   <li>
                                     <a href="#"><i class="fa fa-archive"></i> Inventario<span class="fa arrow"></span></a>
@@ -591,16 +673,16 @@
                                         <li>
                                           <a href="{!!URL::to('/precio')!!}"><i class='fa fa-money'></i> Lista de precios al público</a>
                                         </li>
-                                <?php endif ?>
+                                      <?php endif ?>
 
-                                <?php if(Auth::user()->perfil_id == '9'): ?>
+                                      <?php if(Auth::user()->perfil_id == '9'): ?>
                                         <div class="navbar-default sidebar" role="navigation">
                                           <div class="sidebar-nav navbar-collapse">
                                             <ul class="nav" id="side-menu">
                                               <li>
                                                 <a href="{!!URL::to('/cliente')!!}"> <i class='fa fa-file-text'></i>  Consulta tu orden de servicio</a>
                                               </li>
-                                 <?php endif ?>
+                                            <?php endif ?>
 
 
 

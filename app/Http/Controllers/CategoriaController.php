@@ -1,20 +1,20 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
-use Ifiix\Serv;
-use Ifiix\Status;
-use Ifiix\User;
-use Ifiix\Garantia;
+use SGM\Serv;
+use SGM\Status;
+use SGM\User;
+use SGM\Garantia;
 use DB;
-use Ifiix\Http\Requests\ServicioCreate;
-use Ifiix\Http\Requests\ServicioUpdate;
+use SGM\Http\Requests\ServicioCreate;
+use SGM\Http\Requests\ServicioUpdate;
 use Session;
-use Ifiix\Categoria;
+use SGM\Categoria;
 use Redirect;
 use Illuminate\Routing\Route; 
 use Illuminate\Database\Query\Builder;

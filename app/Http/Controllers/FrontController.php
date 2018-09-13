@@ -1,10 +1,10 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
+use SGM\Http\Requests;
 
 class FrontController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Serv;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Serv;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
 class ClienteController extends Controller
 {

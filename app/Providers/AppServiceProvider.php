@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix\Providers;
+namespace SGM\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

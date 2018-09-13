@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: Ifiix
-        psr4_prefix: Ifiix
+        namespace: SGM
+        psr4_prefix: SGM
         src_path: app

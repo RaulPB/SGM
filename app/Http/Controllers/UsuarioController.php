@@ -1,16 +1,16 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\Http\Requests\UserCreateRequest;
-use Ifiix\Http\Requests\UserUpdateRequest;
-use Ifiix\Perfil;//IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
-use Ifiix\Sucursal; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
-use Ifiix\User;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\Http\Requests\UserCreateRequest;
+use SGM\Http\Requests\UserUpdateRequest;
+use SGM\Perfil;//IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
+use SGM\Sucursal; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
+use SGM\User;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route;

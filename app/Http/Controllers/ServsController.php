@@ -1,30 +1,31 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 use Mail;
 use Input; //MODELO QUE NOS PERMITIO CAPTURAR UN INPUT Y MANIPULARLO
-use Ifiix\Serv;
-use Ifiix\Status;
-use Ifiix\User;
-use Ifiix\Garantia;
-use Ifiix\Clientes;
-use Ifiix\Sucursal;
-use Ifiix\Tpago;
-use Ifiix\Mensaje;
-use Ifiix\DetalleVenta;
-use Ifiix\Producto;
+use SGM\Serv;
+use SGM\Status;
+use SGM\User;
+use SGM\Garantia;
+use SGM\Clientes;
+use SGM\Sucursal;
+use SGM\Tpago;
+use SGM\Mensaje;
+use SGM\DetalleVenta;
+use SGM\Producto;
 use DB;
 use Carbon\Carbon;
-use Ifiix\Http\Requests\ServicioCreate;
-use Ifiix\Http\Requests\ServicioUpdate;
+use SGM\Http\Requests\ServicioCreate;
+use SGM\Http\Requests\ServicioUpdate;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route;
 use Illuminate\Database\Query\Builder;
+use SGM\Politica;
 class ServsController extends Controller
 {
   /**
@@ -39,7 +40,7 @@ class ServsController extends Controller
   public function index(Request $request)
   {
     //dd($request->get('imei'));//PARA VALIDAR HASTA QUE PUNTO TODO VA FUNCIONANDO EN EL PASO DE DATOS
-    $servicio = Serv::id($request->get('id'))->orderBy('created_at', 'asc')->paginate(1000);//->orderBy('created_at', 'asc');
+    $servicio = Serv::id($request->get('id'))->orderBy('created_at', 'asc')->paginate(5);//->orderBy('created_at', 'asc');
     //$correo = Serv::where('status','<>', 'Entregado al cliente')->orderBy('fecha_recep', 'asc')->get();
     return view('servicio.indexserv',compact('servicio'));
   }
@@ -76,7 +77,63 @@ class ServsController extends Controller
   {
     //creamos el servicio pero aun falta crear el detalle de venta
     $contactName = Input::get('status_id');
-
+    if ($contactName  == 21){
+      //return("NO SE PUDO REVISAR");
+      $venta = new Serv;
+      $venta->nombrecliente=$request->get('nombrecliente');
+      $venta->telefono=$request->get('telefono');
+      $venta->celular=$request->get('celular');
+      $venta->email=$request->get('email');
+      $venta->fechaingreso=$request->get('fechaingreso');
+      $venta->comunicacion=$request->get('comunicacion');
+      $venta->bitacoracontacto="NO SE PUDO REVISAR";
+      $venta->producto=$request->get('producto');
+      $venta->marca=$request->get('marca');
+      $venta->modelo=$request->get('modelo');
+      $venta->tipo="NO SE PUDO REVISAR";
+      $venta->color="NO SE PUDO REVISAR";
+      $venta->capacidad="NO SE PUDO REVISAR";
+      $venta->serie="NO SE PUDO REVISAR";
+      $venta->contraseña="NO SE PUDO REVISAR";
+      $venta->compañia="NO SE PUDO REVISAR";
+      $venta->reparado="NO SE PUDO REVISAR";
+      $venta->agua="NO SE PUDO REVISAR";
+      $venta->ingresoso="NO SE PUDO REVISAR";
+      $venta->enciende="NO SE PUDO REVISAR";
+      $venta->benciende="NO SE PUDO REVISAR";
+      $venta->bvolumen="NO SE PUDO REVISAR";
+      $venta->bvibrador="NO SE PUDO REVISAR";
+      $venta->pantalla="NO SE PUDO REVISAR";
+      $venta->touch="NO SE PUDO REVISAR";
+      $venta->display="NO SE PUDO REVISAR";
+      $venta->ctrasera="NO SE PUDO REVISAR";
+      $venta->ccarga="NO SE PUDO REVISAR";
+      $venta->altavoz="NO SE PUDO REVISAR";
+      $venta->microfono="NO SE PUDO REVISAR";
+      $venta->auricular="NO SE PUDO REVISAR";
+      $venta->boexterna="NO SE PUDO REVISAR";
+      $venta->jack="NO SE PUDO REVISAR";
+      $venta->wifi="NO SE PUDO REVISAR";
+      $venta->bluetooth="NO SE PUDO REVISAR";
+      $venta->datosm="NO SE PUDO REVISAR";
+      $venta->bateria="NO SE PUDO REVISAR";
+      $venta->portasim="NO SE PUDO REVISAR";
+      $venta->sim="NO SE PUDO REVISAR";
+      $venta->imei="NO SE PUDO REVISAR";
+      $venta->bhome="NO SE PUDO REVISAR";
+      $venta->touchid="NO SE PUDO REVISAR";
+      $venta->sensorp="NO SE PUDO REVISAR";
+      $venta->carcasa="NO SE PUDO REVISAR";
+      $venta->teclado="NO SE PUDO REVISAR";
+      $venta->señal="NO SE PUDO REVISAR";
+      $venta->problemacliente=$request->get('problemacliente');
+      $venta->solucion1=$request->get('solucion1');
+      $venta->diagnostico1=$request->get('diagnostico1');
+      $venta->diagnostico2=$request->get('diagnostico2');
+      $venta->fechaentrega=$request->get('fechaentrega');
+      $venta->flash="NO SE PUDO REVISAR";
+    }
+    if($contactName  != 21){
     $venta = new Serv;
     $venta->fechaingreso=$request->get('fechaingreso');
     $venta->comunicacion=$request->get('comunicacion');
@@ -129,33 +186,77 @@ class ServsController extends Controller
     $venta->diagnostico1=$request->get('diagnostico1');
     $venta->diagnostico2=$request->get('diagnostico2');
     $venta->fechaentrega=$request->get('fechaentrega');
+    $venta->flash=$request->get('flash');
+  }
+
     if($contactName == 6 || $contactName == 21 || $contactName == 22){
       $hoy = \Carbon\Carbon::now();
       $venta->fechanotifica= $hoy;
     }
-    //$venta->fechanotifica=$request->get('fechanotifica');
-    $venta->fechapago1=$request->get('fechapago1');
-    $venta->fechapago2=$request->get('fechapago2');
-    $venta->fechapago3=$request->get('fechapago3');
-    $venta->fechapago4=$request->get('fechapago4');
-    $venta->fechapago5=$request->get('fechapago5');
+   //RECUPERAMOS LOS CAMPOS DE ABONO PARA SABER SI SON DISTINTOS A 0 GUARDAR LAS FECHAS.
+
+    $abono1s=$request->get('abono1');
+    $abono2s=$request->get('abono2');
+    $abono3s=$request->get('abono3');
+    $abono4s=$request->get('abono4');
+    $abono5s=$request->get('abono5');
+
+    if($abono1s != "0"){ //0000-00-00 00:00:00
+      $venta->fechapago1= \Carbon\Carbon::now();
+      $venta->abono1= $abono1s;
+    }else{
+      $venta->abono1= 0;
+      $venta->fechapago1= "0000-00-00 00:00:00";
+    }
+    
+    if($abono2s != "0"){
+      $venta->fechapago2= \Carbon\Carbon::now();
+      $venta->abono2= $abono2s;
+    }else{
+      $venta->abono2= 0;
+      $venta->fechapago2= "0000-00-00 00:00:00";
+    }
+
+    if($abono3s != "0"){
+      $venta->fechapago3= \Carbon\Carbon::now();
+      $venta->abono3= $abono3s;
+    }else{
+      $venta->abono3= 0;
+      $venta->fechapago3= "0000-00-00 00:00:00";
+    }
+
+    if($abono4s != "0"){
+      $venta->fechapago4= \Carbon\Carbon::now();
+      $venta->abono4= $abono4s;
+    }else{
+      $venta->abono4= 0;
+      $venta->fechapago4= "0000-00-00 00:00:00";
+    }
+
+    if($abono5s != "0"){
+      $venta->fechapago5= \Carbon\Carbon::now();
+      $venta->abono5= $abono5s;
+    }else{
+      $venta->abono5= 0;
+      $venta->fechapago5= "0000-00-00 00:00:00";
+    }
+    
     $venta->costo=$request->get('total_venta2'); //ANTES ERA costo
     $venta->costoajustado=$request->get('costoajustado');
     $venta->razon=$request->get('razon');
     $venta->status_id=$request->get('status_id');
     $venta->tecnico_id=$request->get('tecnico_id');
     $venta->receptor=$request->get('receptor');
+    $recp = $request->get('receptor');
+    $idsucur = DB::table('users')->where('name', '=', $recp)->pluck('sucursal_id');
+    $venta->sucursal = $idsucur;
     $venta->fechaentrega=$request->get('fechaentrega');
     $venta->tipopago1=$request->get('tipopago1');
     $venta->tipopago2=$request->get('tipopago2');
     $venta->tipopago3=$request->get('tipopago3');
     $venta->tipopago4=$request->get('tipopago4');
     $venta->tipopago5=$request->get('tipopago5');
-    $venta->abono1=$request->get('abono1');
-    $venta->abono2=$request->get('abono2');
-    $venta->abono3=$request->get('abono3');
-    $venta->abono4=$request->get('abono4');
-    $venta->abono5=$request->get('abono5');
+    
     $venta->save();
 
     //VAMOS A CREAR EL LISTADO DE CLIENTES DIRECTAMENTE DESDE LA ORDEN DE SERVICIO SI ES QUE NO LO ENCUENTRA EN LA TABLA DE CLIENTES. ESO ESPERO xD
@@ -215,6 +316,8 @@ class ServsController extends Controller
     $articulos = Producto::all();
     $cli = DB::table('clientes')->get();
     $servicio = Serv::find($id);
+    $email = $servicio->email;
+    $id = $servicio->id;
     $status = Status::where('status','<>',15)->where('status','<>',1)->lists('status', 'id');
     $user = User::where('perfil_id', 3)->lists('name', 'id');
     $sucursal = Sucursal::lists('nameS','id');
@@ -228,7 +331,7 @@ class ServsController extends Controller
     ->where('d.idventa','=', $id)
     ->get();
     //return view('servicio.editserv',['servicio'=>$servicio],compact('status','user','garantia','pagor','articulos','cli','detalle'));
-    return view('servicio.editserv',["servicio" => $servicio,"status" => $status, "user" => $user, "garantia" => $garantia, "pagor" => $pagor, "articulos" => $articulos, "cli" => $cli, "detalles" => $detalles, "sucursal" => $sucursal]);
+    return view('servicio.editserv',["servicio" => $servicio,"status" => $status, "user" => $user, "garantia" => $garantia, "pagor" => $pagor, "articulos" => $articulos, "cli" => $cli, "detalles" => $detalles, "email" => $email, "id" => $id]);
     //return ($detalles);
   }
 
@@ -246,9 +349,113 @@ class ServsController extends Controller
     $contactId = $id;//Input::get('id');
     $nombrecliente = Input::get('nombrecliente');
 
-    if ($contactName == 7){//SI SE LOCALIZA CLIENTE IGUAL SE REGISTRA
+        if ($contactName == 19){
+       $servicio = Serv::find($id);
+      //extraemos la fecha de ingreso para que no se modifique y pueda ser tomada por el reporte de ventas.
+      $fechaingreso1 = $servicio->fechaingreso;
+    
+      $servicio->fill($request->all()); //recuperamos todo de la vista
+
+        //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+      $servicio->fechaingreso = $fechaingreso1;
+      $servicio->status_id = 19;//cliente notificado en espera de recoleccion via correo
+      $hoy = \Carbon\Carbon::now();
+      //$hoy = $hoy->format('Y-m-d');
+      $notificame = $servicio->bitacoracontacto;
+      $servicio->bitacoracontacto = $notificame." Cliente no localizado, llamada: ".$hoy."; ";
+      $servicio->save();
+      $ordens = $servicio->id;
+      Session::flash('message','intento de contacto con cliente registrado en bitacora para orden: '.$ordens.'');
+      return Redirect::to('/servicio');
+    }
+
+    if ($contactName == 7){//SI Cliente notificado/En espera de recolección de cliente
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
+      //extraemos la fecha de ingreso para que no se modifique y pueda ser tomada por el reporte de ventas.
+      $fechaingreso1 = $servicio->fechaingreso;
+    
+      $servicio->fill($request->all()); //recuperamos todo de la vista
+
+        //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+      $servicio->fechaingreso = $fechaingreso1;
       $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
       $hoy = \Carbon\Carbon::now();
       //$hoy = $hoy->format('Y-m-d');
@@ -262,10 +469,11 @@ class ServsController extends Controller
 
     if ($contactName == 19){//SI NO SE ENCONTRO AL CLIENTE AGREGA BITACORA Y DEJA STATUS COMO NOTIFICADO
       $servicio = Serv::find($id);
+      $fechaingreso1 = $servicio->fechaingreso;
       $servicio->fill($request->all());
       $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
       $hoy = \Carbon\Carbon::now();
-      //$hoy = $hoy->format('Y-m-d');
+      $servicio->fechaingreso = $fechaingreso1;
       $notificame = $servicio->bitacoracontacto;
       $servicio->bitacoracontacto = $notificame." cliente NO localizado:".$hoy."; ";
       $servicio->save();
@@ -274,17 +482,63 @@ class ServsController extends Controller
       return Redirect::to('/servicio');
     }
 
-    if ($contactName == 6){//SI STATUS = REPARADO
-      if ($contactEmail <> ""){
-        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
-        Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-          $msj->subject('Ifiix: Orden de servicio lista para ser entregada'); //Motivo del correo
+    if ($contactName == 6){//SI STATUS = Equipo REGISTRADO, en espera de ingreso a sucursal; PERO NO ENVIADO A LA SUCURSAL DE REPARACION. es decir ya esta reparado aun no se envia a la sucursal //este status anteriormente es REPARADO: 6
+
+      //return ($contactName);
+      if ($contactEmail != " "){
+         $idtres = 3; //para la imagen 
+       $tres = Politica::find($idtres);
+        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
+  Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
+          $msj->subject('Lantastica Sistemas: Orden de servicio lista para ser entregada'); //Motivo del correo
           $msj->to($contactEmail);
         });
       }
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
-      $servicio->status_id = 7;//cliente notificado en espera de recoleccion via correo
+       $fechaingreso1 = $servicio->fechaingreso;
+       $servicio->fill($request->all());
+
+         //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+       $servicio->fechaingreso = $fechaingreso1;
+      $servicio->status_id = 6;//mantiene status reparado.
       $hoy = \Carbon\Carbon::now();
       //$hoy = $hoy->format('Y-m-d');
       $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
@@ -314,8 +568,49 @@ class ServsController extends Controller
 
     if ($contactName == 21){//SI STATUS = NO SE PUDO REVISAR
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
-      //$servicio->status_id = 7;
+       $fechaingreso1 = $servicio->fechaingreso;
+       $servicio->fill($request->all());
+
+         //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+       $servicio->fechaingreso = $fechaingreso1;
       $hoy = \Carbon\Carbon::now();
       //$hoy = $hoy->format('Y-m-d');
       $servicio->fechanotifica= $hoy;//GUARDAMOS LA FECHA DE NOTIFICACION
@@ -376,15 +671,59 @@ class ServsController extends Controller
     }
 
     if ($contactName == 22){//SI STATUS = NO SE PUDO REPARAR
-      if ($contactEmail <> ""){
-        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
+      if ($contactEmail <> " "){
+         $idtres = 3; //para la imagen 
+       $tres = Politica::find($idtres);
+        $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
         Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-          $msj->subject('Ifiix: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
+          $msj->subject('Lantastica Sistemas: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
           $msj->to($contactEmail);
         });
       }
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
+       $fechaingreso1 = $servicio->fechaingreso;
+       $servicio->fill($request->all());
+
+         //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+       $servicio->fechaingreso = $fechaingreso1;
       $servicio->status_id = 7;
       $hoy = \Carbon\Carbon::now();
     //  $hoy = $hoy->format('Y-m-d');
@@ -449,6 +788,7 @@ class ServsController extends Controller
         $detalle->save();
         $cont = $cont+1;
       }
+      $ordens = $servicio->id;
       Session::flash('message','Orden'.$ordens.'notifico a cliente via email NO reparación');
       return Redirect::to('/servicio');
     }
@@ -464,7 +804,50 @@ class ServsController extends Controller
     }else{
 
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
+       $fechaingreso1 = $servicio->fechaingreso;
+       $servicio->fill($request->all());
+
+       //VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+       $servicio->fechaingreso = $fechaingreso1;
       $servicio->costo=$request->get('total_venta2');
       $servicio->save();
       $idarticulo = $request->get('idarticulo');
@@ -490,7 +873,51 @@ class ServsController extends Controller
 
     if($contactName <> 6){
       $servicio = Serv::find($id);
-      $servicio->fill($request->all());
+       $fechaingreso1 = $servicio->fechaingreso;
+       $servicio->fill($request->all());
+
+
+//VAMOS A RECUPERAR LAS FECHAS Y ABONOS PARA EVALUAR SI ESTAN NULOS Y SI ES ASÍ PODER ACTUALIZAR SOLO ESTOS
+      $fabono1s=$request->get('fechapago1');
+      $fabono2s=$request->get('fechapago2');
+      $fabono3s=$request->get('fechapago3');
+      $fabono4s=$request->get('fechapago4');
+      $fabono5s=$request->get('fechapago5');
+
+      $Abono1ss=$request->get('abono1');
+      $Abono2ss=$request->get('abono2');
+      $Abono3ss=$request->get('abono3');
+      $Abono4ss=$request->get('abono4');
+      $Abono5ss=$request->get('abono5');
+
+    if($fabono1s == "0000-00-00 00:00:00" && $Abono1ss != 0){
+      $servicio->fechapago1= \Carbon\Carbon::now();
+      $servicio->abono1= $Abono1ss;
+    }
+
+    if($fabono2s == "0000-00-00 00:00:00" && $Abono2ss != 0){
+      $servicio->fechapago2= \Carbon\Carbon::now();
+      $servicio->abono2= $Abono2ss;
+    }
+
+    if($fabono3s == "0000-00-00 00:00:00" && $Abono3ss != 0){
+      $servicio->fechapago3= \Carbon\Carbon::now();
+      $servicio->abono3= $Abono3ss;
+    }
+
+     if($fabono4s == "0000-00-00 00:00:00" && $Abono4ss != 0){
+      $servicio->fechapago4= \Carbon\Carbon::now();
+      $servicio->abono4= $Abono4ss;
+    }
+
+    if($fabono5s == "0000-00-00 00:00:00" && $Abono5ss != 0){
+      $servicio->fechapago5= \Carbon\Carbon::now();
+      $servicio->abono5= $Abono5ss;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+       $servicio->fechaingreso = $fechaingreso1;
       $servicio->costo=$request->get('total_venta2');
       $servicio->fechanotifica="";//fecha de notitificacion vacia si NO esta reparado o status 21 ó 22
       $servicio->save();

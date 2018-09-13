@@ -140,13 +140,17 @@ return [
         /*
          * Application Service Providers...
          */
-        Ifiix\Providers\AppServiceProvider::class,
-        Ifiix\Providers\AuthServiceProvider::class,
-        Ifiix\Providers\EventServiceProvider::class,
-        Ifiix\Providers\RouteServiceProvider::class,
+        SGM\Providers\AppServiceProvider::class,
+        SGM\Providers\AuthServiceProvider::class,
+        SGM\Providers\EventServiceProvider::class,
+        SGM\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,     
+       
+
+Barryvdh\DomPDF\ServiceProvider::class,  
+Maatwebsite\Excel\ExcelServiceProvider::class,
+
         
 
     ],
@@ -199,6 +203,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => 'Barryvdh\DomPDF\Facade',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        
 
     ],
 

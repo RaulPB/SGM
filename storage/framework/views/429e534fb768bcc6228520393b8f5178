@@ -1,0 +1,31 @@
+<?php if(Session::has('message')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+
+<?php $__env->startSection('content'); ?>
+<table class="table table-striped">
+		<thead>
+			<th>Nombre de Sucursal</th>
+			<th>Operaciones</th>
+		</thead>
+		<?php foreach($sucur as $sucurs): ?>
+		<tbody>
+		<td><?php echo e($sucurs->nameS); ?></td>
+			
+			<td><?php echo link_to_route('sucursal.edit', $title = 'Editar', $parameters = $sucurs->id, $attributes = ['class'=>'btn btn-primary']); ?></td>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+
+	
+	<?php echo $sucur->render(); ?>
+
+	
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

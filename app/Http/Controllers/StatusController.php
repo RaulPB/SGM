@@ -1,17 +1,17 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
 
 use Redirect;
 use Session;
 use Illuminate\Routing\Route;
-use Ifiix\Status;
-use Ifiix\Http\Requests\StatusCreateRequest;//PARA VALIDACIONES DE CAMPOS REQUERIDOS
-use Ifiix\Http\Requests\StatusUpdateRequest;//PARA VALIDACIONES DE CAMPOS REQUERIDOS  statu
+use SGM\Status;
+use SGM\Http\Requests\StatusCreateRequest;//PARA VALIDACIONES DE CAMPOS REQUERIDOS
+use SGM\Http\Requests\StatusUpdateRequest;//PARA VALIDACIONES DE CAMPOS REQUERIDOS  statu
 class StatusController extends Controller
 {
     /**

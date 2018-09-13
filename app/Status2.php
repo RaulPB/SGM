@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,10 +11,10 @@ class Status2 extends Model
 
    /*   public function serv()
     {
-        return $this->hasOne('Ifiix\Serv');
+        return $this->hasOne('SGM\Serv');
     }*/
     public function compras()
     {
-        return $this->hasOne('Ifiix\Compras');
+        return $this->hasOne('SGM\Compras');
     }
 }

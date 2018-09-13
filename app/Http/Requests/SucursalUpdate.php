@@ -1,8 +1,8 @@
 <?php
 
-namespace Ifiix\Http\Requests;
+namespace SGM\Http\Requests;
 
-use Ifiix\Http\Requests\Request;
+use SGM\Http\Requests\Request;
 
 class SucursalUpdate extends Request
 {

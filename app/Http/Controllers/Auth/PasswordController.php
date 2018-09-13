@@ -1,8 +1,8 @@
 <?php
 
-namespace Ifiix\Http\Controllers\Auth;
+namespace SGM\Http\Controllers\Auth;
 
-use Ifiix\Http\Controllers\Controller;
+use SGM\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

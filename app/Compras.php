@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,12 +14,12 @@ class Compras extends Model
 
        public function status()
     {
-        return $this->belongsTo('Ifiix\Status2');
+        return $this->belongsTo('SGM\Status2');
     }
 
            public function mensajero()//esto es para tener el nombre del mensajero
     {
-        return $this->belongsTo('Ifiix\User');
+        return $this->belongsTo('SGM\User');
     }
 
 

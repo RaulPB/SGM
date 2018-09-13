@@ -128,7 +128,7 @@ $(document).ready(function(){
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-            1.-Orden de servicio</a>
+            ORDEN NUMERO: {!!$id!!}</a>
           </h4>
         </div>
         <div id="collapse1" class="panel-collapse collapse in">
@@ -136,7 +136,7 @@ $(document).ready(function(){
             <!-- AQUI -->
             <div class="form-group col-md-6">
               {!!Form::label('fechaingreso','Fecha de recepción:')!!}
-              {!!Form::date('fechaingreso', \Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+              {!!Form::text('fechaingreso', null,['class'=>'form-control','placeholder'=>'','readonly'=> 'true'])!!}
 
             </div>
 
@@ -167,7 +167,7 @@ $(document).ready(function(){
                  Celular del cliente:{!!Form::text('celular',null,['class'=>'form-control','placeholder'=>'3.-Celular Cliente', 'id'=>'celular'])!!}
                </div>
                <div class="form-group col-md-4">
-                 Email:{!!Form::text('email','ifiixver@gmail.com',['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
+                 Email:{!!Form::text('email',null,['class'=>'form-control','placeholder'=>'4.-Email Cliente', 'id'=>'email'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -329,12 +329,6 @@ $(document).ready(function(){
               {!!Form::select('garantia',$garantia)!!}
             </div>
 
-            <div class="form-group col-md-12">
-              {!!Form::label('sucur','Sucursal de Reparación/entrega del equipo:')!!}
-              {!!Form::select('sucursal',$sucursal)!!}
-            </div>
-
-            <!--aquimas -->
 
           </div>
         </div>
@@ -429,7 +423,7 @@ $(document).ready(function(){
 
               <div class="form-group col-md-4">
                 {!!Form::label('fechaingreso','Fecha 1:')!!}
-                {!!Form::text('fechapago1',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                {!!Form::text('fechapago1',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
               </div>
 
               <div class="form-group col-md-4">
@@ -444,7 +438,7 @@ $(document).ready(function(){
 
               <div class="form-group col-md-4">
                 {!!Form::label('fechaingreso','Fecha 2:')!!}
-                {!!Form::text('fechapago2',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                {!!Form::text('fechapago2',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
               </div>
 
               <div class="form-group col-md-4">
@@ -459,7 +453,7 @@ $(document).ready(function(){
 
               <div class="form-group col-md-4">
                 {!!Form::label('fechaingreso','Fecha 3:')!!}
-                {!!Form::text('fechapago3',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                {!!Form::text('fechapago3',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
               </div>
 
               <div class="form-group col-md-4">
@@ -474,7 +468,7 @@ $(document).ready(function(){
 
               <div class="form-group col-md-4">
                 {!!Form::label('fechaingreso','Fecha 4:')!!}
-                {!!Form::text('fechapago4',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                {!!Form::text('fechapago4',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
               </div>
 
               <div class="form-group col-md-4">
@@ -489,7 +483,7 @@ $(document).ready(function(){
 
               <div class="form-group col-md-4">
                 {!!Form::label('fechaingreso','Fecha 5:')!!}
-                {!!Form::text('fechapago5',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                {!!Form::text('fechapago5',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
               </div>
 
               <div class="form-group col-md-4">

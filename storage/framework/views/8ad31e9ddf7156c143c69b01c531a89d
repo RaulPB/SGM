@@ -1,0 +1,56 @@
+    
+    <?php $__env->startSection('content'); ?>
+<head>
+  <title>Encuesta al cliente</title>
+</head>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+<body>
+
+
+<div  align="center"> <img src=<?php echo e($imagen->politicas); ?> style="width:500%; max-width:250px;" > </div>
+FECHA DE CONSULTA: <?php echo e($hoy); ?> 
+<div style="background-color: #3867b7; height: 16px"></div>
+
+TOTAL DE CLIENTES ENCUESTADOS: <?php echo e($suma); ?>
+
+<div id="GraficoGoogleChart-ejemplo-1" style="width: 900px; height: 700px"></div>
+
+</body>
+
+<script>
+  google.load("visualization", "1", {packages:["corechart"]});
+   google.setOnLoadCallback(dibujarGrafico);
+   function dibujarGrafico() {
+     // Tabla de datos: valores y etiquetas de la gráfica
+     var data = google.visualization.arrayToDataTable([
+       ['Sucursal 1', '¿Como se entero de nosotros al dia de hoy?'],
+       ['Correo', <?php echo e($correo); ?>],
+       ['Espectacular', <?php echo e($espectacular); ?>],
+       ['Publicacion', <?php echo e($publicacion); ?>],
+       ['Local', <?php echo e($local); ?>],
+       ['Recomendación', <?php echo e($recomendacion); ?>],
+       ['Medallon', <?php echo e($medallon); ?>],
+       ['Flechas', <?php echo e($flechas); ?>],
+       ['Redes', <?php echo e($redes); ?>],
+       ['Web', <?php echo e($web); ?>],
+       ['Busqueda en Google', <?php echo e($google); ?>],
+       ['Negocio', <?php echo e($otronegocio); ?>],
+       ['Otros', <?php echo e($otros); ?>],
+
+     ]);
+     var options = {
+       title: '¿Como se entero de nosotros al dia de hoy?',
+       is3D: true,
+     }
+     // Dibujar el gráfico
+     new google.visualization.PieChart( 
+     //ColumnChart sería el tipo de gráfico a dibujar
+       document.getElementById('GraficoGoogleChart-ejemplo-1')
+     ).draw(data, options);
+   }
+ </script>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

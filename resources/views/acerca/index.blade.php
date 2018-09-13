@@ -1,8 +1,10 @@
+@extends('layouts.admin')
+@section('content')
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Coming Soon to a Browser Near You</title>
+		<title>SGM: Acerca de </title>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 
 		<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'></script>
@@ -19,17 +21,21 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/10923556_796261317075807_4523245903249147845_n.jpg?oh=cd5c3ebefe1a739828e1ab91812559e4&oe=5A21A718" width="200" height="200"alt="YourLogo" title="YourLogo"/>
+			<img src="http://www.cybercentermexico.com/images/ACERCA-DE-NOSOTROS.png" width="400" height="150"alt="YourLogo" title="YourLogo"/>
 			<div class="hr"></div>
-			<h1>Versión 3.1</h1>
-			<p> <strong>Raúl Palmeros Barrientos</strong></p>
+			<p align="center">SGM: Sistema de gestión multiplataforma ® V3.3</p>
+			<p>Copyright © 2016-2017 </p>
+			<p align="center"> <strong> MSICU. Raúl Palmeros Barrientos </strong></p>
+			<p align="center"> <strong> Email: raul.180786@gmail.com </strong></p>
+			<p align="center"> <strong>  </strong></p>
+			<hr>
+			<p align="center"> <strong> Licencia de uso unica: S89lTHnRmre6EZchyPHtM8k6HwQQ32lH </strong></p>
 
-			<section class="progress">
-				<div class="progress-bar-container" id="tipsy" title="100% Complete"> <!-- Edit this title for the tooltip pop up -->
-					<article class="progress-bar" style="width:100%"  ></article> <!-- Edit the width percentage value to indicate progress -->
-				</div>
-				<article class="txt-launch-day-hat"></article>
-			</section>
+
+
+
+
+
 
 			<div class="hr"></div>
 
@@ -38,3 +44,4 @@
 			</div>
 	</body>
 </html>
+@stop

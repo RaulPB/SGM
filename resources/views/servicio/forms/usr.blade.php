@@ -170,7 +170,7 @@ $(document).ready(function(){
                  Celular del cliente:{!!Form::text('celular',null,['class'=>'form-control','placeholder'=>'3.-Celular Cliente', 'id'=>'celular'])!!}
                </div>
                <div class="form-group col-md-4">
-                 Email:{!!Form::text('email','ifiixver@gmail.com',['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
+                 Email:{!!Form::text('email','',['class'=>'form-control','placeholder'=>'4.-Email del cliente','id'=>'email'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -423,7 +423,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('fechaingreso','Fecha 1:')!!}
-                 {!!Form::text('fechapago1',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                 {!!Form::text('fechapago1',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -438,7 +438,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('fechaingreso','Fecha 2:')!!}
-                 {!!Form::text('fechapago2',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                 {!!Form::text('fechapago2',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -453,7 +453,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('fechaingreso','Fecha 3:')!!}
-                 {!!Form::text('fechapago3',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                 {!!Form::text('fechapago3',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -468,7 +468,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('fechaingreso','Fecha 4:')!!}
-                 {!!Form::text('fechapago4',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                 {!!Form::text('fechapago4',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
                </div>
 
                <div class="form-group col-md-4">
@@ -483,7 +483,7 @@ $(document).ready(function(){
 
                <div class="form-group col-md-4">
                  {!!Form::label('fechaingreso','Fecha 5:')!!}
-                 {!!Form::text('fechapago5',\Carbon\Carbon::now(),['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
+                 {!!Form::text('fechapago5',null,['class'=>'form-control','placeholder'=>'','readonly' => 'true'])!!}
                </div>
 
                <div class="form-group col-md-4">

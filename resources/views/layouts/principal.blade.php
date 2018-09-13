@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<title>Ifiix: Reparamos tu móvil</title>
+<title>SGM: Sistema de Gestión Multiplataforma</title>
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <script src="js/jquery.min.js"></script>

@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(Ifiix\User::class, function (Faker\Generator $faker) {
+$factory->define(SGM\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,

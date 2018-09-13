@@ -1,0 +1,31 @@
+	<?php $__env->startSection('content'); ?>
+
+<?php if(Session::has('message')): ?>
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+<?php echo $__env->make('alerts.request', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> <!-- ESTA VISTA ES LA QUE MUESTRA EL METODO QUE LANZA LAS ALERTAS-->
+<?
+$message = $dire;
+echo "<script type='text/javascript'>
+alert('Atención: '+'$message');
+</script>";
+?>
+
+	<?php echo Form::open(['route'=>'servicio.store', 'method'=>'POST']); ?>
+
+
+	<?php echo $__env->make('servicio.forms.usr', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+	<?php echo Form::submit('Registrar',['class'=>'btn btn-primary btn-lg btn-block']); ?>
+
+	<?php echo Form::close(); ?>
+
+
+	<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

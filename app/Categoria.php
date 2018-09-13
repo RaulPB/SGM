@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class Categoria extends Model
 
   	public function producto()
     {
-        //return $this->hasOne('Ifiix\Producto');
-          return $this->belongsTo('Ifiix\Producto', 'id');
+        //return $this->hasOne('SGM\Producto');
+          return $this->belongsTo('SGM\Producto', 'id');
     }
 }

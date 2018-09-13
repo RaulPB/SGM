@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix\Jobs;
+namespace SGM\Jobs;
 
 use Illuminate\Bus\Queueable;
 

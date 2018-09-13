@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -46,23 +46,23 @@ class User extends Model implements AuthenticatableContract,
 
     public function perfil()
     {
-        return $this->belongsTo('Ifiix\Perfil');
+        return $this->belongsTo('SGM\Perfil');
     }
 
 
         public function sucursal()
     {
-        return $this->belongsTo('Ifiix\Sucursal');
+        return $this->belongsTo('SGM\Sucursal');
     }
 
 
      public function user()
     {
-        return $this->hasOne('Ifiix\User');
+        return $this->hasOne('SGM\User');
     }
 
         public function compras()//para poder identificar al mensajero asignado
     {
-        return $this->hasOne('Ifiix\Compras');
+        return $this->hasOne('SGM\Compras');
     }
 }

@@ -1,28 +1,29 @@
 <?php
 
-namespace Ifiix\Http\Controllers;
+namespace SGM\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Input;
-use Ifiix\Http\Requests;
-use Ifiix\Http\Controllers\Controller;
-use Ifiix\DetalleVenta;
-use Ifiix\Serv;
-use Ifiix\Status;
-use Ifiix\User;
-use Ifiix\Tpago;
-use Ifiix\Producto;
+use SGM\Http\Requests;
+use SGM\Http\Controllers\Controller;
+use SGM\DetalleVenta;
+use SGM\Serv;
+use SGM\Status;
+use SGM\User;
+use SGM\Tpago;
+use SGM\Producto;
 use DB;
 use Carbon\Carbon;
-use Ifiix\Http\Requests\ServicioCreate;
-use Ifiix\Http\Requests\ServicioUpdate;
+use SGM\Http\Requests\ServicioCreate;
+use SGM\Http\Requests\ServicioUpdate;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route;
 use Illuminate\Database\Query\Builder;
 use Log;
-use Ifiix\Garantia;
+use SGM\Garantia;
 use Mail;
+use SGM\Politica;
 
 class TecnicoController extends Controller
 {
@@ -97,7 +98,10 @@ class TecnicoController extends Controller
          //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
          $articulos = Producto::all();
          $servicio = Serv::find($id);
-         $status = Status::lists('status', 'id');
+         $id = $servicio->id;
+         //$status = Status::lists('status', 'id');
+        
+         $status = Status::where('id', 1)->orwhere('id',2)->orwhere('id',3)->orwhere('id',4)->orwhere('id',5)->orwhere('id',6)->orwhere('id',7)->orwhere('id',21)->orwhere('id',22)->lists('status', 'id'); 
          $user = User::where('perfil_id', 3)->lists('name', 'id');
          $garantia = Garantia::lists('garantia','id');
          $pagor = Tpago::lists('pago', 'id');
@@ -107,7 +111,7 @@ class TecnicoController extends Controller
         ->where('d.idventa','=', $id)
         ->get();
         // return view('tecnico.edit',['servicio'=>$servicio],compact('status','user','garantia','pagor'));
-         return view('tecnico.edit',["servicio" => $servicio,"status" => $status, "user" => $user, "garantia" => $garantia, "pagor" => $pagor, "articulos" => $articulos, "detalles" => $detalles]);
+         return view('tecnico.edit',["servicio" => $servicio,"status" => $status, "user" => $user, "garantia" => $garantia, "pagor" => $pagor, "articulos" => $articulos, "detalles" => $detalles, "id" => $id]);
 
     }
 
@@ -126,16 +130,19 @@ class TecnicoController extends Controller
         Session::flash('message','Orden actualizada');
         return Redirect::to('/admin');//->with('success'); con esto regresamo al menu principal*/
         $contactName = Input::get('status_id');
+      
         $contactEmail = Input::get('email');
         $contactId = $id;//Input::get('id');
         $nombrecliente = Input::get('nombrecliente');
 
 
         if ($contactName == 6){//SI STATUS = REPARADO
-          if ($contactEmail <> ""){
-            $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
+          if ($contactEmail != " "){
+             $idtres = 3; //para la imagen 
+              $tres = Politica::find($idtres);
+            $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
             Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-              $msj->subject('Ifiix: Orden de servicio lista para ser entregada'); //Motivo del correo
+              $msj->subject('SGM: Orden de servicio lista para ser entregada'); //Motivo del correo
               $msj->to($contactEmail);
             });
           }
@@ -250,10 +257,12 @@ class TecnicoController extends Controller
         }
 
         if ($contactName == 22){//SI STATUS = NO SE PUDO REPARAR
-          if ($contactEmail <> ""){
-            $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente);
+          if ($contactEmail <> " "){
+             $idtres = 3; //para la imagen 
+             $tres = Politica::find($idtres);
+            $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
             Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-              $msj->subject('Ifiix: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
+              $msj->subject('SGM: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
               $msj->to($contactEmail);
             });
           }
@@ -323,7 +332,8 @@ class TecnicoController extends Controller
             $detalle->save();
             $cont = $cont+1;
           }
-          Session::flash('message','Se notifico al cliente via correo electronico');
+          $ordens = $servicio->id;
+          Session::flash('message','Orden'.$ordens.'notifico a cliente via email NO reparación');
           return Redirect::to('/admin');//->with('success');
         }
 

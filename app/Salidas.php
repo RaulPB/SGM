@@ -1,6 +1,6 @@
 <?php
 
-namespace Ifiix;
+namespace SGM;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class Salidas extends Model
 
     public function producto()
     {
-        return $this->belongsTo('Ifiix\Producto');
+        return $this->belongsTo('SGM\Producto');
     }
 }
