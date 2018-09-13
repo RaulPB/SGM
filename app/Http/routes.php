@@ -14,7 +14,7 @@
 /*Route::get('/', function () {//metodo usado solo para apuntar a vista home de laravel; deshabilitada al fijar una nueva raiz
     return view('welcome');
 });*/
-//Hola Git
+//Por favor cambia
  //ROUTES DEFINIDOS EN ORDEN DE CREACION
 Route::get('/','FrontController@index');  //AQUI INICIA EL PROYECTO IFIIX
 Route::resource('log','LogController'); //para iniciar sesion (validaciones)
