@@ -7,14 +7,16 @@ namespace Composer\Autoload;
 class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
 {
     public static $files = array (
-        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
+        'd92e6dafb93e67e5b59c39d9b9d00659' => __DIR__ . '/..' . '/codecourse/notify/src/Codecourse/Notify/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
@@ -42,6 +44,7 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
             'Symfony\\Polyfill\\Util\\' => 22,
             'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
@@ -93,7 +96,6 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
             'Cron\\' => 5,
             'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
-            'Carbon\\' => 7,
         ),
         'B' => 
         array (
@@ -105,8 +107,8 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -131,6 +133,10 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Component\\Yaml\\' => 
         array (
@@ -252,14 +258,14 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
         ),
-        'Carbon\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
         'Barryvdh\\DomPDF\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-dompdf/src',
         ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
     public static $prefixesPsr0 = array (
@@ -329,6 +335,13 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
                 0 => __DIR__ . '/..' . '/phpspec/php-diff/lib',
             ),
         ),
+        'C' => 
+        array (
+            'Codecourse\\Notify\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/codecourse/notify/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
@@ -345,6 +358,7 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         'CreateMensajesTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_19_171825_create_mensajes_table.php',
         'CreateNotasTable' => __DIR__ . '/../..' . '/database/migrations/2017_07_05_001423_create_notas_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreatePcservsTable' => __DIR__ . '/../..' . '/database/migrations/2019_03_28_232135_create_pcservs_table.php',
         'CreatePerfilsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_23_192557_create_perfils_table.php',
         'CreatePoliticasTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_18_134618_create_politicas_table.php',
         'CreateProductosTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_202228_create_productos_table.php',
@@ -355,6 +369,7 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         'CreateStatus2sTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_20_004325_create_status2s_table.php',
         'CreateStatusesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_23_192446_create_statuses_table.php',
         'CreateSucursalsTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_23_192435_create_sucursals_table.php',
+        'CreateTabletservsTable' => __DIR__ . '/../..' . '/database/migrations/2019_03_28_232150_create_tabletservs_table.php',
         'CreateTpagosTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_13_203326_create_tpagos_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table 10.18.52.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
@@ -914,6 +929,7 @@ class ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf::$fallbackDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitb9c307fb70592e90b15aa9211ae374bf::$classMap;
 

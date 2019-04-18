@@ -7,7 +7,13 @@
 <?php endif; ?>
 
 
+ 
+
+
+
 <?php $__env->startSection('content'); ?>
+
+
 
 <?php echo Form::open(['route' => 'producto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']); ?>
 
@@ -21,7 +27,6 @@
 
 	<table class="table table-striped">
 		<thead>
-			<th>Id</th>
 			<th>Marca</th>
 			<th>Producto/Refacción</th>
 			<th>Cantidad</th>
@@ -31,7 +36,6 @@
 			</thead>
 			<?php foreach($prod as $prods): ?>
 		<tbody>
-			<td><?php echo e($prods -> id); ?></td>
 			<td><?php echo e($prods -> marca); ?></td>
 			<td><?php echo e($prods -> modelo); ?></td>
 			<td><?php echo e($prods -> cantidad); ?></td>

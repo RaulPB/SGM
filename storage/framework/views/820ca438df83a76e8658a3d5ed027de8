@@ -10,17 +10,19 @@
 			<div >
 				<?php echo Form::open(['route'=>'log.store', 'method'=>'POST']); ?>
 
-					<div class="form-group">
-						<?php echo Form::label('correo','Correo:'); ?>	
-						<?php echo Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Ingresa tu correo']); ?>
+					<div class="form-group" align="center">
+						
+						<?php echo Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Email']); ?>
 
+							
 					</div>
-					<div class="form-group">
-						<?php echo Form::label('contrasena','Contraseñ@:'); ?>	
-						<?php echo Form::password('password',['class'=>'form-control', 'placeholder'=>'Ingresa tu contraseña']); ?>
+					<div class="form-group" align="center">
+							
+						<?php echo Form::password('password',['class'=>'form-control', 'placeholder'=>'Password']); ?>
 
+						
 					</div>
-					<?php echo Form::submit('Iniciar',['class'=>'btn btn-primary btn-block']); ?>
+					<?php echo Form::submit('Iniciar sesión',['class'=>'btn btn-primary btn-block']); ?>
 
 				<?php echo Form::close(); ?>
 

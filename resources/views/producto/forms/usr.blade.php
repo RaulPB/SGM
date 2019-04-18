@@ -16,12 +16,12 @@
 
 	<div class="form-group">
 		{!!Form::label('pre','Precio a publico:')!!}
-		{!!Form::text('preciop',null,['class'=>'form-control','placeholder'=>'Ingresa costo de venta al publico'])!!}
+		{!!Form::number('preciop',null,['class'=>'form-control','placeholder'=>'Ingresa costo de venta al publico'])!!}
 	</div>
 
 	<div class="form-group">
 		{!!Form::label('cant','Cantidad:')!!}
-		{!!Form::text('cantidad',null,['class'=>'form-control','placeholder'=>'Ingresa cantidad de producto a guardar en inventario'])!!}
+		{!!Form::number('cantidad',null,['class'=>'form-control','placeholder'=>'Ingresa cantidad de producto a guardar en inventario'])!!}
 	</div>
 
 	<div class="form-group">

@@ -18,4 +18,5 @@ return array(
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'Dotenv' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
+    'Codecourse\\Notify\\' => array($vendorDir . '/codecourse/notify/src'),
 );

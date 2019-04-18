@@ -16,7 +16,4 @@
 		{!!Form::select('perfil_id',$perfiles)!!}
 	</div>
 
-	<div class="list-group">
-		{!!Form::label('Sucursal','Sucursal:')!!}
-		{!!Form::select('sucursal_id',$sucursal)!!}
-	</div>
+

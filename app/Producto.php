@@ -27,7 +27,7 @@ class Producto extends Model
     }
 
 
-     public function scopeIds($query, $modelo){ //Para listar los productos en el inventario
+     public function scopeIds($query, $modelo){ //Para listar los productos en el inventario para jefes de unidad
 
     //  if(trim($modelo) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
     //    $query->where('modelo','LIKE',"%$modelo%")->where('status','LIKE', "%Null%");
@@ -47,6 +47,25 @@ class Producto extends Model
 
         }
 
+     public function scopeIdss($query, $modelo){ //Para listar todos los productos para el administradro general.
+
+    //  if(trim($modelo) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+    //    $query->where('modelo','LIKE',"%$modelo%")->where('status','LIKE', "%Null%");
+
+       //RECUPERAMOS LA SUCURSAL DEL USUARIO LOGUEADO PARA REVISAR SU INVENTARIO
+      if(trim($modelo) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+        //$query->where('modelo','LIKE',"%$modelo%");
+        $user = Auth::user()->sucursal_id;
+        $query->where('modelo','LIKE',"%$modelo%")->Where('status',"=", "Activo")->get();
+        }else{
+          $user = Auth::user()->sucursal_id;
+         //$query->where('status', "Activo")->orWhere('sucursal_id', '$usuarioa')->get();
+          $query->where('status',"=", "Activo")->get();
+
+        }
+      
+
+        }
 
         public function scopeId($query, $modelo){ // para listar en metodo de precio al publico
 

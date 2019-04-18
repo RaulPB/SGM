@@ -24,6 +24,7 @@ use Log;
 use SGM\Garantia;
 use Mail;
 use SGM\Politica;
+use Auth;
 
 class TecnicoController extends Controller
 {
@@ -96,13 +97,16 @@ class TecnicoController extends Controller
     public function edit($id)
     {
          //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
-         $articulos = Producto::all();
+         $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+         $articulos = Producto::where('sucursal_id',"=", $idlogueado)->where("status", "=", "Activo")->get();
          $servicio = Serv::find($id);
          $id = $servicio->id;
+         
          //$status = Status::lists('status', 'id');
         
          $status = Status::where('id', 1)->orwhere('id',2)->orwhere('id',3)->orwhere('id',4)->orwhere('id',5)->orwhere('id',6)->orwhere('id',7)->orwhere('id',21)->orwhere('id',22)->lists('status', 'id'); 
-         $user = User::where('perfil_id', 3)->lists('name', 'id');
+         
+         $user = User::where('perfil_id', 3)->Where('sucursal_id',"=", $idlogueado)->lists('name', 'id'); //regresamos solo los tecnicos.
          $garantia = Garantia::lists('garantia','id');
          $pagor = Tpago::lists('pago', 'id');
          $detalles = DB::table('detalle_venta as d')

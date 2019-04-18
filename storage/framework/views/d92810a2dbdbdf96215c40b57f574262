@@ -1,0 +1,201 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <table>
+
+  <tr>
+    <td> <img src= <?php echo e($imagen->politicas); ?> style="width:400%; max-width:550px;"></td>
+    <td colspan="2"><FONT SIZE=1>Nombre del cliente: <?php echo e($nombrecliente); ?></FONT></td>
+    <td></td>
+    <td colspan="">Folio: <?php echo e($id); ?></td>
+    <td colspan="">Sucursal: <?php echo e($claven); ?></td>
+    
+
+  </tr>
+  <tr>
+    <td colspan="1"><FONT SIZE=1>Fecha de Recepción: </FONT><FONT SIZE=1> <?php echo e($fecharecepcion); ?></FONT></td>
+    <td colspan="2"><FONT SIZE=1>Fecha de Entrega:</FONT><FONT SIZE=1> <?php echo e($fechaentrega); ?></FONT></td>
+     <td colspan="" rowspan="" headers=""><FONT SIZE=1> Marca con una X el lugar del golpe en el equipo</FONT></td>
+     <td colspan="" rowspan="" headers=""><FONT SIZE=1> Patrón de desbloqueo </FONT></td>
+     <td colspan="" rowspan="" headers=""><FONT SIZE=1> Marca con una X el lugar del golpe en el portatil</FONT></td>
+  </tr>
+
+  <tr>
+    <td><FONT SIZE=1>Marca: <?php echo e($marca); ?></FONT></td>
+    <td><FONT SIZE=1>Modelo: <?php echo e($modelo); ?></FONT></td>
+    <td><FONT SIZE=1>Tipo: <?php echo e($tipo); ?></FONT></td>
+    <td> <img src="http://sm.pcmag.com/t/pcmag_latam/photo/i/iphone-5s/iphone-5s_twbc.640.jpg" style="width:500%; max-width:150px;"> </td>
+      <td><img src="https://img.helpforsmartphone.com/1cb4e9b69030ee4afc4dd2f668fd1f4b-w300.png" style="width:400%; max-width:100px;"></FONT></td>
+    <td><img src="https://store.storeimages.cdn-apple.com/4662/as-images.apple.com/is/image/AppleInc/aos/published/images/m/bp/mbp13/gray/mbp13-gray-select-201610?wid=452&hei=420&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1495842439811" style="width:800%; max-width:200px;"></td>
+
+  </tr>
+  <tr>
+    <td><FONT SIZE=1>N/S: <?php echo e($ns); ?></FONT></td>
+    <td><FONT SIZE=1>IMEI: <?php echo e($imei); ?></FONT></td>
+    <td><FONT SIZE=1>Color: <?php echo e($color); ?></FONT></td>
+    <td><FONT SIZE=1>Compañia: <?php echo e($compañia); ?></FONT></td>
+  </tr>
+ </table>
+
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <td colspan="5">Problema a reparar:
+                                    <FONT SIZE=1> <?php echo e($problemacliente); ?></FONT></td>
+                                     <td colspan="5">Observaciones: <FONT SIZE=0> <?php echo e($diagnostico1); ?></FONT></td>
+                                </tr>
+                                <tr>
+                                  <td><FONT SIZE=0>Enciende: <?php echo e($benciende); ?></FONT></td>
+                                  <td><FONT SIZE=0>Botón de volumén: <?php echo e($bvolumen); ?></FONT></td>
+                                  <td><FONT SIZE=0>Botón de vibrador: <?php echo e($bvibrador); ?></FONT></td>
+                                  <td><FONT SIZE=0>Pantalla: <?php echo e($pantalla); ?></FONT></td>
+                                  <td><FONT SIZE=0>Touch: <?php echo e($touch); ?></FONT></td>
+                                  <td><FONT SIZE=0>Display: <?php echo e($display); ?></FONT></td>
+                                  <td><FONT SIZE=0>Cámara trasera: <?php echo e($ctrasera); ?></FONT></td>
+                                  <td><FONT SIZE=0>Cámara frontal: <?php echo e($cfrontal); ?></FONT></td>
+                                  <td><FONT SIZE=0>Centro de carga: <?php echo e($ccarga); ?></FONT></td>
+                                  <td><FONT SIZE=0>Altavoz: <?php echo e($altavoz); ?></FONT></td>
+                                </tr>
+
+                                <tr>
+                                  <td><FONT SIZE=0>Microfono: <?php echo e($microfono); ?></FONT></td>
+                                  <td><FONT SIZE=0>Marca: <?php echo e($marca); ?></FONT></td>
+                                  <td><FONT SIZE=0>Auricular: <?php echo e($auricular); ?></FONT></td>
+                                  <td><FONT SIZE=0>Bocina externa: <?php echo e($boexterna); ?></FONT></td>
+                                  <td><FONT SIZE=0>Jack: <?php echo e($jack); ?></FONT></td>
+                                  <td><FONT SIZE=0>Wifi: <?php echo e($wifi); ?></FONT></td>
+                                  <td><FONT SIZE=0>Bluetooth: <?php echo e($bluetooth); ?></FONT></td>
+                                  <td><FONT SIZE=0>Datos moviles: <?php echo e($datosm); ?></FONT></td>
+                                  <td><FONT SIZE=0>Bateria: <?php echo e($bateria); ?></FONT></td>
+                                  <td><FONT SIZE=0>Porta SIM: <?php echo e($portasim); ?></FONT></td>
+                                </tr>
+                                <tr>
+                                  <td><FONT SIZE=0>Sim: <?php echo e($sim); ?></FONT></td>
+                                  <td><FONT SIZE=0>Botón Home: <?php echo e($bhome); ?></FONT></td>
+                                  <td><FONT SIZE=0>Touch ID: <?php echo e($touchid); ?></FONT></td>
+                                  <td><FONT SIZE=0>Sensor de proximidad: <?php echo e($sensorp); ?></FONT></td>
+                                  <td><FONT SIZE=0>Carcasa: <?php echo e($carcasa); ?></FONT></td>
+                                  <td><FONT SIZE=0>Teclado: <?php echo e($teclado); ?></FONT></td>
+                                  <td><FONT SIZE=0>Señal: <?php echo e($señal); ?></FONT></td>
+ <td><FONT SIZE=0>Contraseña: <?php echo e($contraseña); ?></FONT></td>
+  <td><FONT SIZE=0>Telefono del cliente: <?php echo e($celular); ?></FONT></td>
+                                  <td><FONT SIZE=0></FONT></td>
+                                </tr>
+
+                             <tr>
+                                  <td colspan="2"><strong>TOTAL: <?php echo e($costo); ?></strong></td>
+                                  <td colspan="2"><strong>Anticipo: <?php echo e($abonos); ?></strong></td>
+                                  <td colspan="8"><FONT SIZE=0>Le atendio: <?php echo e($receptor); ?></FONT></td>
+                                  <H6 align="center">Recibo el equipo ya reparado y quedo satisfecho con el servicio</H6>
+
+                                  <H6 align="center">Nombre y firma aceptando las condiciones</H6>
+                                  <H6 align="center">Declaro ser el dueño del equipo que traigo a reparar, y me comprometo a recogerlo en un plazo máximo de 5 días hábiles después de la fecha pactada de entrega, si no lo recojo, Ifiix podrá disponer del equipo sin previo aviso.</H6>
+                              </tr>
+
+
+
+                            </thead>
+<FONT SIZE=0><?php echo e($avi->politicas); ?>.<?php echo e($poli->politicas); ?></FONT>
+                        </table>
+
+<table>
+<thead>
+  <tr>
+
+    <td><img src= <?php echo e($imagen->politicas); ?> style="width:250%; max-width:550px;"> Sucursal: <?php echo e($claven); ?></td>
+    <td colspan=""><FONT SIZE=0>Fecha de Recepción: </FONT><FONT SIZE=1> <?php echo e($fecharecepcion); ?></FONT></td>
+    <td colspan=""><FONT SIZE=0>Fecha de Entrega:</FONT><FONT SIZE=1> <?php echo e($fechaentrega); ?></FONT></td>
+  </tr>
+
+  <tr>
+    <td colspan=""><FONT SIZE=0>Comprobante de entrega al cliente</FONT></td>
+    <td colspan="1"><FONT SIZE=0>Nombre del cliente: <?php echo e($nombrecliente); ?></FONT></td>
+    <td><FONT SIZE=0>Folio: <?php echo e($id); ?> </FONT></td>
+  </tr>
+
+  <tr>
+    <td><FONT SIZE=0>Marca: <?php echo e($marca); ?></FONT></td>
+    <td><FONT SIZE=0>Modelo: <?php echo e($modelo); ?></FONT></td>
+    <td><FONT SIZE=0>Tipo: <?php echo e($tipo); ?></FONT></td>
+  </tr>
+
+                          </thead>
+                          <tbody>
+                            <tr>
+
+                              <td colspan=""><FONT SIZE=0> Problema a reparar:</FONT>
+                                    <FONT SIZE=0> <?php echo e($problemacliente); ?></FONT></td>
+                              <td colspan=""> <FONT SIZE=0> Observaciones: <?php echo e($diagnostico1); ?></FONT></td>
+                              <td colspan=""><strong>TOTAL: <?php echo e($costo); ?></strong></td>
+                            </tr>
+                            <tr>
+                              <H6 align="center">Nombre y firma aceptando las condiciones</H6>
+                               <FONT SIZE=0 align="center"><?php echo e($pie->politicas); ?></FONT>
+                               <td colspan="3"><FONT SIZE=1>CONTAMOS CON SERVICIO A DOMICILIO.</FONT> <FONT SIZE=0><?php echo e($dire->politicas); ?></FONT></td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+
+
+
+
+
+
+
+<style>
+.height {
+    min-height: 200px;
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+</style>

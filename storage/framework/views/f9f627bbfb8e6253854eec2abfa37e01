@@ -1,0 +1,34 @@
+<?php if(Session::has('message')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+
+<?php $__env->startSection('content'); ?>
+	<table class="table table-striped">
+		<thead>
+			<th>Nombre</th>
+			<th>Telefono</th>
+			<th>E-mail</th>
+			<th>RFC</th>
+			<th>Operaciones</th>
+			</thead>
+			<?php foreach($cliente as $cli): ?>
+		<tbody>
+			<td><?php echo e($cli -> cliente); ?></td>
+			<td><?php echo e($cli -> telefono); ?></td>
+			<td><?php echo e($cli -> correo); ?></td>
+			<td><?php echo e($cli -> facturacion); ?></td>
+			<td><?php echo link_to_route('clientes.edit', $title = 'Revisar', $parameters = $cli->id, $attributes = ['class'=>'btn btn-info btn-lg btn-block']); ?></td>
+		</tbody>
+			<?php endforeach; ?>
+	</table>
+<?php echo $cliente->render(); ?>
+
+	
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

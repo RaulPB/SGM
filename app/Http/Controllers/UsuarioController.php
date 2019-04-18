@@ -13,6 +13,8 @@ use SGM\Sucursal; //IMPORTANTE INCLUIR EL MODELO PARA QUE LO PUEDA LISTAR
 use SGM\User;
 use Session;
 use Redirect;
+use Auth;
+use DB;
 use Illuminate\Routing\Route;
 
 class UsuarioController extends Controller
@@ -28,10 +30,19 @@ class UsuarioController extends Controller
 
     public function index()  //listado de los recursos disponibles en la base de datos
     {
-        
-        $users = User::where('perfil_id','<>', '8')->where('perfil_id','<>', '9')->paginate(10);
-        return view('usuario.index', compact('users'));
 
+        $idlogueadoperfil = Auth::user()->perfil_id; //recuperamos el perfil del usuario logueado para decidir que mostrarles.
+        $idlogueadosucur = Auth::user()->sucursal_id; //recuperamos el perfil del usuario logueado para decidir que mostrarles.
+
+
+        if($idlogueadoperfil == 1){
+        $users = User::where('perfil_id','<>', '9')->where('sucursal_id',$idlogueadosucur)->paginate(10);
+        
+        return view('usuario.index', compact('users'));
+        }else{
+            $users = User::where('perfil_id','<>', '9')->paginate(10);
+        return view('usuario.index', compact('users'));
+        }
 
      }
 
@@ -42,9 +53,19 @@ class UsuarioController extends Controller
      */
     public function create()//creamos una carpeta usuario y esta almacenara la vista para crear
     {
+        $idlogueadoperfil = Auth::user()->perfil_id; //recuperamos el perfil del usuario logueado para decidir que mostrarles.
+       
+        if($idlogueadoperfil == 1){ //ESTO ES PARA QUE SE LE MUESTRE A LOS JEFES DE UNIDAD.
+          //$perfiles = Perfil::lists('perfil', 'id'); 
+         $perfiles = DB::table('perfils')->where('id', '<>', '10')->where('id','<>','9')->lists('perfil', 'id');
+
+        return view('usuario.create',compact('perfiles'));//variables a las que asigne campos reales de la base de datos
+        }
+        else{ //sis soy SUPER USER PUEDO VER TODO
         $perfiles = Perfil::lists('perfil', 'id'); //campos reales de la tabla para mostrar en selects
         $sucursal = Sucursal::lists('nameS', 'id');//campos reales de la tabla para mostrar en selects
-        return view('usuario.create',compact('perfiles','sucursal'));//variables a las que asigne campos reales de la base de datos
+        return view('usuario.create2',compact('perfiles','sucursal'));//variables a las que asigne campos reales de la base 
+        }
     }
 
     /**
@@ -55,7 +76,21 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequest $request) //variable request que "cacha", el formulario enrutado
     {
+         $idlogueadoperfil = Auth::user()->perfil_id; //
+         $idlogueadosucur = Auth::user()->sucursal_id; //
+
+     if($idlogueadoperfil == 1){ //ESTO ES PARA QUE SE LE MUESTRE A LOS JEFES DE UNIDAD.
        User::create([
+            'sucursal_id'=>$idlogueadosucur,
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'password'=>$request['password'],
+            'perfil_id'=>$request['perfil_id'],
+
+        ]);
+       return redirect('/usuario');//->with('message','Usuario Creado Correctamente'); //mandamos vista con mensaje que se
+        }else{
+            User::create([
             'sucursal_id'=>$request['sucursal_id'],
             'name'=>$request['name'],
             'email'=>$request['email'],
@@ -64,7 +99,7 @@ class UsuarioController extends Controller
 
         ]);
        return redirect('/usuario');//->with('message','Usuario Creado Correctamente'); //mandamos vista con mensaje que se
-
+        }
 
     }
 
@@ -87,10 +122,30 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-         $user = User::find($id);
+       /*  $user = User::find($id);
          $perfiles = Perfil::lists('perfil', 'id'); //campos reales de la tabla
          $sucursal = Sucursal::lists('nameS', 'id');
-         return view('usuario.edit',['user'=>$user],compact('perfiles','sucursal'));
+         return view('usuario.edit',['user'=>$user],compact('perfiles','sucursal'));*/
+
+
+        $idlogueadoperfil = Auth::user()->perfil_id; //recuperamos el perfil del usuario logueado para decidir que mostrarles.
+       
+        if($idlogueadoperfil == 1){ //ESTO ES PARA QUE SE LE MUESTRE A LOS JEFES DE UNIDAD.
+          //$perfiles = Perfil::lists('perfil', 'id'); 
+         $user = User::find($id);
+         $perfiles = DB::table('perfils')->where('id', '<>', '10')->where('id','<>','9')->lists('perfil', 'id');
+
+        return view('usuario.edit',compact('perfiles','user'));//variables a las que asigne campos reales de la base de datos
+        }
+        else{ 
+        //sis soy SUPER USER PUEDO VER TODO
+        $user = User::find($id);
+        $perfiles = Perfil::lists('perfil', 'id'); //campos reales de la tabla para mostrar en selects
+        $sucursal = Sucursal::lists('nameS', 'id');//campos reales de la tabla para mostrar en selects
+        return view('usuario.edit2',compact('perfiles','sucursal','user'));//variables a las que asigne campos reales de la base 
+        }
+
+
     }
 
     /**
@@ -100,7 +155,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->fill($request->all());//metodo para rellenar campos especificados en los modelos

@@ -26,6 +26,9 @@ use Redirect;
 use Illuminate\Routing\Route;
 use Illuminate\Database\Query\Builder;
 use SGM\Politica;
+use Auth;
+ use Cookie;
+
 class ServsController extends Controller
 {
   /**
@@ -42,6 +45,7 @@ class ServsController extends Controller
     //dd($request->get('imei'));//PARA VALIDAR HASTA QUE PUNTO TODO VA FUNCIONANDO EN EL PASO DE DATOS
     $servicio = Serv::id($request->get('id'))->orderBy('created_at', 'asc')->paginate(5);//->orderBy('created_at', 'asc');
     //$correo = Serv::where('status','<>', 'Entregado al cliente')->orderBy('fecha_recep', 'asc')->get();
+
     return view('servicio.indexserv',compact('servicio'));
   }
   /**
@@ -55,12 +59,14 @@ class ServsController extends Controller
     $dire=$idprov->mensaje;
     //vamos a mandar el listado de articulos del inventario para la busqueda
     //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
-    $articulos = Producto::all();
+    $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+    $articulos = Producto::where('sucursal_id',"=", $idlogueado)->where("status", "=", "Activo")->get();
 
     $cli = DB::table('clientes')->get();
     $garantia = DB::table('garantias')->lists('garantia', 'id');
     $status = Status::lists('status', 'id');
-    $user = User::where('perfil_id', 3)->lists('name', 'id'); //regresamos solo los tecnicos.
+    $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+    $user = User::where('perfil_id', 3)->Where('sucursal_id',"=", $idlogueado)->lists('name', 'id'); //regresamos solo los tecnicos.
     $pagor = Tpago::lists('pago', 'id');
     //$employees = Employee::where('branch_id', 9)->get()->lists('full_name', 'id');
     return view('servicio.create',compact('status','user','pagor','dire','articulos','cli','garantia'));//variables a las que asigne campos reales de la base de datos
@@ -189,7 +195,7 @@ class ServsController extends Controller
     $venta->flash=$request->get('flash');
   }
 
-    if($contactName == 6 || $contactName == 21 || $contactName == 22){
+    if($contactName == 6 || $contactName == 21 || $contactName == 22){ //REPARADO-NO SE PUDO REVISAR-NO SE PUDO REPARAR
       $hoy = \Carbon\Carbon::now();
       $venta->fechanotifica= $hoy;
     }
@@ -288,7 +294,10 @@ class ServsController extends Controller
       $cont = $cont+1;
     }
     $ordens = $venta->id;
-  return redirect('encuesta/create')->with('status', 'Orden '.$ordens.' ingresada correctamente');
+
+    Cookie::queue('Orden', $ordens, 60);
+    return redirect('encuesta/create');
+   
   }
 
   /**
@@ -313,13 +322,15 @@ class ServsController extends Controller
   public function edit($id)
   {
     //$articulos = DB::table('productos')->where('cantidad', '>', 0)->get();
-    $articulos = Producto::all();
+    $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+    $articulos = Producto::where('sucursal_id',"=", $idlogueado)->where("status", "=", "Activo")->get();
     $cli = DB::table('clientes')->get();
     $servicio = Serv::find($id);
     $email = $servicio->email;
     $id = $servicio->id;
     $status = Status::where('status','<>',15)->where('status','<>',1)->lists('status', 'id');
-    $user = User::where('perfil_id', 3)->lists('name', 'id');
+    $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+    $user = User::where('perfil_id', 3)->Where('sucursal_id',"=", $idlogueado)->lists('name', 'id'); //regresamos solo los tecnicos.
     $sucursal = Sucursal::lists('nameS','id');
     $garantia = Garantia::lists('garantia','id');
     $pagor = Tpago::lists('pago', 'id');
@@ -404,7 +415,7 @@ class ServsController extends Controller
       $servicio->bitacoracontacto = $notificame." Cliente no localizado, llamada: ".$hoy."; ";
       $servicio->save();
       $ordens = $servicio->id;
-      Session::flash('message','intento de contacto con cliente registrado en bitacora para orden: '.$ordens.'');
+      Session::flash('msg','intento de contacto con cliente registrado en bitacora para orden: '.$ordens.'');
       return Redirect::to('/servicio');
     }
 
@@ -463,7 +474,7 @@ class ServsController extends Controller
       $servicio->bitacoracontacto = $notificame." Notificado por e-mail/llamada: ".$hoy."; ";
       $servicio->save();
       $ordens = $servicio->id;
-      Session::flash('message','Contacto con cliente registrado en bitacora para orden: '.$ordens.'');
+      Session::flash('msg','Contacto con cliente registrado en bitacora para orden: '.$ordens.'');
       return Redirect::to('/servicio');
     }
 
@@ -478,7 +489,7 @@ class ServsController extends Controller
       $servicio->bitacoracontacto = $notificame." cliente NO localizado:".$hoy."; ";
       $servicio->save();
       $ordens = $servicio->id;
-      Session::flash('message','Cliente NO localizado se registro en bitacora para orden: '.$ordens.'');
+      Session::flash('notify','Cliente NO localizado se registro en bitacora para orden: '.$ordens.'');
       return Redirect::to('/servicio');
     }
 
@@ -490,7 +501,7 @@ class ServsController extends Controller
        $tres = Politica::find($idtres);
         $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
   Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-          $msj->subject('Lantastica Sistemas: Orden de servicio lista para ser entregada'); //Motivo del correo
+          $msj->subject('IMPORTANTE:: Orden de servicio lista para ser entregada'); //Motivo del correo
           $msj->to($contactEmail);
         });
       }
@@ -562,7 +573,7 @@ class ServsController extends Controller
         $cont = $cont+1;
       }
       $ordens = $servicio->id;
-      Session::flash('message','Orden '.$ordens.'notifico a cliente de REPARACIÓN via email');
+      Session::flash('notify','Orden '.$ordens.'notifico a cliente de REPARACIÓN via email');
       return Redirect::to('/servicio');
     }
 
@@ -666,7 +677,7 @@ class ServsController extends Controller
       }
       $ordens = $servicio->id;
 
-      Session::flash('message','Se registro orden '.$ordens.' sin revisar');
+      Session::flash('msg','Se registro orden '.$ordens.' sin revisar');
       return Redirect::to('/servicio');
     }
 
@@ -676,7 +687,7 @@ class ServsController extends Controller
        $tres = Politica::find($idtres);
         $data = array('name'=>$contactName, 'email'=>$contactEmail, 'id'=>$contactId,'nombrecliente'=>$nombrecliente,'tres'=>$tres);
         Mail::send('emails.contact',$data,function($msj)use ($contactEmail, $contactName, $contactId, $nombrecliente){
-          $msj->subject('Lantastica Sistemas: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
+          $msj->subject('IMPORTANTE: Orden de servicio NO se pudo REPARAR'); //Motivo del correo
           $msj->to($contactEmail);
         });
       }
@@ -789,7 +800,7 @@ class ServsController extends Controller
         $cont = $cont+1;
       }
       $ordens = $servicio->id;
-      Session::flash('message','Orden'.$ordens.'notifico a cliente via email NO reparación');
+      Session::flash('notify','Orden '.$ordens.' notifico a cliente via email NO reparación');
       return Redirect::to('/servicio');
     }
 
@@ -798,7 +809,7 @@ class ServsController extends Controller
 
     if($contactName == '10' and $resta != '0'){  //STATUS: ENTREGADO A CLIENTE EN SUCURSAL
       //if($status == 10){
-      Session::flash('message','AUN RESTA SALDO POR LIQUIDAR, No se puede colocar como entregada');
+      Session::flash('msg1','AUN RESTA SALDO POR LIQUIDAR, No se puede colocar como entregada');
       return Redirect::to('/servicio');
       //}
     }else{
@@ -866,7 +877,7 @@ class ServsController extends Controller
       }
       $ordens = $servicio->id;
 
-      Session::flash('message','Orden '.$ordens.' actualizada correctamente');
+      Session::flash('msg','Orden '.$ordens.' actualizada correctamente');
       return Redirect::to('/servicio');
     }
 
@@ -937,7 +948,7 @@ class ServsController extends Controller
       }
 
       $ordens = $servicio->id;
-      Session::flash('message','Orden'.$ordens.'actualizada correctamente');
+      Session::flash('msg','Orden'.$ordens.'actualizada correctamente');
       return Redirect::to('/servicio');
     }
   }
@@ -950,6 +961,7 @@ class ServsController extends Controller
   */
   public function destroy($id) //Metodo adaptado para que se visualicen las ordenes canceladas
   {
+    return ('hola');
     return('/pdf');
   }
 }

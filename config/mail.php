@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'raul.180786@gmail.com', 'name' => 'SGM: Aviso Importante'],
+    'from' => ['address' => 'raul.180786@gmail.com', 'name' => 'Servicio de reparación '],
 
     /*
     |--------------------------------------------------------------------------

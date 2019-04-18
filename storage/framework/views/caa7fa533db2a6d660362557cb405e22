@@ -1,0 +1,21 @@
+
+	<div class="form-group ">
+		<?php echo Form::label('Status','Status:'); ?>
+
+		<?php echo Form::select('status_id',$status); ?>
+
+	</div>
+
+	<div class="list-group ">
+		<?php echo Form::label('men','Mensajero asignado:'); ?>
+
+		<?php echo Form::select('mensajero_id',$mensajero_id); ?>
+
+	</div>
+	<div class="form-group ">
+	     <?php echo Form::label('texxto','Detalle de la recolección'); ?>
+
+		<?php echo Form::textarea('detalle',null,['class'=>'form-control','placeholder'=>'']); ?>
+
+	</div>
+

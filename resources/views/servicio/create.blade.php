@@ -20,7 +20,7 @@ alert('Atención: '+'$message');
 
 	@include('servicio.forms.usr')
 
-	{!!Form::submit('Registrar',['class'=>'btn btn-primary btn-lg btn-block'])!!}
+	
 	{!!Form::close()!!}
 
 	@endsection

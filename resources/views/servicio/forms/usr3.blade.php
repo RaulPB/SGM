@@ -1,0 +1,23 @@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<ul class="nav nav-tabs">
+   <li><a href="#a" data-toggle="tab">MACBOOK / PC</a></li>
+   <li><a href="#b" data-toggle="tab">CELULARES</a></li>
+   <li><a href="#c" data-toggle="tab">TABLET / IPAD</a></li>
+   <li><a href="#d" data-toggle="tab">OTROS</a></li>
+</ul>
+
+<div class="tab-content">
+   <div class="tab-pane active" id="a">AAA</div>
+   <div class="tab-pane" id="b">BBB</div>
+   <div class="tab-pane" id="c">CCC</div>
+   <div class="tab-pane" id="d">DDD</div>
+</div>
+
+
+
+
+

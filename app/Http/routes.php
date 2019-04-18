@@ -34,7 +34,9 @@ Route::resource('garantia','GarantiaController'); //para visualizar y editar men
 Route::resource('proveedor','ProveedorController');//para crear, visualizar y editar proveedores
 Route::resource('categoria','CategoriaController');//para agregar, visualizar y editar categorias
 Route::resource('producto','ProductoController');//para agregar productos nuevos
+Route::resource('producto2','Producto2Controller');//para agregar productos nuevos
 Route::resource('salida','SalidasController');//para agregar productos nuevos
+Route::resource('salida2','Salidas22Controller');//para agregar productos nuevos
 Route::resource('compram','MensajeroController');//para agregar compras al mensajero
 Route::resource('envre','EnvioController');//para agregar recolecciones del recepcionista
 Route::resource('envre2','Envio2Controller');//para agregar envio del recepcionista

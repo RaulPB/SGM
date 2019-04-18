@@ -1,0 +1,7 @@
+	<div class="form-group">
+		<?php echo Form::label('nombre','Garantia:'); ?>
+
+		<?php echo Form::textarea('politicas',null,['class'=>'form-control','placeholder'=>'']); ?>
+
+	</div>
+	

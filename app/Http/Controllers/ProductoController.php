@@ -71,7 +71,9 @@ class ProductoController extends Controller
 
 
          if ($proveedor == NULL || $catego == NULL){
-            return redirect('/producto')->with('message','NO SE GUARDO POR FAVOR REVISE PROVEEDOR Ó CATEGORIA');
+            //return redirect('/producto')->with('message','NO SE GUARDO POR FAVOR REVISE PROVEEDOR Ó CATEGORIA');
+             Session::flash('msg','O SE GUARDO POR FAVOR REVISE PROVEEDOR Ó CATEGORIA ');
+            return Redirect::to('/producto'); 
 
             }else{
             //'proveedor_id'=>$request['proveedor_id'],
@@ -89,7 +91,9 @@ class ProductoController extends Controller
             'status'=>$request['status'],
             'sucursal_id'=>$user,
         ]);
-            return redirect('/producto')->with('message','Producto agregado correctamente a inventario');
+             Session::flash('msg','Producto agregado correctamente a inventario ');
+             return Redirect::to('/producto'); 
+            //return redirect('/producto')->with('message','Producto agregado correctamente a inventario');
             }
 
 
@@ -121,7 +125,7 @@ class ProductoController extends Controller
         $cat = Categoria::lists('categoria', 'id');
         $st["Activo"]="Activo";
         $st["Baja"]="Baja";
-        $sucursal_id = Auth::user()->sucursal_id;
+        $sucursal_id = $prod->sucursal_id;
         $idsucur = DB::table('sucursals')->where('id', '=', $sucursal_id)->pluck('nameS');
         return view('producto.edit',['prod'=>$prod],compact('prov','cat','st','idsucur'));
         //return($idsucur);
@@ -141,14 +145,18 @@ class ProductoController extends Controller
         $cantidad2 = $request->input("cantidad"); //RECUPERAMOS LA NUEVA CANTIDAD QUE INGRESAMOS EN EL FORMULARIO
 
         if($cantidad2 < $cantidad){
-            Session::flash('message','No se puede reducir el inventario en este modulo');
+            Session::flash('msg1','NO se puede reducir el inventario desde este modulo');
             return Redirect::to('/producto');
+
+
+
+
         }else{//($cantidad2 > $cantidad)
 
         $prod = Producto::find($id);
         $prod->fill($request->all());
         $prod->save();
-         Session::flash('message','Producto Actualizado Correctamente !!!!');
+         Session::flash('msg','Producto Actualizado Correctamente !');
         return Redirect::to('/producto');
         }
        /* $prod->fill($request->all());

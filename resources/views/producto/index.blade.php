@@ -8,7 +8,13 @@
 @endif
 
 
+ 
+
+
+
 @section('content')
+
+
 
 {!! Form::open(['route' => 'producto.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search'])!!}
   <div class="form-group">
@@ -19,7 +25,6 @@
 {!! Form::close() !!}
 	<table class="table table-striped">
 		<thead>
-			<th>Id</th>
 			<th>Marca</th>
 			<th>Producto/Refacción</th>
 			<th>Cantidad</th>
@@ -29,7 +34,6 @@
 			</thead>
 			@foreach($prod as $prods)
 		<tbody>
-			<td>{{$prods -> id}}</td>
 			<td>{{$prods -> marca}}</td>
 			<td>{{$prods -> modelo}}</td>
 			<td>{{$prods -> cantidad}}</td>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use SGM\Encuesta;
 use SGM\Http\Requests;
 use SGM\Http\Controllers\Controller;
+use Session;
+use Redirect;
+ use Cookie;
 
 class EncuestaController extends Controller
 {
@@ -55,7 +58,10 @@ class EncuestaController extends Controller
             'encuesta'=>$request['encuesta'],
             'fecha'=>$hoy,
             ]);
-        return redirect('/servicio')->with('message','Información de orden almacenada correctamente');
+        //return redirect('/servicio')->with('message','Información de orden almacenada correctamente');
+         $ids = Cookie::get('Orden');
+          Session::flash('msg','Orden de servicio '.$ids. ' registrada correctamente');
+            return Redirect::to('servicio');
     }
 
     /**

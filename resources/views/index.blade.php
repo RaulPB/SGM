@@ -10,15 +10,17 @@
 			</div>
 			<div >
 				{!!Form::open(['route'=>'log.store', 'method'=>'POST'])!!}
-					<div class="form-group">
-						{!!Form::label('correo','Correo:')!!}	
-						{!!Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Ingresa tu correo'])!!}
+					<div class="form-group" align="center">
+						
+						{!!Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Email'])!!}
+							
 					</div>
-					<div class="form-group">
-						{!!Form::label('contrasena','Contraseñ@:')!!}	
-						{!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Ingresa tu contraseña'])!!}
+					<div class="form-group" align="center">
+							
+						{!!Form::password('password',['class'=>'form-control', 'placeholder'=>'Password'])!!}
+						
 					</div>
-					{!!Form::submit('Iniciar',['class'=>'btn btn-primary btn-block'])!!}
+					{!!Form::submit('Iniciar sesión',['class'=>'btn btn-primary btn-block'])!!}
 				{!!Form::close()!!}
 		
 		</div>

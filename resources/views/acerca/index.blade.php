@@ -23,8 +23,8 @@
 		<div class="wrapper">
 			<img src="http://www.cybercentermexico.com/images/ACERCA-DE-NOSOTROS.png" width="400" height="150"alt="YourLogo" title="YourLogo"/>
 			<div class="hr"></div>
-			<p align="center">SGM: Sistema de gestión multiplataforma ® V3.3</p>
-			<p>Copyright © 2016-2017 </p>
+			<p align="center">SGM: Sistema de gestión multiplataforma ® V4.0</p>
+			<p>Copyright © 2017-2019 </p>
 			<p align="center"> <strong> MSICU. Raúl Palmeros Barrientos </strong></p>
 			<p align="center"> <strong> Email: raul.180786@gmail.com </strong></p>
 			<p align="center"> <strong>  </strong></p>

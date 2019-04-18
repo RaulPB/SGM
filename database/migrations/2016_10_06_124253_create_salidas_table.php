@@ -22,7 +22,7 @@ class CreateSalidasTable extends Migration
             $table->foreign('producto_id')->references('id')->on('productos');
             
             $table->integer('servicio_id')->unsigned()->nullable();
-            $table->foreign('servicio_id')->references('id')->on('servs');
+            $table->foreign('servicio_id')->references('id')->on('sucursals');
 
             //'id_producto','id_servicio','cantidad'
             $table->timestamps();

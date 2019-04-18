@@ -144,7 +144,7 @@ return [
         SGM\Providers\AuthServiceProvider::class,
         SGM\Providers\EventServiceProvider::class,
         SGM\Providers\RouteServiceProvider::class,
-
+        Codecourse\Notify\NotifyServiceProvider::Class,
         Collective\Html\HtmlServiceProvider::class,
        
 

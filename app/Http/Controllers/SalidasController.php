@@ -15,9 +15,12 @@ use SGM\Serv;
 use SGM\Producto;
 use SGM\Categoria;
 use SGM\Salidas;
+use SGM\Sucursal;
 use Session;
 use Redirect;
+use DB;
 use Illuminate\Routing\Route; 
+use Auth;
 
 
 class SalidasController extends Controller
@@ -29,7 +32,13 @@ class SalidasController extends Controller
      */
     public function index()
     {
-         $salida = Salidas::paginate(10);
+
+         //$salida = Salidas::paginate(10);
+
+
+        $idlogueado = Auth::user()->sucursal_id;
+
+        $salida = Salidas::where('origen',"=", $idlogueado)->orWhere('servicio_id',"=", $idlogueado)->orderBy('created_at', 'desc')->paginate(20);
         return view('salida.index',compact('salida'));
     }
 
@@ -38,12 +47,13 @@ class SalidasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $prod = Producto::lists('modelo', 'id'); 
-        $serv = Serv::where('status_id', '<>', 10)->lists('id', 'id');
+    public function create() //vamos a mover el inventario de una sucursal a otra. si no existe el producto se crea. IMportante avisar esto
+    {   $idlogueado = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+        $prod = Producto::where('sucursal_id',"=", $idlogueado)->where("status", "=", "Activo")->lists('modelo', 'id');
+        //$prod = Producto::lists('modelo', 'id'); 
+        $serv = Sucursal::where('id', '<>', $idlogueado)->lists('nameS', 'id');
         return view('salida.create',compact('prod','serv'));
-           
+
     }
     /**
      * Store a newly created resource in storage.
@@ -55,6 +65,11 @@ class SalidasController extends Controller
     {
 
         $cantidad2 = $request->input("cantidad");//CANTIDAD QUE QUIERO RETIRAR
+
+        if ($cantidad2 == ""){
+            Session::flash('msg1',"ERROR: Producto no guardado por campo 'cantidad' vacio");
+            return Redirect::to('/salida');
+        } else{
         $id = $request->input("producto_id");//RECUPERO EL ID DEL PRODUCTO QUE VOY A EDITAR
         $prod = Producto::find($id);//BUSCO EL PRODUCTO ANTES DE EDITARLO
         $cantidad = $prod->cantidad;//CANTIDAD ACTUAL EN EL INVENTARIO ANTES DE EDITAR
@@ -66,32 +81,33 @@ class SalidasController extends Controller
         }else{
 
             ////REDUCIMOS EL INVENTARIO//
-        $prod = Producto::find($id);
+            $prod = Producto::find($id);
         //$post1->body = 'Contenido 1';$prod->fill($request->all());
-        $total = $cantidad - $cantidad2;
-        $prod->cantidad = $total;
-        $prod->save();
+            $total = $cantidad - $cantidad2;
+            $prod->cantidad = $total;
+            $prod->save();
 
-        //////////////////CREAMOS LA SALIDA////////   
-         Salidas::create([
-            'servicio_id'=>$request['servicio_id'],
-            'producto_id'=>$request['producto_id'],
-            'cantidad'=>$request['cantidad'],
-            'comentarios'=>$request['comentarios'],
+        //////////////////CREAMOS LA SALIDA////////  
+            $idlogueado1 = Auth::user()->name;  
+            $idlogueado = Auth::user()->sucursal_id;
+            Salidas::create([
+                'realizo' => $idlogueado1,
+                'servicio_id'=>$request['servicio_id'],
+                'producto_id'=>$request['producto_id'],
+                'cantidad'=>$request['cantidad'],
+                'comentarios'=>$request['comentarios'],
+                'origen' =>  $idlogueado,
+                'status' => 'Enviado',
 
-        ]);
-        return redirect('/producto')->with('message','Producto salio correctamente de inventario');
+            ]);
+        //return redirect('/producto')->with('message','Producto salio correctamente de inventario');
+
+            Session::flash('notify',"Transferencia registrada");
+            return Redirect::to('/salida'); 
         }
-        /*Salidas::create([
-            'servicio_id'=>$request['servicio_id'],
-            'producto_id'=>$request['producto_id'],
-            'cantidad'=>$request['cantidad'],
-            'comentarios'=>$request['comentarios'],
-
-        ]);
-        return redirect('/salida')->with('message','Producto salio correctamente de inventario');*/
-        return ($cantidad2);
+        
     }
+}
 
     /**
      * Display the specified resource.
@@ -112,7 +128,12 @@ class SalidasController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $serv = Salidas::find($id);
+        return view('salida.create2',compact('serv'));
+
+
+
     }
 
     /**
@@ -124,8 +145,122 @@ class SalidasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+
+
+        $serv = Salidas::find($id);
+
+
+        
+        $perfil=Auth::user()->perfil_id; //para saber que vista de inventario mandarle
+        $recibio=Auth::user()->name; //para saber que vista de inventario mandarle
+
+
+        if($perfil != 10){ 
+        
+        //METODO PARA GUARDAR PRODUCTO YA EXISTENTE EN LA SUCURSAL DESTINO
+        $idselectp=$request->get('idproducto'); //id del producto seleccionado en el select de la sucursal origen
+        if($idselectp != ""){
+        
+        $pmodificable = Producto::find($idselectp); //ubicamos el producto de la sucursal
+        $enviada = $request->get('cantidade');//recuperamos la cantidad enviada
+        $cantiori = $pmodificable->cantidad;
+        $nuevacantidad = $cantiori + $enviada;
+        $pmodificable->cantidad = $nuevacantidad;
+        $pmodificable->save(); //GUARDAMOS EL PRODUCTO YA EXISTENTE
+        }else{
+            //Recuperaremos todos los datos del producto origen para crear uno nuevo en nuestra sucursal destino.   
+            $productoorigenid = $serv->producto_id; //recuperamos el id del producto origen.
+            $productoorigen = Producto::find($productoorigenid);
+            $productoorigenmarca = $productoorigen->marca;
+            $productoorigenmodelo = $productoorigen->modelo;
+            $productoorigenprecio = $productoorigen->precio;
+            $productoorigencantidad = $request->get('cantidade');
+            $productoorigencategoria = $productoorigen->categoria_id;
+            $productoorigenproveedor = $productoorigen->proveedor_id;
+            $productoorigenpreciop = $productoorigen->preciop;
+            $productoorigenstatus = "Activo";
+            $productoorigensucursaldestino = $serv->servicio_id;
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+             Producto::create([
+            'marca'=>$productoorigenmarca,
+            'modelo'=>$productoorigenmodelo,
+            'precio'=>$productoorigenprecio,
+            'cantidad'=>$productoorigencantidad,
+            'proveedor_id'=>$productoorigenproveedor,
+            'categoria_id'=>$productoorigencategoria,
+            'preciop'=>$productoorigenpreciop,
+            'status'=>$productoorigenstatus,
+            'sucursal_id'=>$productoorigensucursaldestino,
+        ]);
+
+            
+        }
+        //////////////////////////////////////////////////////////////////////
+
+            $serv->status= "Recibido"; 
+            $serv->recibio= $recibio; 
+            $serv->save();
+
+        $nombreproducto = DB::table('productos')->where('id', '=', $serv->producto_id)->pluck('modelo');//stock original
+        $nombresucursal = DB::table('sucursals')->where('id', '=', $serv->servicio_id)->pluck('nameS');//stock original
+
+
+        Session::flash('msg','Recepción finalizada correctamente');
+        return Redirect::to('/producto'); 
+        
+        }else{
+
+        //METODO PARA GUARDAR PRODUCTO YA SEA QUE EXISTA O NO
+        $idselectp=$request->get('idproducto'); //id del producto seleccionado en el select de la sucursal origen
+        if($idselectp != ""){
+
+        $pmodificable = Producto::find($idselectp); //ubicamos el producto destino.
+        $enviada = $request->get('cantidade');//recuperamos la cantidad enviada
+        $cantiori = $pmodificable->cantidad;
+        $nuevacantidad = $cantiori + $enviada;
+        $pmodificable->cantidad = $nuevacantidad;
+        $pmodificable->save(); //GUARDAMOS EL PRODUCTO YA EXISTENTE
+        }else{
+            //Recuperaremos todos los datos del producto origen para crear uno nuevo en nuestra sucursal destino.   
+            $productoorigenid = $serv->producto_id; //recuperamos el id del producto origen.
+            $productoorigen = Producto::find($productoorigenid);
+            $productoorigenmarca = $productoorigen->marca;
+            $productoorigenmodelo = $productoorigen->modelo;
+            $productoorigenprecio = $productoorigen->precio;
+            $productoorigencantidad = $request->get('cantidade');
+            $productoorigencategoria = $productoorigen->categoria_id;
+            $productoorigenproveedor = $productoorigen->proveedor_id;
+            $productoorigenpreciop = $productoorigen->preciop;
+            $productoorigenstatus = "Activo";
+            $productoorigensucursaldestino = $serv->servicio_id;
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+             Producto::create([
+            'marca'=>$productoorigenmarca,
+            'modelo'=>$productoorigenmodelo,
+            'precio'=>$productoorigenprecio,
+            'cantidad'=>$productoorigencantidad,
+            'proveedor_id'=>$productoorigenproveedor,
+            'categoria_id'=>$productoorigencategoria,
+            'preciop'=>$productoorigenpreciop,
+            'status'=>$productoorigenstatus,
+            'sucursal_id'=>$productoorigensucursaldestino,
+        ]);
+
+            
+        }
+        //////////////////////////////////////////////////////////////////////
+
+        $serv->status= "Recibido"; 
+        $serv->recibio= $recibio; 
+        $serv->save();
+             $nombreproducto = DB::table('productos')->where('id', '=', $serv->producto_id)->pluck('modelo');//stock original
+             $nombresucursal = DB::table('sucursals')->where('id', '=', $serv->servicio_id)->pluck('nameS');//stock original
+
+             Session::flash('msg','Recepción finalizada correctamente');
+             return Redirect::to('/producto2'); 
+         }
+
+     }
 
     /**
      * Remove the specified resource from storage.

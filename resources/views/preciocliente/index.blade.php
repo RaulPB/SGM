@@ -23,6 +23,7 @@
 			<th>Marca</th>
 			<th>Modelo</th>
 			<th>Categoria</th>
+			<th>Sucursal</th>
 			<th>Precio a público</th>
 			</thead>
 			@foreach($prod as $prods)
@@ -31,6 +32,11 @@
 			<td>{{$prods -> marca}}</td>
 			<td>{{$prods -> modelo}}</td>
 			<td>{{$prods -> categoria -> categoria}}</td>
+			<?php
+			$Z= $prods -> sucursal_id;
+			$idsucur = DB::table('sucursals')->where('id', '=', $Z)->pluck('nameS');//id de sucursal
+			echo "<td> $idsucur</td>"
+			?>
 			<td>{{$prods -> preciop}}</td>
 		</tbody>
 			@endforeach

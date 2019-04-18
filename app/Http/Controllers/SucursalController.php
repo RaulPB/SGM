@@ -90,8 +90,9 @@ class SucursalController extends Controller
     {
         $sucursal = Sucursal::find($id);
         $sucursal->fill($request->all());
+        $sucursal->status = "Activo";
         $sucursal->save();
-        Session::flash('message','Sucursal Actualizada Correctamente');
+        Session::flash('msg','Sucursal Actualizada o Reactivada Correctamente');
         return Redirect::to('/sucursal');
     }
 
@@ -103,11 +104,17 @@ class SucursalController extends Controller
      */
     public function destroy($id)
     {
-        $suc = Sucursal::find($id); //METODO CREADO PARA QUE AL ELIMINAR ALGUNA SUCURSAL, LOS USUARIOS DADOS DE ALTA EN ESTA SE PASEN A LA SUCURSAL CON ID DE MATRIZ
+       /* $suc = Sucursal::find($id); //METODO CREADO PARA QUE AL ELIMINAR ALGUNA SUCURSAL, LOS USUARIOS DADOS DE ALTA EN ESTA SE PASEN A LA SUCURSAL CON ID DE MATRIZ
         $idSuc = $suc->id;
         $affectedRows = User::where('sucursal_id', '=', $idSuc)->update(['sucursal_id' => 1]);
         Sucursal::destroy($id);
         Session::flash('message','Sucursal Eliminada Correctamente y Usuario Reubicado a matriz.');
-        return Redirect::to('/sucursal');
+        return Redirect::to('/sucursal');*/
+
+         $suc = Sucursal::find($id);
+         $suc->status = "Baja";
+         $suc->save();
+         Session::flash('msg','Sucursal dada de baja !! correctamente');
+         return Redirect::to('/sucursal');
     }
 }

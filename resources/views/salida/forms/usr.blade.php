@@ -1,6 +1,6 @@
 	
 	<div class="form-group">
-		{!!Form::label('serv','Servicio:')!!}
+		{!!Form::label('serv','Sucursal destino:')!!}
 		{!!Form::select('servicio_id',$serv)!!}
 	</div>
 

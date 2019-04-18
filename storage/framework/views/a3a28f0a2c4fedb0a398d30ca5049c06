@@ -1,6 +1,6 @@
 	
 	<div class="form-group">
-		<?php echo Form::label('serv','Servicio:'); ?>
+		<?php echo Form::label('serv','Sucursal destino:'); ?>
 
 		<?php echo Form::select('servicio_id',$serv); ?>
 

@@ -1,0 +1,47 @@
+<?php if(Session::has('message')): ?>
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+<?php $__env->startSection('content'); ?>
+
+
+<?php echo Form::open(['route' => 'envre.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']); ?>
+
+  <div class="form-group">
+  	<?php echo Form::text('id', null, ['class' => 'form-control', 'placeholder' => 'No. de recolección']); ?> 
+  </div> <!-- COLOCAMOS ID PORQUE ES LO QUE QUEREMOS FILTRAR-->
+  <button type="submit" class="btn btn-default">Buscar</button>
+<?php echo Form::close(); ?>
+
+
+
+	<table class="table table-striped">
+		<thead>
+		    <th>No. Recolección</th>
+			<th>Mensajero asignado</th>
+			<th>Status</th>
+			<th>Fecha de solicitud</th>
+			<th>Operaciones</th>
+		</thead>
+
+		<?php foreach($recole as $recoles): ?>
+		<tbody>
+		<td><?php echo e($recoles -> id); ?></td>
+			<td><?php echo e($recoles -> mensajero -> name); ?></td>
+			<td><?php echo e($recoles -> status -> status); ?></td> <!--NECESITO ALCANZARLO POR METODO EN SERVICIO Y  -->
+			<td><?php echo e($recoles -> created_at); ?></td>
+			<td><?php echo link_to_route('envre.edit', $title = 'Revisar', $parameters = $recoles->id, $attributes = ['class'=>'btn btn-primary']); ?></td>
+		</tbody>
+		<?php endforeach; ?>
+		
+	</table>
+<?php echo $recole->render(); ?>
+
+	
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

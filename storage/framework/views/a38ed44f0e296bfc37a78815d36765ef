@@ -1,0 +1,34 @@
+	<div class="form-group">
+		<?php echo Form::label('proveedor','Proveedor:'); ?>
+
+		<?php echo Form::text('proveedor',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del proveedor']); ?>
+
+	</div>
+	<div class="form-group">
+	<?php echo Form::label('tip','Tipo (local/foraneo):'); ?>
+
+		<?php echo Form::text('tipo',null,['class'=>'form-control','placeholder'=>'Ingresa tipo de proveedor Local/Foraneo']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('ubicaci','Ubicación:'); ?>
+
+		<?php echo Form::text('ubicacion',null,['class'=>'form-control','placeholder'=>'Ingresa ubicación del proveedor']); ?>
+
+	</div>
+
+	<div class="form-group">
+		<?php echo Form::label('tel','Telefono:'); ?>
+
+		<?php echo Form::text('telefono',null,['class'=>'form-control','placeholder'=>'Ingresa telefono del proveedor']); ?>
+
+	</div>
+
+
+	<div class="form-group">
+		<?php echo Form::label('mail','Email:'); ?>
+
+		<?php echo Form::text('email',null,['class'=>'form-control','placeholder'=>'Ingresa correo del proveedor']); ?>
+
+	</div>

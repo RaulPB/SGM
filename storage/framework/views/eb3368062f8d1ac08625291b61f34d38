@@ -1,0 +1,14 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+
+<body>
+	
+	<p>Estimado cliente <strong><?php echo $nombrecliente; ?></strong> le informamos que la orden de reparación No. <strong><?php echo $id; ?></strong> de su equipo, requiere de su atencion por lo que le invitamos a pasar a nuestra sucursal para recibir información sobre dicho servicio. Le recordamos que es importante llevar consigo el comprobante de orden de servicio No. <strong><?php echo $id; ?></strong>, para que le sea devuelto.</p>
+	<p><small><?php echo e($tres->politicas); ?></small></p>
+</body>
+
+</html> 

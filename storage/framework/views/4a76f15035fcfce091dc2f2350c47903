@@ -1,0 +1,51 @@
+<?php if(Session::has('message')): ?>
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <?php echo e(Session::get('message')); ?>
+
+</div>
+<?php endif; ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo Form::open(['route' => 'precio.index', 'method' => 'GET', 'class' => 'navbar-form navbar-left pull-right', 'role' => 'search']); ?>
+
+  <div class="form-group">
+  	<?php echo Form::text('modelo', null, ['class' => 'form-control', 'placeholder' => 'Buscar por modelo']); ?> 
+  </div> <!-- COLOCAMOS ID PORQUE ES LO QUE QUEREMOS FILTRAR-->
+  <button type="submit" class="btn btn-default">Buscar</button>
+
+<?php echo Form::close(); ?>
+
+	<table class="table table-striped">
+		<thead>
+			<th>Id</th>
+			<th>Marca</th>
+			<th>Modelo</th>
+			<th>Categoria</th>
+			<th>Sucursal</th>
+			<th>Precio a público</th>
+			</thead>
+			<?php foreach($prod as $prods): ?>
+		<tbody>
+			<td><?php echo e($prods -> id); ?></td>
+			<td><?php echo e($prods -> marca); ?></td>
+			<td><?php echo e($prods -> modelo); ?></td>
+			<td><?php echo e($prods -> categoria -> categoria); ?></td>
+			<?php
+			$Z= $prods -> sucursal_id;
+			$idsucur = DB::table('sucursals')->where('id', '=', $Z)->pluck('nameS');//id de sucursal
+			echo "<td> $idsucur</td>"
+			?>
+			<td><?php echo e($prods -> preciop); ?></td>
+		</tbody>
+			<?php endforeach; ?>
+	</table>
+<?php echo $prod->render(); ?>
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
