@@ -83,8 +83,23 @@ class ServsController extends Controller
   {
     //creamos el servicio pero aun falta crear el detalle de venta
     $contactName = Input::get('status_id');
+    $detector = Input::get('equipoareparar');
+   
+
+//PREGUNTAMOS QUE TIPO DE EQUIPO ES ????
+    
+  if ($detector == "MACBOOK-PC"){
+    $datox=$request->get('marca');
+    return ("queremos guardar todo lo de PC WE".$datox);
+  }
+
+    if ($detector == "IPAD-TABLET"){
+    return ("queremos guardar todo lo de IPAD-TABLET");
+  }
+
+  if ($detector == "MOVIL"){
     if ($contactName  == 21){
-      //return("NO SE PUDO REVISAR");
+      //return("ENTRAMOS A NO SE PUDO REVISAR");
       $venta = new Serv;
       $venta->nombrecliente=$request->get('nombrecliente');
       $venta->telefono=$request->get('telefono');
@@ -139,6 +154,7 @@ class ServsController extends Controller
       $venta->fechaentrega=$request->get('fechaentrega');
       $venta->flash="NO SE PUDO REVISAR";
     }
+
     if($contactName  != 21){
     $venta = new Serv;
     $venta->fechaingreso=$request->get('fechaingreso');
@@ -168,6 +184,7 @@ class ServsController extends Controller
     $venta->touch=$request->get('touch');
     $venta->display=$request->get('display');
     $venta->ctrasera=$request->get('ctrasera');
+    $venta->cfrontal=$request->get('cfrontal');
     $venta->ccarga=$request->get('ccarga');
     $venta->altavoz=$request->get('altavoz');
     $venta->microfono=$request->get('microfono');
@@ -297,9 +314,13 @@ class ServsController extends Controller
 
     Cookie::queue('Orden', $ordens, 60);
     return redirect('encuesta/create');
-   
-  }
+}
 
+if($detector == "")
+   Session::flash('msg1','La orden no puede generarse vacia; reintente');
+ 
+      return Redirect::to('/servicio/create/');
+}
   /**
   * Display the specified resource.
   *

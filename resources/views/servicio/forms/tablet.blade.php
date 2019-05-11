@@ -1,12 +1,12 @@
      <!-- Modal para movil-->
-            <div id="myModal2" class="modal fade modal-slide-in-right" role="dialog">
+            <div id="myModal3" class="modal fade modal-slide-in-right" role="dialog">
               <div class="modal-dialog modal-lg" style="z-index: 1100;">
 
                 <!-- Modal content-->
                 <div  align="center" class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Registro de datos para MOVIL</h4>
+                    <h4 class="modal-title">Registro de datos para IPAD / TABLET  </h4>
                   </div>
 
                 
@@ -52,7 +52,7 @@
 
                    </div>
                    <div class="form-group col-md-4" id="12">
-                     ¿Estuvo en contacto con agua? {!!Form::select('agua', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                     ¿Estuvo en contacto con agua?,¿tipo? {!!Form::select('agua', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
                    <div class="form-group col-md-4" id="13">
                      ¿Ingresa correctamente al sistema? {!!Form::select('ingresoso', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}

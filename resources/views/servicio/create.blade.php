@@ -11,10 +11,31 @@
 @include('alerts.request') <!-- ESTA VISTA ES LA QUE MUESTRA EL METODO QUE LANZA LAS ALERTAS-->
 <?
 $message = $dire;
-echo "<script type='text/javascript'>
-alert('Atención: '+'$message');
-</script>";
+$error = Session::get('msg1');
+//echo "<script type='text/javascript'>
+//alert('Atención: '+'$message');
+//</script>";
+ echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+   <script>
+
+   swal('$message')
+   
+   </script>";
+if ($error != ""){
+	echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+   <script>
+
+   //swal('$error')
+   swal('Atención!', '$error', 'error')
+   
+   </script>";
+}
+
+ 
 ?>
+
+
+
 
 	{!!Form::open(['route'=>'servicio.store', 'method'=>'POST'])!!}
 

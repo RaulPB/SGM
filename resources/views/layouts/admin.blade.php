@@ -29,7 +29,7 @@
 
 
         <script>
-          var progreso = 0;
+         /* var progreso = 0;
           var idIterval = setInterval(function(){
           // Aumento en 10 el progeso
           progreso +=10;
@@ -41,7 +41,7 @@
          clearInterval(idIterval);
          $('#id').hide();
        }
-     },90);
+     },90);*/
    </script>
 
 
@@ -1004,11 +1004,11 @@
 
                                          <div class="container">
    
-  <div id="id" class="progress">
+  <!--<div id="id" class="progress">
     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
       <label id = "label" for="male"></label>
     </div>
-  </div>
+  </div>-->
 </div>
                                         </div>
 
