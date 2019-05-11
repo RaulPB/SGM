@@ -67,7 +67,7 @@
                    </div>
 
                    <div class="form-group col-md-4" id="17">
-                     ¿Estado de bisag?
+                     ¿Estado de bisagras?
                      <center>{!!Form::select('equipo', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
 
