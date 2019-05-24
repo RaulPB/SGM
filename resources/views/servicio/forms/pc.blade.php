@@ -12,24 +12,24 @@
                 
                   <div class="modal-body">
                    <div class="form-group col-md-4" id="uno" >
-                     Producto del cliente:{!!Form::text('productoPC',null,['class'=>'form-control','id'=>'producto','placeholder'=>'5.-Producto del cliente'])!!}
+                     Producto del cliente:{!!Form::text('productoPC',null,['class'=>'form-control','id'=>'producto','placeholder'=>'Producto del cliente'])!!}
                    </div>
 
  
 
                    <div class="form-group col-md-4" id="2" >
-                     Marca del producto:{!!Form::text('marcaPC',null,['class'=>'form-control','placeholder'=>'6.-Marca del Producto'])!!}
+                     Marca del producto:{!!Form::text('marcaPC',null,['class'=>'form-control','placeholder'=>'Marca del Producto'])!!}
                    </div>
 
 
                    <div class="form-group col-md-4" id="3">
-                     Modelo del Producto:{!!Form::text('modeloPC',null,['class'=>'form-control','placeholder'=>'7.-Modelo del Producto'])!!}
+                     Modelo del Producto:{!!Form::text('modeloPC',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
                    <div class="form-group col-md-4" id="4">
-                     Tipo Producto:{!!Form::text('tipoPC',null,['class'=>'form-control','placeholder'=>'8.-Tipo Producto'])!!}
+                     Tipo Producto:{!!Form::text('tipoPC',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
                    <div class="form-group col-md-4" id="5">
-                     Color Producto:{!!Form::text('colorPC',null,['class'=>'form-control','placeholder'=>'9.-Color Producto'])!!}
+                     Color Producto:{!!Form::text('colorPC',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
                    <div class="form-group col-md-4" id="6">
                      Memoria Producto:{!!Form::text('memoriaPC',null,['class'=>'form-control','placeholder'=>''])!!}
@@ -63,135 +63,92 @@
                    </div>
 
                   <div class="form-group col-md-4" >
-                     ¿Numero de cargador?:{!!Form::text('cargadorPC',null,['class'=>'form-control','placeholder'=>''])!!}
+                     ¿Numero de cargador?:{!!Form::text('seriecargadorPC',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
 
                    <div class="form-group col-md-4" id="17">
                      ¿Estado de bisagras?
-                     <center>{!!Form::select('equipo', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                     <center>{!!Form::select('bisagra', array('2 BIEN'=> '2 BIEN', '1 BIEN' => ' 1 BIEN', 'AMBAS DAÑADAS' => 'AMBAS DAÑADAS'), 'NO SE')!!}
                    </div>
 
 
-                   <div class="form-group col-md-4" id="19">
-                     ¿Funciona display?
-                     <center>{!!Form::select('display', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="20">
-                     ¿Funciona camara trasera?
-                     <center>{!!Form::select('ctrasera', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="21">
-                     ¿Funciona camara frontal?
-                     <center>{!!Form::select('cfrontal', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="22">
-                     ¿Funciona centro de carga?
-                     <center>{!!Form::select('ccarga', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="23">
-                     ¿Funciona altavoz?
-                     <center>{!!Form::select('altavoz', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="24">
-                     ¿Funciona microfono?
-                     <center>{!!Form::select('microfono', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="25">
-                     ¿Funciona auricular?
-                     <center>{!!Form::select('auricular', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="26">
-                     ¿Funciona bocina externa?
-                     <center>{!!Form::select('boexterna', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="27">
-                     ¿Funciona jack de audio?
-                     <center>{!!Form::select('jack', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="28">
-                     ¿Funciona wifi?
-                     <center>{!!Form::select('wifi', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="29">
-                     ¿Funciona bluetooth?
-                     <center>{!!Form::select('bluetooth', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="30">
-                     ¿Datos móviles?
-                     <center>{!!Form::select('datosm', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
-                   </div>
-                   <div class="form-group col-md-4" id="31">
-                     ¿Funciona bateria?
+                   <div class="form-group col-md-6" id="19">
+                     ¿Equipo con bateria?
                      <center>{!!Form::select('bateria', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="32">
-                     ¿Funciona porta Sim?
-                     <center>{!!Form::select('portasim', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="20">
+                     ¿Funciona bateria?
+                     <center>{!!Form::select('bateriaf', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="33">
-                     ¿Funciona SIM?
-                     <center>{!!Form::select('sim', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="21">
+                     ¿Funciona pantalla?
+                     <center>{!!Form::select('pantallap', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="34">
-                     ¿Funciona boton home?
-                     <center>{!!Form::select('bhome', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="22">
+                     ¿Funciona disco duro?
+                     <center>{!!Form::select('discop', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="35">
-                     ¿Funciona Touch ID?
-                     <center>{!!Form::select('touchid', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="23">
+                     ¿Funciona memoria?
+                     <center>{!!Form::select('memoriap', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="36">
-                     ¿Funciona sensor de proximidad?
-                     <center>{!!Form::select('sensorp', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="24">
+                     ¿Funciona teclado?
+                     <center>{!!Form::select('tecladop', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="37">
-                     ¿Golpes en carcasa?
-                     <center>{!!Form::select('carcasa', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="25">
+                     ¿Funciona touch?
+                     <center>{!!Form::select('touchp', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-
-                   <div class="form-group col-md-4" id="38">
-                     ¿Funciona Teclado?
-                     <center>{!!Form::select('teclado', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="26">
+                     ¿Funciona camara frontal?
+                     <center>{!!Form::select('camarap', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
-                   <div class="form-group col-md-4" id="39">
-                     ¿Tiene Señal?
-                     <center>{!!Form::select('señal', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   <div class="form-group col-md-6" id="27">
+                     ¿Cuenta con unidad lectora?
+                     <center>{!!Form::select('lectorp', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
+                   </div>
+                   <div class="form-group col-md-6" id="28">
+                     ¿Funciona unidad lectora?
+                     <center>{!!Form::select('lectorfp', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE')!!}
                    </div>
                    <div class="form-group col-md-12" id="40">
-                     ¿Que problema presenta el equipo?{!!Form::text('problemacliente',null,['class'=>'form-control','placeholder'=>'45.- ¿Que problema presenta el equipo?'])!!}
+                     ¿Que problema presenta el equipo?{!!Form::text('problemaclientep',null,['class'=>'form-control','placeholder'=>''])!!}
 
                    </div>
-                   <div class="form-group col-md-12" id="41" >
-                     ¿Que solución desea?{!!Form::text('solucion1',null,['class'=>'form-control','placeholder'=>'46.- ¿Que solución desea?'])!!}
+                   <div class="form-group col-md-12" id="30">
+                     ¿Que solucion desea?
+                     <center>{!!Form::text('solucionp',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
+                   
                    <div class="form-group col-md-12" id="42">
                      <h4>Diagnostico de Recepción:</h4>
-                     {!!Form::textarea('diagnostico1',null,['class'=>'form-control','placeholder'=>'47.-DIAGNOSTICO DE RECEPCIÓN'])!!}
+                     {!!Form::textarea('diagnostico1p',null,['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE RECEPCIÓN'])!!}
                    </div>
 
                    <div class="form-group col-md-12" id="43">
                      <h4>Comunicación Interna (Observaciones y comentarios del equipo(s)):</h4>
-                     {!!Form::textarea('comunicacion',null,['class'=>'form-control','placeholder'=>'¿Que deseas que sepa tu compañero?'])!!}
+                     {!!Form::textarea('comunicacionp',null,['class'=>'form-control','placeholder'=>'¿Que deseas que sepa tu compañero?'])!!}
                    </div>
                    <div class="form-group col-md-12" id="44">
                      <h4>Concepto y precio de la reparación:</h4>
-                     {!!Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>''])!!}
+                     {!!Form::textarea('diagnostico2p',null,['class'=>'form-control','placeholder'=>''])!!}
                    </div>
 
 
                    <div class="form-group col-md-12" id="45">
                      {!!Form::label('Status','Status:')!!}
-                     {!!Form::select('status_id',$status)!!}
+                     {!!Form::select('status_idp',$status)!!}
                    </div>
 
                    <div class="form-group col-md-12" id="46">
                      {!!Form::label('tecnico','Tecnico Asignado:')!!}
-                     {!!Form::select('tecnico_id',$user)!!}
+                     {!!Form::select('tecnico_idp',$user)!!}
                    </div> 
                  </div>
 
                  <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Continuar</button>
+               
 
                 </div>
               </div>

@@ -4,12 +4,14 @@
 
 	<?php echo Form::model($servicio,['route'=> ['servicio.update',$servicio->id],'method'=>'PUT','name'=>'ok']); ?>
 
-	<?php echo $__env->make('servicio.forms.usr2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> <!-- APUNTA A LA VISTA DEL FORMULARIO-->
+	<?php echo $__env->make('servicio.forms.macbook', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> <!-- APUNTA A LA VISTA DEL FORMULARIO-->
 
-	<?php echo Form::submit('Actualizar',['class'=>'btn btn-primary btn-lg btn-block']); ?>
-
+	<!--<?php echo Form::submit('Actualizar',['class'=>'btn btn-primary btn-lg btn-block']); ?>-->
 	<?php echo Form::close(); ?>
 
 
 	<?php $__env->stopSection(); ?>
+
+
+	<!--ESTE MODULO ES PARA EVITAR MOSTRAR EL BOTON DE ACTUALIZAR AL USUARIO OMNI Y QUE CAMBIE VALORES-->
 <?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -12,221 +12,174 @@
                 
                   <div class="modal-body">
                    <div class="form-group col-md-4" id="uno" >
-                     Producto del cliente:<?php echo Form::text('producto',null,['class'=>'form-control','id'=>'producto','placeholder'=>'5.-Producto del cliente']); ?>
+                     Producto del cliente:<?php echo Form::text('productot',null,['class'=>'form-control','id'=>'producto','placeholder'=>'']); ?>
 
                    </div>
 
  
 
                    <div class="form-group col-md-4" id="2" >
-                     Marca del producto:<?php echo Form::text('marca',null,['class'=>'form-control','placeholder'=>'6.-Marca del Producto']); ?>
+                     Marca del producto:<?php echo Form::text('marcat',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
 
 
                    <div class="form-group col-md-4" id="3">
-                     Modelo del Producto:<?php echo Form::text('modelo',null,['class'=>'form-control','placeholder'=>'7.-Modelo del Producto']); ?>
+                     Modelo del Producto:<?php echo Form::text('modelot',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="4">
-                     Tipo Producto:<?php echo Form::text('tipo',null,['class'=>'form-control','placeholder'=>'8.-Tipo Producto']); ?>
+                     Tipo Producto:<?php echo Form::text('tipot',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="5">
-                     Color Producto:<?php echo Form::text('color',null,['class'=>'form-control','placeholder'=>'9.-Color Producto']); ?>
+                     Color Producto:<?php echo Form::text('colort',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
+
                    <div class="form-group col-md-4" id="6">
-                     Capacidad Producto:<?php echo Form::text('capacidad',null,['class'=>'form-control','placeholder'=>'10.-Capacidad Producto']); ?>
+                     Memoria Producto:<?php echo Form::text('memoriat',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="7">
-                     Serie Producto:<?php echo Form::text('serie',null,['class'=>'form-control','placeholder'=>'11.-Serie Producto']); ?>
+                     Procesador Producto:<?php echo Form::text('procesadort',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="8">
-                     IMEI Producto:<?php echo Form::text('imei',null,['class'=>'form-control','placeholder'=>'12.-IMEI Producto']); ?>
+                     Disco duro producto:<?php echo Form::text('discot',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="9">
-                     Contraseña Producto:<?php echo Form::text('contraseña',null,['class'=>'form-control','placeholder'=>'13.-Contraseña Producto']); ?>
+                     S/N Producto:<?php echo Form::text('seriet',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
-                   <div class="form-group col-md-12" id="10">
-                     Compañia Producto:<?php echo Form::text('compañia',null,['class'=>'form-control','placeholder'=>'14.-Compañia Producto']); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="11">
+                   
+                    <div class="form-group col-md-4" id="11">
                      ¿Alguien intento reparar el equipo antes?
-                     <?php echo Form::select('reparado', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     <?php echo Form::select('reparadot', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
 
                    </div>
                    <div class="form-group col-md-4" id="12">
-                     ¿Estuvo en contacto con agua?,¿tipo? <?php echo Form::select('agua', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="13">
-                     ¿Ingresa correctamente al sistema? <?php echo Form::select('ingresoso', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     ¿Estuvo en contacto con agua? <?php echo Form::select('aguat', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
                    <div class="form-group col-md-4" id="14">
                      ¿Enciende?
-                    <center> <?php echo Form::select('enciende', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                    <center> <?php echo Form::select('enciendet', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div></center>
-                   <div class="form-group col-md-4" id="15">
-                     ¿Funciona botón de encendido?
-                     <center><?php echo Form::select('benciende', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?></center>
-                   </div>
-                   <div class="form-group col-md-4" id="16">
-                     ¿Funciona botón de volumen?
-                     <center><?php echo Form::select('bvolumen', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?></center>
-                   </div>
-                   <div class="form-group col-md-4" id="16">
-                     ¿Funciona botón vibrador?
-                     <center><?php echo Form::select('bvibrador', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+
+                    <div class="form-group col-md-12" id="10">
+                     Entra al sistema:<center><?php echo Form::select('sistemat', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?></center>
+                    </div>
+
+                     <div class="form-group col-md-4" >
+                     ¿Deja cargador?
+                     <center><?php echo Form::select('cargadort', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
+
+                  <div class="form-group col-md-4" >
+                     ¿Numero de cargador?:<?php echo Form::text('seriecargadort',null,['class'=>'form-control','placeholder'=>'']); ?>
+
+                   </div>
+
                    <div class="form-group col-md-4" id="17">
-                     ¿Funciona pantalla?
-                     <center><?php echo Form::select('pantalla', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="18">
-                     ¿Funciona touch?<center><?php echo Form::select('touch', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     ¿Equipo golpeado?
+                     <center><?php echo Form::select('golpeadot', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
 
-                   <div class="form-group col-md-4" id="19">
-                     ¿Funciona display?
-                     <center><?php echo Form::select('display', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                   <div class="form-group col-md-6" id="19">
+                     Funciona la pantalla
+                     <center><?php echo Form::select('pantallat', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="20">
+
+                   <div class="form-group col-md-6" id="20">
+                     ¿Funciona touch?
+                     <center><?php echo Form::select('toucht', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+
+                   </div>
+                   <div class="form-group col-md-6" id="21">
+                     ¿Funciona camara delantera?
+                     <center><?php echo Form::select('camaradt', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+
+                   </div>
+                   <div class="form-group col-md-6" id="22">
                      ¿Funciona camara trasera?
-                     <center><?php echo Form::select('ctrasera', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     <center><?php echo Form::select('camaratt', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="21">
-                     ¿Funciona camara frontal?
-                     <center><?php echo Form::select('cfrontal', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="22">
-                     ¿Funciona centro de carga?
-                     <center><?php echo Form::select('ccarga', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="23">
+                   <div class="form-group col-md-6" id="23">
                      ¿Funciona altavoz?
-                     <center><?php echo Form::select('altavoz', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     <center><?php echo Form::select('altavozt', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="24">
-                     ¿Funciona microfono?
-                     <center><?php echo Form::select('microfono', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="25">
-                     ¿Funciona auricular?
-                     <center><?php echo Form::select('auricular', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="26">
-                     ¿Funciona bocina externa?
-                     <center><?php echo Form::select('boexterna', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="27">
+                   <div class="form-group col-md-6" id="24">
                      ¿Funciona jack de audio?
-                     <center><?php echo Form::select('jack', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     <center><?php echo Form::select('jackt', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="28">
-                     ¿Funciona wifi?
-                     <center><?php echo Form::select('wifi', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                   <div class="form-group col-md-6" id="25">
+                     ¿Funciona WIFI?
+                     <center><?php echo Form::select('wifit', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="29">
-                     ¿Funciona bluetooth?
-                     <center><?php echo Form::select('bluetooth', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="30">
-                     ¿Datos móviles?
-                     <center><?php echo Form::select('datosm', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="31">
-                     ¿Funciona bateria?
-                     <center><?php echo Form::select('bateria', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="32">
-                     ¿Funciona porta Sim?
-                     <center><?php echo Form::select('portasim', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="33">
-                     ¿Funciona SIM?
-                     <center><?php echo Form::select('sim', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="34">
-                     ¿Funciona boton home?
-                     <center><?php echo Form::select('bhome', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="35">
-                     ¿Funciona Touch ID?
-                     <center><?php echo Form::select('touchid', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
-
-                   </div>
-                   <div class="form-group col-md-4" id="36">
+                   <div class="form-group col-md-6" id="26">
                      ¿Funciona sensor de proximidad?
-                     <center><?php echo Form::select('sensorp', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                     <center><?php echo Form::select('sensort', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="37">
-                     ¿Golpes en carcasa?
-                     <center><?php echo Form::select('carcasa', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                   <div class="form-group col-md-6" id="27">
+                     ¿Funciona bluetooth?
+                     <center><?php echo Form::select('blut', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+
+                   </div>
+                   <div class="form-group col-md-6" id="28">
+                     ¿Funciona bateria?
+                     <center><?php echo Form::select('bateriat', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
 
-                   <div class="form-group col-md-4" id="38">
-                     ¿Funciona Teclado?
-                     <center><?php echo Form::select('teclado', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+                   <div class="form-group col-md-6" id="28">
+                     ¿Datos Moviles?
+                     <center><?php echo Form::select('datosmt', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
-                   <div class="form-group col-md-4" id="39">
-                     ¿Tiene Señal?
-                     <center><?php echo Form::select('señal', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
+
+                   <div class="form-group col-md-6" id="28">
+                     ¿Funciona centro de carga?
+                     <center><?php echo Form::select('ccargat', array('NO SE'=> 'NO SE', 'SI' => 'SI', 'NO' => 'NO'), 'NO SE'); ?>
 
                    </div>
+
                    <div class="form-group col-md-12" id="40">
-                     ¿Que problema presenta el equipo?<?php echo Form::text('problemacliente',null,['class'=>'form-control','placeholder'=>'45.- ¿Que problema presenta el equipo?']); ?>
+                     ¿Que problema presenta el equipo?<?php echo Form::text('problemaclientet',null,['class'=>'form-control','placeholder'=>'']); ?>
 
 
                    </div>
-                   <div class="form-group col-md-12" id="41" >
-                     ¿Que solución desea?<?php echo Form::text('solucion1',null,['class'=>'form-control','placeholder'=>'46.- ¿Que solución desea?']); ?>
+                   <div class="form-group col-md-12" id="30">
+                     ¿Que solucion desea?
+                     <center><?php echo Form::text('soluciont',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
+                   
                    <div class="form-group col-md-12" id="42">
                      <h4>Diagnostico de Recepción:</h4>
-                     <?php echo Form::textarea('diagnostico1',null,['class'=>'form-control','placeholder'=>'47.-DIAGNOSTICO DE RECEPCIÓN']); ?>
+                     <?php echo Form::textarea('diagnostico1t',null,['class'=>'form-control','placeholder'=>'DIAGNOSTICO DE RECEPCIÓN']); ?>
 
                    </div>
 
                    <div class="form-group col-md-12" id="43">
                      <h4>Comunicación Interna (Observaciones y comentarios del equipo(s)):</h4>
-                     <?php echo Form::textarea('comunicacion',null,['class'=>'form-control','placeholder'=>'¿Que deseas que sepa tu compañero?']); ?>
+                     <?php echo Form::textarea('comunicaciont',null,['class'=>'form-control','placeholder'=>'¿Que deseas que sepa tu compañero?']); ?>
 
                    </div>
                    <div class="form-group col-md-12" id="44">
                      <h4>Concepto y precio de la reparación:</h4>
-                     <?php echo Form::textarea('diagnostico2',null,['class'=>'form-control','placeholder'=>'']); ?>
+                     <?php echo Form::textarea('diagnostico2t',null,['class'=>'form-control','placeholder'=>'']); ?>
 
                    </div>
 
@@ -234,20 +187,22 @@
                    <div class="form-group col-md-12" id="45">
                      <?php echo Form::label('Status','Status:'); ?>
 
-                     <?php echo Form::select('status_id',$status); ?>
+                     <?php echo Form::select('status_idt',$status); ?>
 
                    </div>
 
                    <div class="form-group col-md-12" id="46">
                      <?php echo Form::label('tecnico','Tecnico Asignado:'); ?>
 
-                     <?php echo Form::select('tecnico_id',$user); ?>
+                     <?php echo Form::select('tecnico_idt',$user); ?>
 
                    </div> 
+
+
                  </div>
 
                  <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Continuar</button>
+                 
 
                 </div>
               </div>

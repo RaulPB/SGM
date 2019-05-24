@@ -18,10 +18,12 @@
 
 
 	<table class="table table-striped">
-		<thead>
-			<th>No. Orden Servicio</th>
+		<thead class="thead-dark">
+			<th>No. Orden</th>
 			<th>Cliente</th>
+			<th>Equipo</th>
 			<th>Tecnico asignado</th>
+			<th>Sucursal</th>
 			<th>Status</th>
 			<th>Fecha de entrega</th>
       <th>Imprimir Nota de venta</th>
@@ -47,7 +49,15 @@
 		?>
 			<td>{{$servicios -> id}}</td>
 			<td>{{$servicios -> nombrecliente}}</td>
+			<td>{{$servicios -> producto}}</td>
 			<td>{{$servicios -> tecnico -> name}}</td> <!--NECESITO ALCANZARLO POR METODO EN SERVICIO Y  -->
+
+			<?php
+			$Z= $servicios -> sucursal;
+			$idsucur = DB::table('sucursals')->where('id', '=', $Z)->pluck('nameS');//id de sucursal
+			echo "<td> $idsucur</td>"
+			?>
+
 
 			@if($servicios->status_id == '7' and  $dif > 432000)<!-- Validando atraso despues de 5 dias habiles Negro/gris-->
 							<td bgcolor="#AEB6BF">{{$servicios -> status -> status}}</td>

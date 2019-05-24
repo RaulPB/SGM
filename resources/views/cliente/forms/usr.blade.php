@@ -15,11 +15,11 @@
 		{!!Form::text('correo',null,['class'=>'form-control','placeholder'=>''])!!}
 	</div>
 	<div class="form-group">
-		{!!Form::label('facturacion','RFC del cliente:')!!}
+		{!!Form::label('facturacion','Datos de facturación:')!!}
 		{!!Form::text('facturacion',null,['class'=>'form-control','placeholder'=>''])!!}
 	</div>
 	<div class="form-group">
-		{!!Form::label('detalles','Detalles de facturación:')!!}
+		{!!Form::label('detalles','Direccion del cliente:')!!}
 		{!!Form::textarea('detalles',null,['class'=>'form-control','placeholder'=>''])!!}
 	</div>
 

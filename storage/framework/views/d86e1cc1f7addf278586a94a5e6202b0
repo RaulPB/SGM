@@ -23,13 +23,13 @@
 
 	</div>
 	<div class="form-group">
-		<?php echo Form::label('facturacion','RFC del cliente:'); ?>
+		<?php echo Form::label('facturacion','Datos de facturación:'); ?>
 
 		<?php echo Form::text('facturacion',null,['class'=>'form-control','placeholder'=>'']); ?>
 
 	</div>
 	<div class="form-group">
-		<?php echo Form::label('detalles','Detalles de facturación:'); ?>
+		<?php echo Form::label('detalles','Direccion del cliente:'); ?>
 
 		<?php echo Form::textarea('detalles',null,['class'=>'form-control','placeholder'=>'']); ?>
 

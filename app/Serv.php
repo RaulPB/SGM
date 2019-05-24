@@ -37,6 +37,17 @@ class Serv extends Model
         }
     }
 
+     public function scopeIddss($query, $id){ //este es para listar el index en vistas de servicios //FALTA PAREMETRO PARA PASAR ID DE USUARIO
+      $user = Auth::user()->sucursal_id; //extraemos id del usuario logueado.
+      if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA
+      $query->where('id', $id)->Where('sucursal',"=", $user);
+        }else{
+          $query->where('id', $id)->orWhere('status_id', '<>', '10')->where('status_id', '<>', '11')->where('status_id', '<>', '16')->where('status_id', '<>', '18')->where('status_id', '<>', '8')->get();
+        }
+    }
+
+    
+
       public function scopeIds($query, $id){//este es para listar en index de receptor los entregados
 
       if(trim($id) != ""){ //TRIM NOS AYUDA A QUE A PESAR DE PONER ESPACIOS NO PASE NADA Y NO SE ALTERE LA CONSULTA

@@ -207,8 +207,12 @@
               <ul class="dropdown-menu dropdown-user">
                 @foreach($servicios as $clis)
                 <li>
-                  <? $x = $x+1; ?>
-                  <i class=""> {!!link_to_route('tecnico.edit', $title = $x.".-Orden por atender: ". $clis->id. ' / Vence: '. $clis->fechaentrega, $parameters = $clis->id, $attributes = ['class'=>'btn'])!!}</i>
+                  <? $x = $x+1; 
+                  $Z= $clis -> sucursal;
+                  $idsucur = DB::table('sucursals')->where('id', '=', $Z)->pluck('nameS');
+                  ?>
+                  <i class=""> {!!link_to_route('tecnico.edit', $title = $x.".- Orden por atender: ". $clis->id."  / Sucursal: ".$idsucur .'  /  Vence: '. $clis->fechaentrega, $parameters = $clis->id, $attributes = ['class'=>'btn'])!!}
+                  </i>
                 </li>
                 @endforeach
 
