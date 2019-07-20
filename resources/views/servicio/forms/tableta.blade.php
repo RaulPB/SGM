@@ -316,12 +316,12 @@ $(document).ready(function(){
 
                    <div class="form-group col-md-12" id="45">
                      {!!Form::label('Status','Status:')!!}
-                     {!!Form::select('status_idt',$status)!!}
+                     {!!Form::select('status_id',$status)!!}
                    </div>
 
                    <div class="form-group col-md-12" id="46">
                      {!!Form::label('tecnico','Tecnico Asignado:')!!}
-                     {!!Form::select('tecnico_idt',$user)!!}
+                     {!!Form::select('tecnico_id',$user)!!}
                    </div> 
 
 

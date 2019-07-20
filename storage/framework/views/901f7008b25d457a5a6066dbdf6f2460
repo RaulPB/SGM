@@ -1,0 +1,188 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <table>
+
+  <tr>
+    <td> <img src= <?php echo e($imagen->politicas); ?> style="width:400%; max-width:550px;"></td>
+    <td colspan="">Folio: <?php echo e($servicio->id); ?></td>
+    <td colspan="3"><FONT SIZE=2>Nombre del cliente: <?php echo e($servicio->nombrecliente); ?></FONT></td>
+    <td colspan="">Sucursal: <?php echo e($claven); ?></td>
+    
+
+  </tr>
+  <tr>
+
+    <td colspan="5"><FONT SIZE=1>Fecha de Recepción: </FONT><FONT SIZE=1> <?php echo e($servicio->fechaingreso); ?></FONT></td>
+    <td colspan="5"><FONT SIZE=1>Fecha de Entrega:</FONT><FONT SIZE=1> <?php echo e($servicio->fechaentrega); ?></FONT></td>
+    
+  
+  </tr>
+
+  <tr>
+    <td colspan="1"><FONT SIZE=2>Marca: <?php echo e($pcubi->marcat); ?></FONT></td>
+    <td colspan="2"><FONT SIZE=2>Modelo: <?php echo e($pcubi->modelot); ?></FONT></td>
+    <td colspan="2"><FONT SIZE=2>Tipo: <?php echo e($pcubi->tipot); ?></FONT></td>
+    <td> <img src="https://scontent.fjal1-1.fna.fbcdn.net/v/t1.0-9/66656965_10157380017544110_7893547958971400192_n.jpg?_nc_cat=103&_nc_oc=AQlTJ97KyTFoI3U_CHwNOS4M8_dO-1--1G3Ey2Zbtk6ltK_-OtXtQ0hc7MKSYj_6IVk&_nc_ht=scontent.fjal1-1.fna&oh=1ebb23607d6673904a6ec63e7a057ca4&oe=5DB3F1B8" style="width:1300%; max-width:1050px;"> </td>
+  </tr>
+  <tr>
+    <td colspan="5"><FONT SIZE=1>N/S: <?php echo e($pcubi->seriet); ?></FONT></td>
+    <td colspan="5"><FONT SIZE=1>Color: <?php echo e($pcubi->colort); ?></FONT></td>
+    
+  </tr>
+ </table>
+
+                    <div class="table-responsive">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <td colspan="5">Problema a reparar:
+                                    <FONT SIZE=2> <?php echo e($servicio->problemacliente); ?></FONT></td>
+                                     <td colspan="5">Observaciones: <FONT SIZE=2> <?php echo e($servicio->diagnostico1); ?></FONT></td>
+                                </tr>
+                                <tr>
+                                  <td><FONT SIZE=0>Memoria: <?php echo e($pcubi->memoriat); ?></FONT></td>
+                                  <td><FONT SIZE=0>Procesador: <?php echo e($pcubi->procesadort); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Fue Abierto?: <?php echo e($pcubi->reparadot); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Estuvo en contacto con agua?: <?php echo e($pcubi->aguat); ?></FONT></td>
+                                  <td><FONT SIZE=0>Sistema: <?php echo e($pcubi->sistemat); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Enciende?: <?php echo e($pcubi->enciendet); ?></FONT></td>
+                                  <td><FONT SIZE=0>Cargador: <?php echo e($pcubi->cargadort); ?></FONT></td>
+                                  <td><FONT SIZE=0>No. cargador: <?php echo e($pcubi->seriecargadort); ?></FONT></td>
+                                  <td><FONT SIZE=0>Bateria: <?php echo e($pcubi->bateriat); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funcionan bluetooth?: <?php echo e($pcubi->blut); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funcionan datos 3G?: <?php echo e($pcubi->datosmt); ?></FONT></td>
+                                  
+                                </tr>
+
+                                <tr>
+                                  <td><FONT SIZE=0>Funciona bateria: <?php echo e($pcubi->funcionabateriat); ?></FONT></td>
+                                  <td><FONT SIZE=0>Funciona pantalla: <?php echo e($pcubi->pantallat); ?></FONT></td>
+                                  <td><FONT SIZE=0>Funciona disco: <?php echo e($pcubi->discot); ?></FONT></td>
+                                  <td><FONT SIZE=0>Funciona altavoz: <?php echo e($pcubi->altavozt); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funciona camara frontal?: <?php echo e($pcubi->camaradt); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funciona camara trasera?: <?php echo e($pcubi->camaratt); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funciona touch?: <?php echo e($pcubi->toucht); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funciona jack de audio: <?php echo e($pcubi->jackt); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funciona WIFI: <?php echo e($pcubi->wifit); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funcionan sensores?: <?php echo e($pcubi->sensort); ?></FONT></td>
+                                  <td><FONT SIZE=0>¿Funcionan centro de carga?: <?php echo e($pcubi->ccargat); ?></FONT>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td colspan="2"><strong>TOTAL: <?php echo e($servicio->costo); ?></strong></td>
+                                  <td colspan="2"><strong>Anticipo: <?php echo e($abonos); ?></strong></td>
+                                  <td colspan="8"><FONT SIZE=2>Le atendio: <?php echo e($servicio->receptor); ?></FONT></td>
+                                  <H6 align="center">Recibo el equipo ya reparado y quedo satisfecho con el servicio</H6>
+
+                                  <H6 align="center">Nombre y firma aceptando las condiciones</H6>
+                                  <H6 align="center">Declaro ser el dueño del equipo que traigo a reparar, y me comprometo a recogerlo en un plazo máximo de 5 días hábiles después de la fecha pactada de entrega, si no lo recojo, la empresa emisora de esta ordén podrá disponer del equipo sin previo aviso.</H6>
+                               </tr>
+
+
+
+                            </thead>
+<FONT SIZE=0><?php echo e($avi->politicas); ?>.<?php echo e($poli->politicas); ?></FONT>
+                        </table>
+
+<table>
+<thead>
+  <tr>
+
+    <td colspan="1"><img src= <?php echo e($imagen->politicas); ?> style="width:250%; max-width:550px;">Folio: <?php echo e($servicio->id); ?> </td>
+    <td colspan="3"><FONT SIZE=0>Fecha de Recepción: </FONT><FONT SIZE=1> <?php echo e($servicio->fechaingreso); ?></FONT></td>
+    <td colspan="3"><FONT SIZE=0>Fecha de Entrega:</FONT><FONT SIZE=1> <?php echo e($servicio->fechaentrega); ?></FONT></td>
+  </tr>
+
+  <tr>
+    
+    <td colspan="4"><FONT SIZE=0>Nombre del cliente: <?php echo e($servicio->nombrecliente); ?></FONT></td>
+    <td colspan="3"><FONT SIZE=2> Sucursal: <?php echo e($claven); ?></FONT></td>
+  </tr>
+
+  <tr>
+    <td><FONT SIZE=0>Marca: <?php echo e($pcubi->marcat); ?></FONT></td>
+    <td><FONT SIZE=0>Modelo: <?php echo e($pcubi->modelot); ?></FONT></td>
+    <td><FONT SIZE=0>Tipo: <?php echo e($pcubi->tipot); ?></FONT></td>
+  </tr>
+
+                          </thead>
+                          <tbody>
+                            <tr>
+
+                              <td colspan="2"><FONT SIZE=0> Problema a reparar:</FONT>
+                                    <FONT SIZE=0> <?php echo e($servicio->problemacliente); ?></FONT></td>
+                              <td colspan="2"> <FONT SIZE=0> Observaciones: <?php echo e($servicio->diagnostico1); ?></FONT></td>
+                              <td colspan="3"><strong>TOTAL: <?php echo e($costo); ?></strong></td>
+                            </tr>
+                            <tr>
+                              <H6 align="center">Nombre y firma aceptando las condiciones</H6>
+                               <FONT SIZE=0 align="center"><?php echo e($pie->politicas); ?></FONT>
+                               <td colspan="7"><FONT SIZE=1>CONTAMOS CON SERVICIO A DOMICILIO.</FONT> <FONT SIZE=0><?php echo e($dire->politicas); ?></FONT></td>
+                            </tr>
+
+                          </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+
+
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+
+
+
+
+
+
+
+<style>
+.height {
+    min-height: 200px;
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+</style>

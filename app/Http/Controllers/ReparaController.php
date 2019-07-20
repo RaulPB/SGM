@@ -13,6 +13,9 @@ use SGM\Garantia;
 use SGM\Sucursal;
 use SGM\Notas;
 use SGM\Politica;
+use Session;
+use SGM\PC;
+use SGM\Tablet;
 
 class ReparaController extends Controller
 {
@@ -55,17 +58,24 @@ class ReparaController extends Controller
      */
     public function show($id) //nota de venta
     {  //NECESITAMOS CREAR AL FINAL JUSTO ANTES DE GUARDAR EL NUMERO DE LA NOTA CON EL QUE VAMOS A GUARDARLA
+      $servicio = Serv::find($id); //encontramos el registro
+      
+      if($servicio->abono1 == 0 && $servicio->abono2 == 0 && $servicio->abono3 == 0 && $servicio->abono4 == 0 && $servicio->abono5 == 0){
+        
+        Session::flash('notify','NO SE PUEDE GENERAR NOTA DE VENTA SIN ABONOS REGISTRADOS');
+        return Redirect::to('/servicio');
+
+      }
       $idpoli = 1;
       $idavi = 2;
       $idtres = 3;
       $idcuatro = 4;
-      $idseis = 6; //para la imagen 
+      $idseis = 6; //para la imagen http://localhost:8000/imagen1.png
       $poli = Politica::find($idpoli); //recuperamos la politica
       $avi = Politica::find($idavi); //recuperamos la politica
       $dire = Politica::find($idtres);
       $cabe = Politica::find($idcuatro);
       $imagen = Politica::find($idseis);
-
       $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
       $servicio = Serv::find($id); //encontramos el registro
       $compañia = $servicio->compañia;
@@ -160,7 +170,7 @@ class ReparaController extends Controller
       $pdf = \App::make('dompdf.wrapper');
       $pdf->setPaper('A3', 'portrait');
       $pdf->loadHTML($view);
-      return $pdf->stream("Orden ".$id."__".$date);
+      return $pdf->download("Orden ".$id."__".$date);
 
 
     }
@@ -175,7 +185,7 @@ class ReparaController extends Controller
     {
 
 
-        $idpoli = 1;
+      $idpoli = 1;
       $idavi = 2;
       $idtres = 3;
       $idcuatro = 4;
@@ -190,15 +200,62 @@ class ReparaController extends Controller
 
         $mensaje = "mensaje especifico que puede cambiar dahab para las politicas";
         $servicio = Serv::find($id); //encontramos el registro
-        $compañia = $servicio->compañia;
-        $id = $servicio->id;
         $date = $servicio->created_at;
+
+        if($servicio->producto == "MACBOOK-PC"){
+            $ubicapc = $servicio->idservpc;
+            $pcubi = Pc::find($ubicapc);
+            $costo = $servicio->costo;
+            $pago1 = $servicio->abono1;
+            $pago2 = $servicio->abono2;
+            $abonos = $pago1 + $pago2;
+            $gar = $servicio->garantia;
+            $receptor = $servicio->receptor;
+            $garantia = DB::table('garantias')->where('id', '=', $gar)->pluck('garantia');
+            $idsucur = DB::table('users')->where('name', '=', $receptor)->pluck('sucursal_id');
+            $claven = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('nameS');
+
+           
+            $view =  \View::make('pdf.ordenpc', compact('pcubi','servicio','imagen','pie','abonos','avi','poli','claven','costo','dire'))->render();
+
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->setPaper('Legal', 'portrait');
+            $pdf->loadHTML($view);
+            return $pdf->stream("Orden ".$id."__".$date);
+        }
+
+        if($servicio->producto == "IPAD-TABLET"){
+            $ubicapc = $servicio->idservtablet;
+            $pcubi = Tablet::find($ubicapc);
+            $costo = $servicio->costo;
+            $pago1 = $servicio->abono1;
+            $pago2 = $servicio->abono2;
+            $abonos = $pago1 + $pago2;
+            $gar = $servicio->garantia;
+            $receptor = $servicio->receptor;
+            $garantia = DB::table('garantias')->where('id', '=', $gar)->pluck('garantia');
+            $idsucur = DB::table('users')->where('name', '=', $receptor)->pluck('sucursal_id');
+            $claven = DB::table('sucursals')->where('id', '=', $idsucur)->pluck('nameS');
+
+           
+            $view =  \View::make('pdf.ordentablet', compact('pcubi','servicio','imagen','pie','abonos','avi','poli','claven','costo','dire'))->render();
+
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->setPaper('Legal', 'portrait');
+            $pdf->loadHTML($view);
+            return $pdf->stream("Orden ".$id."__".$date);
+        }
+
+
+
+        $compañia = $servicio->compañia;
+        $id = $servicio->id;        
         $nombrecliente = $servicio->nombrecliente;
         $fechaentrega = $servicio->fechaentrega;
         $fecharecepcion = $servicio->created_at;
         $marca = $servicio->marca;
         $modelo = $servicio->modelo;
-        $tipo = $servicio->tipo;
+        $tipo = $servicio->producto;
         $ns = $servicio->serie;
         $imei = $servicio->imei;
         $color = $servicio->color;
@@ -251,6 +308,7 @@ class ReparaController extends Controller
         'enciende','benciende','bvolumen','bvolumen','bvibrador','pantalla','touch','display','ctrasera','cfrontal','ccarga',
         'altavoz','microfono','auricular','boexterna','jack','wifi','bluetooth','datosm','bateria','portasim','sim','bhome',
         'touchid','sensorp','carcasa','teclado','señal','compañia','diagnostico2','claven','garantia','avi','poli','dire','imagen','pie','celular','contraseña'))->render();
+
         $pdf = \App::make('dompdf.wrapper');
         $pdf->setPaper('Legal', 'portrait');
 

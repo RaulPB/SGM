@@ -27,9 +27,11 @@
 			<th>No. Orden Servicio</th>
 			<th>Cliente</th>
 			<th>Tecnico asignado</th>
+			<th>Producto</th>
 			<th>Status</th>
 			<th>Fecha de entrega</th>
-			<th>Operaciones</th>
+			<th>Descargar orden</th>
+			<th>Acciones</th>
 		</thead>
 
 		@foreach($servicio as $servicios)
@@ -44,11 +46,11 @@
 			$dif=$timestamp1-$timestamp2;//32000 segundo es equivalente a 5 dias
 			$dif2=$timestamp3-$timestamp1;//en tiempo mayor o menor a 2 dias
 			$dif3=$timestamp1-$timestamp3;//ordenes atrasadas-
-		?>
+		    ?>
 			<td>{{$servicios -> id}}</td>
 			<td>{{$servicios -> nombrecliente}}</td>
 			<td>{{$servicios -> tecnico -> name}}</td> <!--NECESITO ALCANZARLO POR METODO EN SERVICIO Y  -->
-
+			<td>{{$servicios -> producto}}</td>
 			@if($servicios->status_id == '7' and  $dif > 432000)<!-- Validando despues de 5 dias habiles MORADO-->
 							<td bgcolor="#D7BDE2">{{$servicios -> status -> status}}</td>
 			@endif
@@ -69,6 +71,9 @@
 
 
 			<td>{{$servicios -> fechaentrega}}</td>
+			
+			<td>{!!link_to_route('constru.edit', $title = 'Imprimir', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-info'])!!}</td>
+
 			<td>{!!link_to_route('tecnico.edit', $title = 'Revisar', $parameters = $servicios->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 		</tbody>
 		@endforeach

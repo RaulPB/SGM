@@ -1,7 +1,0 @@
-<div class="form-group">
-		<?php echo Form::label('nombre','Mensaje:'); ?>
-
-		<?php echo Form::text('mensaje',null,['class'=>'form-control','placeholder'=>'Ingresa el mensaje a mostrar']); ?>
-
-	</div>
-	

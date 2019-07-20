@@ -25,7 +25,7 @@ Route::resource('mail','MailController');//para enrutamiento REST del correo
 Route::resource('usuario','UsuarioController');//para dar de alta usuarios
 Route::resource('sucursal','SucursalController'); //para dar de alta sucursales nuevos y visualizarlos
 Route::resource('status','StatusController'); //para dar de alta sucursales nuevos y visualizarlos
-Route::resource('constru','ReparaController'); //para visualizar pagina de construccion
+Route::resource('constru','ReparaController'); //para visualizar orden de servicio.
 Route::resource('servicio','ServsController'); //para visualizar y editar ordenes desde el usuario Receptor
 Route::resource('tecnico','TecnicoController'); //para visualizar y editar ordenes desde el usuario Receptor
 Route::resource('compras','ComprasController'); //para visualizar y editar solicitudes de compra.

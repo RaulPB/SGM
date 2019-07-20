@@ -1,8 +1,0 @@
-	<div class="form-group">
-		<?php echo Form::label('catego','Categoria:'); ?>
-
-		<?php echo Form::text('categoria',null,['class'=>'form-control','placeholder'=>'Ingresa categoria']); ?>
-
-	</div>
-
-

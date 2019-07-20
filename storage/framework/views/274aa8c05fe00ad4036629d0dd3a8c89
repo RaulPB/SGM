@@ -358,14 +358,14 @@ $(document).ready(function(){
                    <div class="form-group col-md-12" id="45">
                      <?php echo Form::label('Status','Status:'); ?>
 
-                     <?php echo Form::select('status_idt',$status); ?>
+                     <?php echo Form::select('status_id',$status); ?>
 
                    </div>
 
                    <div class="form-group col-md-12" id="46">
                      <?php echo Form::label('tecnico','Tecnico Asignado:'); ?>
 
-                     <?php echo Form::select('tecnico_idt',$user); ?>
+                     <?php echo Form::select('tecnico_id',$user); ?>
 
                    </div> 
 
